@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import type * as THREE from "three";
 
 export default function InfinityLogo3D() {
   const mountRef = useRef<HTMLDivElement>(null);

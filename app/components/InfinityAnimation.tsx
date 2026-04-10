@@ -15,8 +15,8 @@ export default function InfinityAnimation() {
   const canvasRef  = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas  = canvasRef.current;
-    const wrapper = wrapperRef.current;
+    const canvas  = canvasRef.current as HTMLCanvasElement;
+    const wrapper = wrapperRef.current as HTMLDivElement;
     if (!canvas || !wrapper) return;
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     if (!ctx) return;
