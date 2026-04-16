@@ -9,8 +9,8 @@ const ACCENT = "#0ABAB5";
 // ── Контакты ──────────────────────────────────────────────────────────────────
 const EMAIL  = "prostranstvo_ecom@mail.ru";
 const PHONE  = "+7 987 161 42 42";
-const TG_ME  = "https://t.me/prostranstvo_mp";      // личный Telegram
-const TG_CH  = "https://t.me/prostranstvo_channel"; // Telegram-канал
+const TG_ME  = "https://t.me/pro_success_official"; // личный Telegram
+const TG_CH  = "https://t.me/prostranstvoecom";     // Telegram-канал
 
 // ── QR: положи файлы в /public/ с этими именами ──────────────────────────────
 const QR_TG   = "/qr-telegram.jpg";   // QR личного Telegram
