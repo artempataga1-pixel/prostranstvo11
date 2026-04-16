@@ -26,7 +26,7 @@ float noise(vec2 p){
 }
 float fbm(vec2 p){
   float t=.0,a=1.;mat2 m=mat2(1.,-.5,.2,1.2);
-  for(int i=0;i<5;i++){t+=a*noise(p);p*=2.*m;a*=.5;}
+  for(int i=0;i<4;i++){t+=a*noise(p);p*=2.*m;a*=.5;}
   return t;
 }
 float clouds(vec2 p){

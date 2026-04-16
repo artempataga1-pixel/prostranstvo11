@@ -201,6 +201,21 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 
+/* GPU-ускорение для анимированных элементов */
+[style*="animation"]:not(canvas),
+[class*="animate-"] {
+  will-change: transform;
+}
+
+/* Уважаем системные настройки сниженного движения */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* ════════════════════════════════════════════════════════════════
    MOBILE ADAPTATIONS  ≤ 640px
    ════════════════════════════════════════════════════════════════ */

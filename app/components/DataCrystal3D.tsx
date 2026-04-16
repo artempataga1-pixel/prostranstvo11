@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { createAnimationActivityController } from "./animationActivity";
 
 type CleanupMount = HTMLDivElement & {
   __cleanup?: () => void;
@@ -13,7 +14,7 @@ export default function DataCrystal3D() {
     if (!mountNode) return;
     const mount = mountNode as CleanupMount;
 
-    let animId: number;
+    let animId = 0;
     let disposed = false;
     let mouseX = 0;
     let mouseY = 0;
@@ -31,7 +32,7 @@ export default function DataCrystal3D() {
       const h = mount.clientHeight;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: false });
-      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(devicePixelRatio, window.innerWidth < 768 ? 1.1 : 1.5));
       renderer.setSize(w, h);
       renderer.setClearColor(0x000000, 0);
       mount.appendChild(renderer.domElement);
@@ -204,6 +205,7 @@ export default function DataCrystal3D() {
       let targetRY = 0;
 
       function animate() {
+        if (disposed) return;
         animId = requestAnimationFrame(animate);
         const t = Date.now() * 0.001;
         matCrystal.uniforms.uTime.value = t;
@@ -235,7 +237,24 @@ export default function DataCrystal3D() {
 
         renderer.render(scene, camera);
       }
-      animate();
+
+      const stopAnimation = () => {
+        if (animId === 0) return;
+        cancelAnimationFrame(animId);
+        animId = 0;
+      };
+
+      const startAnimation = () => {
+        if (disposed || animId !== 0) return;
+        animId = requestAnimationFrame(animate);
+      };
+
+      const activityController = createAnimationActivityController({
+        node: mount,
+        onActivate: startAnimation,
+        onDeactivate: stopAnimation,
+        rootMargin: "260px",
+      });
 
       const onResize = () => {
         const nw = mount.clientWidth;
@@ -247,8 +266,8 @@ export default function DataCrystal3D() {
       window.addEventListener("resize", onResize);
 
       mount.__cleanup = () => {
+        activityController.cleanup();
         window.removeEventListener("resize", onResize);
-        cancelAnimationFrame(animId);
         renderer.dispose();
         geoIco.dispose();
         matCrystal.dispose();
@@ -271,7 +290,6 @@ export default function DataCrystal3D() {
     return () => {
       disposed = true;
       window.removeEventListener("mousemove", onMouseMove);
-      cancelAnimationFrame(animId);
       mount.__cleanup?.();
     };
   }, []);

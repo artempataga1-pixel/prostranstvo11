@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { createAnimationActivityController } from "./animationActivity";
 
 type CleanupMount = HTMLDivElement & {
   __cleanup?: () => void;
@@ -28,7 +29,7 @@ export default function InfinityLogo3D() {
     if (!mountNode) return;
     const mount = mountNode as CleanupMount;
 
-    let animId: number;
+    let animId = 0;
     let disposed = false;
 
     async function init() {
@@ -43,13 +44,13 @@ export default function InfinityLogo3D() {
       camera.position.z = 4.2;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.1 : 1.5));
       renderer.setSize(w, h);
       renderer.setClearColor(0x000000, 0);
       mount.appendChild(renderer.domElement);
 
       const curve = createLemniscateCurve(THREE, 1.35);
-      const TUBE_SEGMENTS = 300;
+      const TUBE_SEGMENTS = 200;
 
       // ── Core glowing tube ─────────────────────────────────────────
       const coreGeo = new THREE.TubeGeometry(curve, TUBE_SEGMENTS, 0.055, 16, true);
@@ -178,6 +179,7 @@ export default function InfinityLogo3D() {
       // ── Animate ───────────────────────────────────────────────────
       let clock = 0;
       function animate() {
+        if (disposed) return;
         animId = requestAnimationFrame(animate);
         clock += 0.014;
 
@@ -191,7 +193,24 @@ export default function InfinityLogo3D() {
 
         renderer.render(scene, camera);
       }
-      animate();
+
+      const stopAnimation = () => {
+        if (animId === 0) return;
+        cancelAnimationFrame(animId);
+        animId = 0;
+      };
+
+      const startAnimation = () => {
+        if (disposed || animId !== 0) return;
+        animId = requestAnimationFrame(animate);
+      };
+
+      const activityController = createAnimationActivityController({
+        node: mount,
+        onActivate: startAnimation,
+        onDeactivate: stopAnimation,
+        rootMargin: "260px",
+      });
 
       // Resize handler
       const onResize = () => {
@@ -206,6 +225,7 @@ export default function InfinityLogo3D() {
 
       // Store cleanup on ref so the return closure can reach it
       mount.__cleanup = () => {
+        activityController.cleanup();
         window.removeEventListener("resize", onResize);
         renderer.dispose();
         coreGeo.dispose();
@@ -224,7 +244,6 @@ export default function InfinityLogo3D() {
 
     return () => {
       disposed = true;
-      cancelAnimationFrame(animId);
       mount.__cleanup?.();
     };
   }, []);

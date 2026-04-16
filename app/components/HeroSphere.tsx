@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { createAnimationActivityController } from "./animationActivity";
 
 type CleanupMount = HTMLDivElement & {
   __cleanup?: () => void;
@@ -13,7 +14,7 @@ export default function HeroSphere() {
     if (!mountNode) return;
     const mount = mountNode as CleanupMount;
 
-    let animId: number;
+    let animId = 0;
     let disposed = false;
 
     async function init() {
@@ -23,7 +24,7 @@ export default function HeroSphere() {
       const h = mount.clientHeight;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: false });
-      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(devicePixelRatio, window.innerWidth < 768 ? 1.1 : 1.5));
       renderer.setSize(w, h);
       renderer.setClearColor(0x000000, 0);
       mount.appendChild(renderer.domElement);
@@ -32,7 +33,8 @@ export default function HeroSphere() {
       const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
       camera.position.z = 2.45;
 
-      const geo = new THREE.SphereGeometry(1, 192, 192);
+      // 64×64 сегментов достаточно — шейдер делает всю визуальную работу
+      const geo = new THREE.SphereGeometry(1, 64, 64);
 
       // Original SVG sphere: #0ABAB5 → #0A817D gradient, white inner glow at top
       const mat = new THREE.ShaderMaterial({
@@ -107,6 +109,7 @@ export default function HeroSphere() {
       scene.add(sphere);
 
       function animate() {
+        if (disposed) return;
         animId = requestAnimationFrame(animate);
         const t = Date.now() * 0.001;
         mat.uniforms.uTime.value = t;
@@ -117,7 +120,24 @@ export default function HeroSphere() {
 
         renderer.render(scene, camera);
       }
-      animate();
+
+      const stopAnimation = () => {
+        if (animId === 0) return;
+        cancelAnimationFrame(animId);
+        animId = 0;
+      };
+
+      const startAnimation = () => {
+        if (disposed || animId !== 0) return;
+        animId = requestAnimationFrame(animate);
+      };
+
+      const activityController = createAnimationActivityController({
+        node: mount,
+        onActivate: startAnimation,
+        onDeactivate: stopAnimation,
+        rootMargin: "260px",
+      });
 
       const onResize = () => {
         const nw = mount.clientWidth;
@@ -129,8 +149,8 @@ export default function HeroSphere() {
       window.addEventListener("resize", onResize);
 
       mount.__cleanup = () => {
+        activityController.cleanup();
         window.removeEventListener("resize", onResize);
-        cancelAnimationFrame(animId);
         renderer.dispose();
         geo.dispose();
         mat.dispose();
@@ -142,7 +162,6 @@ export default function HeroSphere() {
     init();
     return () => {
       disposed = true;
-      cancelAnimationFrame(animId);
       mount.__cleanup?.();
     };
   }, []);
