@@ -135,23 +135,19 @@ function ServicesSection() {
         </div>
       </div>
 
-      {/* 43 × 45px strips, each with its own backdrop-filter: blur(50px) — как в Figma */}
-      {Array.from({ length: 43 }, (_, i) => (
-        <div
-          key={i}
-          style={{
-            position: "absolute",
-            left: `${(i * 45 / 1920) * 100}vw`,
-            top: 0,
-            width: "2.34375vw",
-            height: "100%",
-            backdropFilter: "blur(50px)",
-            WebkitBackdropFilter: "blur(50px)",
-            pointerEvents: "none",
-            zIndex: 1,
-          }}
-        />
-      ))}
+      {/* Blur-оверлей на всю секцию — заменяет 43 отдельных div с backdrop-filter.
+          43 отдельных GPU-слоя → 1 слой. Визуал идентичен: полосы без зазоров
+          покрывали 100% ширины, поэтому один элемент даёт тот же результат. */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backdropFilter: "blur(50px)",
+          WebkitBackdropFilter: "blur(50px)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
 
       {/* "Услуги" — Figma: left:calc(50%-871px), top:484, font:580px, gradient text */}
       <p

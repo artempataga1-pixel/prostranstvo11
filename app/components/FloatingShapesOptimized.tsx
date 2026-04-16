@@ -35,7 +35,6 @@ function ElegantShape({
           width,
           height,
           position: "relative",
-          willChange: "transform",
           animation: `hero-shape-float 12s ease-in-out ${delay}s infinite`,
           animationPlayState: shouldFloat ? "running" : "paused",
         }}
@@ -132,30 +131,6 @@ export default function FloatingShapesOptimized() {
         pointerEvents: "none",
       }}
     >
-      <style>{`
-        @keyframes hero-shape-enter {
-          0% {
-            opacity: 0;
-            transform: translate3d(0, -150px, 0) rotate(var(--shape-rotate-from));
-          }
-
-          100% {
-            opacity: 1;
-            transform: translate3d(0, 0, 0) rotate(var(--shape-rotate-to));
-          }
-        }
-
-        @keyframes hero-shape-float {
-          0%, 100% {
-            transform: translate3d(0, 0, 0);
-          }
-
-          50% {
-            transform: translate3d(0, 18px, 0);
-          }
-        }
-      `}</style>
-
       <ElegantShape
         delay={0.3}
         width={520}

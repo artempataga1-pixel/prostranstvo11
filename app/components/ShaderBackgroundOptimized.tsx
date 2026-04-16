@@ -164,6 +164,8 @@ export default function ShaderBackgroundOptimized() {
       }, 700);
     };
 
+    let resizeTimer: ReturnType<typeof setTimeout> | undefined;
+
     function resize() {
       const baseDpr = Math.min(window.devicePixelRatio || 1, 2);
       const dpr = isMobileViewport()
@@ -177,6 +179,11 @@ export default function ShaderBackgroundOptimized() {
       if (!allowAnimation && !isMobileViewport()) {
         enableAnimationLoop();
       }
+    }
+
+    function onResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 120);
     }
 
     function loop(now: number) {
@@ -205,14 +212,15 @@ export default function ShaderBackgroundOptimized() {
 
     observer.observe(canvasEl);
     resize();
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", onResize);
     document.addEventListener("visibilitychange", onVisibilityChange);
     renderFrame(performance.now());
     scheduleAnimationLoop();
 
     return () => {
       window.cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
+      clearTimeout(resizeTimer);
+      window.removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       observer.disconnect();
       if (idleHandle !== undefined) {

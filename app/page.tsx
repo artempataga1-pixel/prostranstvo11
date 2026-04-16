@@ -2465,23 +2465,17 @@ function ServicesSection() {
         </div>
       </div>
 
-      {/* 43 × 45px strips, each with its own backdrop-filter: blur(50px) — как в Figma */}
-      {Array.from({ length: 43 }, (_, i) => (
-        <div
-          key={i}
-          style={{
-            position: "absolute",
-            left: `${(i * 45 / 1920) * 100}vw`,
-            top: 0,
-            width: "2.34375vw",
-            height: "100%",
-            backdropFilter: "blur(50px)",
-            WebkitBackdropFilter: "blur(50px)",
-            pointerEvents: "none",
-            zIndex: 1,
-          }}
-        />
-      ))}
+      {/* Blur-оверлей — 1 элемент вместо 43 (визуал идентичен, нет зазоров) */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backdropFilter: "blur(50px)",
+          WebkitBackdropFilter: "blur(50px)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
 
       {/* "Услуги" — Figma: left:calc(50%-871px), top:484, font:580px, gradient text */}
       <p
@@ -4867,7 +4861,7 @@ export default function Page() {
 
       <FadeIn><GrowthModelSection /></FadeIn>
       <FadeIn><WhyChooseUsSection /></FadeIn>
-      <FadeIn><CasesSection /></FadeIn>
+
       <FadeIn><OrbitalSection /></FadeIn>
       <DeferredServicesSections />
       <FadeIn><WorkWithUsSection /></FadeIn>

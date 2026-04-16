@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
   },
   // Оптимизирует tree-shaking для тяжёлых пакетов
   experimental: {
-    optimizePackageImports: ["framer-motion", "gsap", "lenis", "lucide-react"],
+    optimizePackageImports: ["framer-motion", "gsap", "lenis", "lucide-react", "three", "@react-three/fiber", "@react-three/drei"],
   },
   // WebP-оптимизация изображений через next/image
   images: {

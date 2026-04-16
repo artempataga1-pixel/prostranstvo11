@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { startTransition, useEffect, useRef, useState, type ReactNode } from "react";
 
 interface DeferredViewportMountProps {
   children: ReactNode;
@@ -23,7 +23,9 @@ export default function DeferredViewportMount({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry?.isIntersecting) return;
-        setShouldRender(true);
+        // startTransition делает монтирование некритичным:
+        // браузер может прервать рендер ради более важных обновлений (input, анимации)
+        startTransition(() => setShouldRender(true));
         observer.disconnect();
       },
       { rootMargin }

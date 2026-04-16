@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { TrendingUp, ShoppingBag, BarChart2, Database, Cpu, Users, Warehouse } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -108,12 +108,16 @@ function calculateNodePosition(index: number, total: number, rotationAngle: numb
 
 export default function OrbitalCasesTimeline() {
   const router = useRouter();
-  const [rotationAngle, setRotationAngle] = useState(0);
+  // rotationAngle убран из state — позиции нод обновляются напрямую в DOM
+  // через nodeRefs, чтобы не вызывать 45 React-ререндеров в секунду
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isOrbitVisible, setIsOrbitVisible] = useState(false);
   const rotationRef = useRef(0);
+  const radiusRef = useRef(220);
+  const selectedIdRef = useRef<number | null>(null);
+  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
   const orbitRef = useRef<HTMLDivElement>(null);
   const prefetchedRoutesRef = useRef<Set<string>>(new Set());
   const hoveredIdRef = useRef<number | null>(null);
@@ -147,6 +151,32 @@ export default function OrbitalCasesTimeline() {
   const RADIUS = isMobile ? 130 : 220;
   const ORBIT_SIZE = isMobile ? 310 : 560;
   const NODE_HIT_RADIUS = isMobile ? 28 : 36;
+  const renderRotationAngle = 0;
+
+  // Синхронизируем radiusRef с RADIUS (нужен в RAF)
+  useEffect(() => { radiusRef.current = RADIUS; }, [RADIUS]);
+  // Синхронизируем selectedIdRef с selectedId (нужен в RAF для zIndex)
+  useEffect(() => { selectedIdRef.current = selectedId; }, [selectedId]);
+
+  // Прямое обновление позиций нод в DOM — без React setState
+  const flushNodePositions = useCallback(() => {
+    const angle = rotationRef.current;
+    const r = radiusRef.current;
+    for (let i = 0; i < CASES.length; i++) {
+      const el = nodeRefs.current[i];
+      if (!el) continue;
+      const { x, y, zIndex, opacity } = calculateNodePosition(i, CASES.length, angle, r);
+      const isHov = hoveredIdRef.current === CASES[i].id;
+      const isSel = selectedIdRef.current === CASES[i].id;
+      el.style.left    = `calc(50% + ${x.toFixed(1)}px)`;
+      el.style.top     = `calc(50% + ${y.toFixed(1)}px)`;
+      el.style.opacity = opacity.toFixed(3);
+      el.style.zIndex  = String((isHov || isSel) ? 100 : zIndex + 10);
+    }
+  }, []);
+
+  // После каждого React-ререндера (hover/selection) восстанавливаем текущие позиции
+  useLayoutEffect(() => { flushNodePositions(); });
 
   // Вращение — не останавливается никогда
   useEffect(() => {
@@ -155,7 +185,7 @@ export default function OrbitalCasesTimeline() {
     let frameId = 0;
     let lastTime = performance.now();
     let lastRenderTime = lastTime;
-    const frameInterval = isMobile ? 1000 / 30 : 1000 / 45;
+    const frameInterval = 1000 / 30;
 
     const tick = (now: number) => {
       const delta = now - lastTime;
@@ -164,7 +194,8 @@ export default function OrbitalCasesTimeline() {
 
       if (now - lastRenderTime >= frameInterval) {
         lastRenderTime = now;
-        setRotationAngle(rotationRef.current);
+        // Прямой DOM-апдейт — без React re-render (было: setRotationAngle)
+        flushNodePositions();
       }
 
       frameId = requestAnimationFrame(tick);
@@ -172,7 +203,7 @@ export default function OrbitalCasesTimeline() {
 
     frameId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frameId);
-  }, [isMobile, isOrbitVisible]);
+  }, [isMobile, isOrbitVisible, flushNodePositions]);
 
   const clearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -386,13 +417,14 @@ export default function OrbitalCasesTimeline() {
 
           {/* Nodes */}
           {CASES.map((caseItem, index) => {
-            const { x, y, zIndex, opacity } = calculateNodePosition(index, CASES.length, rotationAngle, RADIUS);
+            const { x, y, zIndex, opacity } = calculateNodePosition(index, CASES.length, renderRotationAngle, RADIUS);
             const isActive = selectedId === caseItem.id;
             const IconComp = ICON_MAP[caseItem.icon];
 
             return (
               <div
                 key={caseItem.id}
+                ref={(el) => { nodeRefs.current[index] = el; }}
                 style={{
                   position: "absolute",
                   left: `calc(50% + ${x}px)`,
@@ -507,13 +539,14 @@ export default function OrbitalCasesTimeline() {
 
         {/* Nodes */}
         {CASES.map((caseItem, index) => {
-          const { x, y, zIndex, opacity } = calculateNodePosition(index, CASES.length, rotationAngle, RADIUS);
+          const { x, y, zIndex, opacity } = calculateNodePosition(index, CASES.length, renderRotationAngle, RADIUS);
           const isHovered = hoveredId === caseItem.id;
           const IconComp = ICON_MAP[caseItem.icon];
 
           return (
             <div
               key={caseItem.id}
+              ref={(el) => { nodeRefs.current[index] = el; }}
               style={{
                 position: "absolute",
                 left: `calc(50% + ${x}px)`,

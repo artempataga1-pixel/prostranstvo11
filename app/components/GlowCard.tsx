@@ -8,6 +8,50 @@ const DASH_LEN = 120;
 const DASH_GAP = 5000;
 const TRAVEL_TOTAL = DASH_LEN + DASH_GAP;
 
+// ── Shared visibility subscription — 1 listener for all card instances ───────
+const _visSubscribers = new Set<(visible: boolean) => void>();
+let _visListenerAttached = false;
+
+function subscribeToVisibility(cb: (visible: boolean) => void): () => void {
+  if (!_visListenerAttached && typeof document !== "undefined") {
+    document.addEventListener("visibilitychange", () => {
+      const visible = document.visibilityState === "visible";
+      _visSubscribers.forEach((fn) => fn(visible));
+    });
+    _visListenerAttached = true;
+  }
+  _visSubscribers.add(cb);
+  return () => { _visSubscribers.delete(cb); };
+}
+
+// ── Shared IntersectionObserver — 1 observer for all card instances ──────────
+const _vpCallbacks = new Map<Element, (intersecting: boolean) => void>();
+let _vpObserver: IntersectionObserver | null = null;
+
+function getViewportObserver(): IntersectionObserver {
+  if (!_vpObserver) {
+    _vpObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const cb = _vpCallbacks.get(entry.target);
+          if (cb) cb(entry.isIntersecting);
+        });
+      },
+      { rootMargin: "220px" },
+    );
+  }
+  return _vpObserver;
+}
+
+function observeViewport(el: Element, cb: (intersecting: boolean) => void): () => void {
+  _vpCallbacks.set(el, cb);
+  getViewportObserver().observe(el);
+  return () => {
+    _vpCallbacks.delete(el);
+    _vpObserver?.unobserve(el);
+  };
+}
+
 // ── Global CSS (injected once) ───────────────────────────────────────────────
 let _cssInjected = false;
 
@@ -25,6 +69,28 @@ function ensureGlobalCSS() {
     @keyframes corner-dot-pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50%       { opacity: 0.3; transform: scale(0.6); }
+    }
+
+    /* ── SVG beam: dim in rest → bright on hover (CSS-driven, zero React re-renders) ── */
+    [data-glow] .glow-beam {
+      stroke-width: 1;
+      stroke-opacity: 0.18;
+      filter: none;
+      transition: stroke-width 0.3s ease, stroke-opacity 0.3s ease, filter 0.3s ease;
+    }
+    [data-glow][data-hovered] .glow-beam {
+      stroke-width: 2.5;
+      stroke-opacity: 1;
+      filter: drop-shadow(0 0 3px var(--stroke-color)) drop-shadow(0 0 8px var(--stroke-color));
+    }
+
+    /* ── Corner dot: dim → bright on hover ── */
+    [data-glow] .corner-dot {
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+    [data-glow][data-hovered] .corner-dot {
+      opacity: 1;
     }
 
     /* ── Card number glow on hover ── */
@@ -120,7 +186,7 @@ const CORNER_POSITIONS = [
 export function GlowCard({ children, style, className, white = false, glowColor }: GlowCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [dims, setDims] = useState({ w: 0, h: 0 });
-  const [hovered, setHovered] = useState(false);
+  // hovered state removed — hover effects are now DOM-direct + CSS-driven, zero React re-renders
   const [isNearViewport, setIsNearViewport] = useState(false);
   const [isDocumentVisible, setIsDocumentVisible] = useState(true);
   const canHoverRef = useRef(false);
@@ -130,30 +196,14 @@ export function GlowCard({ children, style, className, white = false, glowColor 
   const { hue, stroke, dimStroke, shadowGlow, shadowGlowFar } = COLOR_MAP[colorKey] ?? COLOR_MAP.blue;
   const shouldAnimate = isNearViewport && isDocumentVisible;
 
-  useEffect(() => { ensureGlobalCSS(); }, []);
-
+  // Merge 3 one-time setup effects into 1 to reduce post-hydration scheduler work
   useEffect(() => {
+    ensureGlobalCSS();
     const el = ref.current;
     if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsNearViewport(entry?.isIntersecting ?? false);
-      },
-      { rootMargin: "220px" },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const onVisibilityChange = () => {
-      setIsDocumentVisible(document.visibilityState === "visible");
-    };
-
-    document.addEventListener("visibilitychange", onVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+    const unsubVp  = observeViewport(el, setIsNearViewport);
+    const unsubVis = subscribeToVisibility(setIsDocumentVisible);
+    return () => { unsubVp(); unsubVis(); };
   }, []);
 
   // Track card size for SVG beam only when it is near the viewport.
@@ -172,7 +222,7 @@ export function GlowCard({ children, style, className, white = false, glowColor 
     return () => ro.disconnect();
   }, [isNearViewport]);
 
-  // Mouse tracking + hover state
+  // Mouse tracking — box-shadow + data-hovered set directly on DOM, no setState
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -180,6 +230,8 @@ export function GlowCard({ children, style, className, white = false, glowColor 
     canHoverRef.current = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     if (!canHoverRef.current) return;
 
+    const shadowHover = `0 0 0 1px ${shadowGlow}, 0 0 14px 2px ${shadowGlow}, 0 0 36px 6px ${shadowGlowFar}`;
+    const shadowRest  = `0 0 0 1px ${dimStroke}`;
     let rect: DOMRect | null = null;
     let pointerX = -999;
     let pointerY = -999;
@@ -205,7 +257,7 @@ export function GlowCard({ children, style, className, white = false, glowColor 
     const onEnter = () => {
       rect = el.getBoundingClientRect();
       el.setAttribute("data-hovered", "");
-      setHovered(true);
+      el.style.boxShadow = shadowHover;
       el.addEventListener("pointermove", onMove, { passive: true });
     };
 
@@ -219,7 +271,7 @@ export function GlowCard({ children, style, className, white = false, glowColor 
       el.removeAttribute("data-hovered");
       el.style.setProperty("--lx", "-999px");
       el.style.setProperty("--ly", "-999px");
-      setHovered(false);
+      el.style.boxShadow = shadowRest;
     };
 
     el.addEventListener("pointerenter", onEnter);
@@ -233,30 +285,26 @@ export function GlowCard({ children, style, className, white = false, glowColor 
         hoverFrameRef.current = 0;
       }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Сохраняем оригинальную структуру: один div со всеми стилями
   const merged: CSSProperties & Record<string, unknown> = {
     ...style,
     position: "relative",
     overflow: "hidden",
-    // border заменён на box-shadow (не обрезается overflow:hidden и поддерживает hover-glow)
-    boxShadow: hovered
-      ? `0 0 0 1px ${shadowGlow}, 0 0 14px 2px ${shadowGlow}, 0 0 36px 6px ${shadowGlowFar}`
-      : `0 0 0 1px ${dimStroke}`,
+    contain: "paint",
+    // Inline box-shadow ensures no flash before CSS injection;
+    // hover state is updated directly in DOM via onEnter/onLeave (no re-render)
+    boxShadow: `0 0 0 1px ${dimStroke}`,
     transition: "box-shadow 0.35s ease",
     ["--glow-h"]: hue,
+    ["--stroke-color"]: stroke,
   };
 
   const { w, h } = dims;
   const rx = 14;
   const perim = w > 0 ? 2 * (w + h) : 2000;
-  // Медленнее: perim/80 ≈ 10с для типичной карточки
   const beamDur = Math.max(5, Math.round(perim / 80));
-
-  // Луч: почти невидимый в покое → яркий и толстый при hover
-  const beamWidth   = hovered ? 2.5 : 1;
-  const beamOpacity = hovered ? 1   : 0.18;
 
   return (
     <div ref={ref} data-glow className={className} style={merged}>
@@ -283,33 +331,29 @@ export function GlowCard({ children, style, className, white = false, glowColor 
             stroke={dimStroke}
             strokeWidth={1}
           />
-          {/* Анимированный луч */}
+          {/* Анимированный луч — hover-эффекты через CSS класс .glow-beam */}
           <rect
+            className="glow-beam"
             x={1} y={1} width={w - 2} height={h - 2}
             rx={rx} ry={rx}
             fill="none"
             stroke={stroke}
-            strokeWidth={beamWidth}
-            strokeOpacity={beamOpacity}
             strokeDasharray={`${DASH_LEN} ${DASH_GAP}`}
             style={{
               animationName: "glow-border-travel",
               animationDuration: `${beamDur}s`,
               animationTimingFunction: "linear",
               animationIterationCount: "infinite",
-              filter: hovered
-                ? `drop-shadow(0 0 3px ${stroke}) drop-shadow(0 0 8px ${stroke})`
-                : "none",
-              transition: "stroke-width 0.3s ease, stroke-opacity 0.3s ease, filter 0.3s ease",
             }}
           />
         </svg>
       )}
 
-      {/* ── Corner pulse dots ── */}
+      {/* ── Corner pulse dots — hover-эффект через CSS класс .corner-dot ── */}
       {shouldAnimate && CORNER_POSITIONS.map(({ key, pos }, i) => (
         <span
           key={key}
+          className="corner-dot"
           style={{
             position: "absolute",
             width: 5,
@@ -318,8 +362,6 @@ export function GlowCard({ children, style, className, white = false, glowColor 
             background: stroke,
             boxShadow: `0 0 6px 2px ${stroke}`,
             zIndex: 4,
-            opacity: hovered ? 1 : 0.4,
-            transition: "opacity 0.3s ease",
             ...pos,
             animationName: "corner-dot-pulse",
             animationDuration: "2.4s",

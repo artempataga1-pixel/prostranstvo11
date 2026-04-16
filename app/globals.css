@@ -53,19 +53,6 @@ a[href^="tel:"]:hover {
 }
 ::-webkit-scrollbar-thumb:hover { background: rgba(10,186,181,0.55); }
 
-/* Animated glowing border — traveling light line on cards */
-@keyframes glow-border-travel {
-  from { stroke-dashoffset: 0; }
-  to   { stroke-dashoffset: -5090; }
-}
-
-/* Corner dot — sharp bright flash when beam arrives, then dims */
-@keyframes corner-dot-pulse {
-  0%   { opacity: 1;    transform: scale(1.8); }
-  7%   { opacity: 0.3;  transform: scale(1);   }
-  100% { opacity: 0.3;  transform: scale(1);   }
-}
-
 /* ───────────────────────────────────────────────
    Timeline "О компании" — beam travels dot-to-dot
    Cycle: 8s total
@@ -201,10 +188,24 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 
-/* GPU-ускорение для анимированных элементов */
-[style*="animation"]:not(canvas),
-[class*="animate-"] {
-  will-change: transform;
+/* FloatingShapesOptimized — вход и плавание форм в hero */
+@keyframes hero-shape-enter {
+  0%   { opacity: 0; transform: translate3d(0, -150px, 0) rotate(var(--shape-rotate-from)); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0)     rotate(var(--shape-rotate-to));   }
+}
+@keyframes hero-shape-float {
+  0%, 100% { transform: translate3d(0, 0,    0); }
+  50%       { transform: translate3d(0, 18px, 0); }
+}
+
+/* will-change только для непрерывно плавающих элементов.
+   Широкий селектор [style*="animation"] убран — он создавал 50+ GPU-слоёв
+   одновременно и переполнял GPU-память мобильного устройства. */
+
+/* CSS layout containment на секциях — изменения внутри не вызывают reflow
+   всей страницы. overflow:clip уже установлен инлайн на каждой секции. */
+section {
+  contain: layout;
 }
 
 /* Уважаем системные настройки сниженного движения */
@@ -220,6 +221,12 @@ html.lenis, html.lenis body {
    MOBILE FIXES — предотвращаем чёрный экран и GPU overflow
    ════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+  /* Отключаем нативный smooth scroll — на мобильном он не влияет на тач-скролл,
+     но конфликтует с программными прокрутками и Lenis при инициализации */
+  html {
+    scroll-behavior: auto;
+  }
+
   /* backdrop-filter на мобильном = отдельный GPU-слой + чтение пикселей снизу.
      5 таких элементов на экране → GPU overflow → фризы и чёрный экран.
      Элементы остаются видимыми — у них есть background rgba(). */

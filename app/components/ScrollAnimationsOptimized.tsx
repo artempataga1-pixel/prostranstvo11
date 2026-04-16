@@ -56,11 +56,11 @@ export function ScrollAnimationsOptimized() {
       if (lenisModule?.default) {
         const Lenis = lenisModule.default;
         const lenis = new Lenis({
-          duration: 1.3,
+          duration: 0.9,
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           smoothWheel: true,
           wheelMultiplier: 0.85,
-          touchMultiplier: 1.6,
+          touchMultiplier: 1.0,
         });
 
         lenis.on("scroll", ScrollTrigger.update);
@@ -108,30 +108,36 @@ export function ScrollAnimationsOptimized() {
       const ctx = gsap.context(() => {
         const sections = gsap.utils.toArray<HTMLElement>("section");
         const main = document.querySelector<HTMLElement>("main");
-        if (main) gsap.set(main, { perspective: 1400 });
+        // Perspective на main только при hover-устройствах — на мобильном
+        // создаёт ненужный 3D-контекст для всей страницы
+        if (main && canHover) gsap.set(main, { perspective: 1400 });
 
-        sections.forEach((section, index) => {
-          if (index === 0) return;
+        // Blob-параллакс только на desktop — на тач-устройствах scrub-анимации
+        // добавляют JS-работу при каждом scroll-событии без визуального выигрыша
+        if (!prefersTouchScroll) {
+          sections.forEach((section, index) => {
+            if (index === 0) return;
 
-          const blobs = Array.from(section.querySelectorAll<HTMLElement>("[style*='radial-gradient']")).slice(0, 2);
-          blobs.forEach((el, blobIndex) => {
-            gsap.fromTo(
-              el,
-              { y: blobIndex % 2 === 0 ? "8%" : "-8%", x: blobIndex % 3 === 0 ? "-4%" : "4%" },
-              {
-                y: blobIndex % 2 === 0 ? "-12%" : "12%",
-                x: blobIndex % 3 === 0 ? "4%" : "-4%",
-                ease: "none",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: 2.5,
+            const blobs = Array.from(section.querySelectorAll<HTMLElement>("[style*='radial-gradient']")).slice(0, 2);
+            blobs.forEach((el, blobIndex) => {
+              gsap.fromTo(
+                el,
+                { y: blobIndex % 2 === 0 ? "8%" : "-8%", x: blobIndex % 3 === 0 ? "-4%" : "4%" },
+                {
+                  y: blobIndex % 2 === 0 ? "-12%" : "12%",
+                  x: blobIndex % 3 === 0 ? "4%" : "-4%",
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: section,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 2.5,
+                  },
                 },
-              },
-            );
+              );
+            });
           });
-        });
+        }
 
         const hero = sections[0];
         if (hero && canHover) {
@@ -193,7 +199,7 @@ export function ScrollAnimationsOptimized() {
 
         if (canHover) {
           document
-            .querySelectorAll<HTMLElement>("div[style*='background: #ffffff'], div[style*='background-color: white']")
+            .querySelectorAll<HTMLElement>("[data-glow]")
             .forEach((card) => {
               gsap.set(card, { transformPerspective: 700 });
               const rotateYTo = gsap.quickTo(card, "rotateY", { duration: 0.2, ease: "power2.out" });
@@ -263,6 +269,8 @@ export function ScrollAnimationsOptimized() {
               clipPath: "inset(0 0 0% 0)",
               duration: 0.9,
               ease: "power3.out",
+              onStart() { heading.style.willChange = "clip-path, transform, opacity"; },
+              onComplete() { heading.style.willChange = ""; },
               scrollTrigger: {
                 trigger: heading,
                 start: "top 88%",

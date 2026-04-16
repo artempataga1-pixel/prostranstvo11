@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import DeferredViewportMount from "./DeferredViewportMount";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 const Cube3D = dynamic(() => import("./Cube3D"), { ssr: false });
 const NeuralNet3D = dynamic(() => import("./NeuralNet3D"), { ssr: false });
@@ -13,14 +13,31 @@ function ScenePlaceholder() {
   return <div style={{ width: "100%", height: "100%" }} aria-hidden="true" />;
 }
 
+function subscribeToViewport(onStoreChange: () => void) {
+  if (typeof window === "undefined") {
+    return () => {};
+  }
+
+  const mediaQuery = window.matchMedia("(max-width: 767px)");
+  const onChange = () => onStoreChange();
+
+  if (typeof mediaQuery.addEventListener === "function") {
+    mediaQuery.addEventListener("change", onChange);
+    return () => mediaQuery.removeEventListener("change", onChange);
+  }
+
+  mediaQuery.addListener(onChange);
+  return () => mediaQuery.removeListener(onChange);
+}
+
+function getViewportSnapshot() {
+  return typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+}
+
 // На мобильном iOS/Android WebGL контексты вызывают чёрный экран и фризы.
 // Возвращаем просто пустой div — секция выглядит нормально без 3D.
 function useMobile() {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-  }, []);
-  return isMobile;
+  return useSyncExternalStore(subscribeToViewport, getViewportSnapshot, () => false);
 }
 
 export function DeferredCube3D() {
