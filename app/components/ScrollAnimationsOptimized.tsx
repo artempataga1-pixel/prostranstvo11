@@ -3,6 +3,12 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
+// Module-level cache — модули загружаются один раз и переиспользуются при смене pathname
+let _gsap: (typeof import("gsap"))["gsap"] | null = null;
+let _ScrollTrigger: (typeof import("gsap/ScrollTrigger"))["ScrollTrigger"] | null = null;
+let _Lenis: (typeof import("lenis"))["default"] | null = null;
+let _lenisLoaded = false; // флаг: lenis уже пытались загрузить (может быть null для touch-устройств)
+
 export function ScrollAnimationsOptimized() {
   const pathname = usePathname();
 
@@ -25,13 +31,28 @@ export function ScrollAnimationsOptimized() {
       if (started || disposed) return;
       started = true;
 
-      const [{ gsap }, { ScrollTrigger }, lenisModule] = await Promise.all([
-        import("gsap"),
-        import("gsap/ScrollTrigger"),
-        prefersTouchScroll ? Promise.resolve(null) : import("lenis"),
-      ]);
+      // Используем кэшированные модули, если уже загружены
+      if (!_gsap || !_ScrollTrigger) {
+        const [gsapModule, stModule] = await Promise.all([
+          import("gsap"),
+          import("gsap/ScrollTrigger"),
+        ]);
+        _gsap = gsapModule.gsap;
+        _ScrollTrigger = stModule.ScrollTrigger;
+      }
+
+      if (!_lenisLoaded) {
+        _lenisLoaded = true;
+        if (!prefersTouchScroll) {
+          const lenisModule = await import("lenis");
+          _Lenis = lenisModule.default;
+        }
+      }
 
       if (disposed) return;
+
+      const gsap = _gsap!;
+      const ScrollTrigger = _ScrollTrigger!;
 
       gsap.registerPlugin(ScrollTrigger);
 
@@ -58,8 +79,8 @@ export function ScrollAnimationsOptimized() {
         bar.style.width = `${Math.max(0, Math.min(1, progress)) * 100}%`;
       };
 
-      if (lenisModule?.default) {
-        const Lenis = lenisModule.default;
+      if (_Lenis) {
+        const Lenis = _Lenis;
         const lenis = new Lenis({
           duration: 0.9,
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

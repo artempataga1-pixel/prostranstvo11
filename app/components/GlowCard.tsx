@@ -192,12 +192,15 @@ export function GlowCard({ children, style, className, white = false, glowColor 
   const [canHover, setCanHover] = useState(false);
   const canHoverRef = useRef(false);
   const hoverFrameRef = useRef(0);
+  // Ref для доступа к актуальному isNearViewport внутри ResizeObserver callback
+  const isNearViewportRef = useRef(false);
 
   const colorKey = white ? "white" : (glowColor ?? "blue");
   const { hue, stroke, dimStroke, shadowGlow, shadowGlowFar } = COLOR_MAP[colorKey] ?? COLOR_MAP.blue;
   const shouldAnimate = canHover && isNearViewport && isDocumentVisible;
 
   // Merge 3 one-time setup effects into 1 to reduce post-hydration scheduler work
+  // ResizeObserver создаётся здесь один раз — при монтировании, а не при каждом viewport-входе
   useEffect(() => {
     ensureGlobalCSS();
     const el = ref.current;
@@ -222,30 +225,32 @@ export function GlowCard({ children, style, className, white = false, glowColor 
             return () => mediaQuery.removeListener(syncCanHover);
           })();
 
-    const unsubVp = observeViewport(el, setIsNearViewport);
+    const unsubVp = observeViewport(el, (intersecting) => {
+      isNearViewportRef.current = intersecting;
+      setIsNearViewport(intersecting);
+    });
     const unsubVis = subscribeToVisibility(setIsDocumentVisible);
+
+    // ResizeObserver создаётся один раз при монтировании.
+    // Обновляет dims только когда карточка находится в viewport (isNearViewportRef).
+    const ro = new ResizeObserver(() => {
+      if (!isNearViewportRef.current || !canHoverRef.current) return;
+      const nextDims = { w: el.offsetWidth, h: el.offsetHeight };
+      setDims((prev) => (prev.w === nextDims.w && prev.h === nextDims.h ? prev : nextDims));
+    });
+    ro.observe(el);
+
+    // Начальный замер размеров
+    const nextDims = { w: el.offsetWidth, h: el.offsetHeight };
+    setDims(nextDims);
+
     return () => {
       unsubscribeHover();
       unsubVp();
       unsubVis();
+      ro.disconnect();
     };
   }, []);
-
-  // Track card size for SVG beam only when it is near the viewport.
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !isNearViewport || !canHover) return;
-
-    const update = () => {
-      const nextDims = { w: el.offsetWidth, h: el.offsetHeight };
-      setDims((prev) => (prev.w === nextDims.w && prev.h === nextDims.h ? prev : nextDims));
-    };
-
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [canHover, isNearViewport]);
 
   // Mouse tracking — box-shadow + data-hovered set directly on DOM, no setState
   useEffect(() => {

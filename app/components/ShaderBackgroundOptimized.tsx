@@ -113,6 +113,7 @@ export default function ShaderBackgroundOptimized() {
     let lastFrameTime = 0;
     let allowAnimation = false;
     let idleHandle: number | undefined;
+    let disposed = false;
 
     const isMobileViewport = () => window.innerWidth < 768;
     const getFrameInterval = () => (isMobileViewport() ? 1000 / 30 : 1000 / 45);
@@ -214,10 +215,15 @@ export default function ShaderBackgroundOptimized() {
     resize();
     window.addEventListener("resize", onResize);
     document.addEventListener("visibilitychange", onVisibilityChange);
-    renderFrame(performance.now());
+    // Первый renderFrame вынесен в requestAnimationFrame — компиляция шейдера
+    // не блокирует main thread во время гидрации
+    requestAnimationFrame(t => {
+      if (!disposed) renderFrame(t);
+    });
     scheduleAnimationLoop();
 
     return () => {
+      disposed = true;
       window.cancelAnimationFrame(raf);
       clearTimeout(resizeTimer);
       window.removeEventListener("resize", onResize);
