@@ -28,6 +28,7 @@ export default function NeuralNet3D() {
       renderer.setPixelRatio(Math.min(devicePixelRatio, window.innerWidth < 768 ? 1.1 : 1.5));
       renderer.setSize(w, h);
       renderer.setClearColor(0x000000, 0);
+      if (disposed) { renderer.dispose(); return; }
       mount.appendChild(renderer.domElement);
 
       const scene = new THREE.Scene();

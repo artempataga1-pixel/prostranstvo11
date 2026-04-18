@@ -33,6 +33,7 @@ export default function CaseAutomation1CPage() {
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
         fontFamily: FONT,
         color: "#fff",
+        position: "relative",
       }}
     >
       <header
@@ -132,6 +133,7 @@ export default function CaseAutomation1CPage() {
         </div>
 
       </main>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* Case1CIntroSection */}
@@ -152,6 +154,7 @@ export default function CaseAutomation1CPage() {
       <div style={{ position: "absolute", right: "clamp(20px, 3vw, 60px)", top: "50%", transform: "translateY(-50%)", width: "clamp(280px, 43vw, 820px)", height: "clamp(280px, 43vw, 820px)", pointerEvents: "none" }}>
         <DeferredCube3D />
       </div>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
       <div style={{ position: "absolute", bottom: "clamp(36px, 6.67vh, 72px)", left: "3.125vw", display: "flex", gap: "clamp(24px, 5.21vw, 100px)", alignItems: "flex-end" }}>
         {[
           { value: <CountUp value={13} duration={2000} />, label: "этапов внедрения" },
@@ -171,34 +174,34 @@ export default function CaseAutomation1CPage() {
     </section>
 
     {/* Case1CStepsSection */}
-    <section style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#071518" }}>
+    <section className="case1c-steps-section" style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#071518" }}>
       <div style={{ position: "absolute", right: "-6vw", top: "5vh", width: "55vw", height: "55vw", background: "radial-gradient(circle, rgba(10,186,181,0.09) 0%, transparent 65%)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", left: "-5vw", bottom: "0", width: "35vw", height: "35vw", background: "radial-gradient(circle, rgba(10,186,181,0.05) 0%, transparent 65%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.56vh, 60px)", display: "flex", alignItems: "baseline", gap: "clamp(12px, 1.5vw, 28px)" }}>
-        <h2 style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.167vw, 80px)", lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", margin: 0, whiteSpace: "nowrap" }}>
+      <div className="case1c-steps-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.56vh, 60px)", display: "flex", alignItems: "baseline", gap: "clamp(12px, 1.5vw, 28px)" }}>
+        <h2 className="case1c-steps-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.167vw, 80px)", lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", margin: 0, whiteSpace: "nowrap" }}>
           Как это работает
         </h2>
-        <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 1.25vw, 24px)", letterSpacing: "-0.02em", color: "rgba(255,255,255,0.3)", margin: 0 }}>
+        <p className="case1c-steps-kicker" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 1.25vw, 24px)", letterSpacing: "-0.02em", color: "rgba(255,255,255,0.3)", margin: 0 }}>
           1С УНФ + ТСД · 4 этапа
         </p>
       </div>
-      <div style={{ position: "absolute", left: "3.125vw", top: "clamp(100px, 14.7vh, 155px)", bottom: "clamp(20px, 3vh, 36px)", width: "48%", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "clamp(8px, 1.04vw, 18px)" }}>
+      <div className="case1c-steps-grid" style={{ position: "absolute", left: "3.125vw", top: "clamp(100px, 14.7vh, 155px)", bottom: "clamp(20px, 3vh, 36px)", width: "48%", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "clamp(8px, 1.04vw, 18px)" }}>
         {[
           { num: "01", title: "Аудит и регламент", desc: "Анализ бизнес-модели, схема движения документов в 1С", color: "#0ABAB5" },
           { num: "02", title: "Развёртывание системы", desc: "База данных, серверы, вся товарная номенклатура", color: "#38bdf8" },
           { num: "03", title: "Настройка и учёт", desc: "ТСД, документооборот, полная оцифровка склада", color: "#38bdf8" },
           { num: "04", title: "Обучение и поддержка", desc: "Регламенты для ролей, месяц технической поддержки", color: "#a78bfa" },
         ].map(({ num, title, desc, color }) => (
-          <GlowCard key={num} glowColor="teal" style={{ background: "rgba(255,255,255,0.03)", borderRadius: "clamp(12px, 1.25vw, 24px)", padding: "clamp(16px, 2.22vh, 28px) clamp(16px, 1.46vw, 28px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
-            <span style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 3.125vw, 60px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
+          <GlowCard className="case1c-step-card" key={num} glowColor="teal" style={{ background: "rgba(255,255,255,0.03)", borderRadius: "clamp(12px, 1.25vw, 24px)", padding: "clamp(16px, 2.22vh, 28px) clamp(16px, 1.46vw, 28px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
+            <span className="case1c-step-num" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 3.125vw, 60px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
             <div>
-              <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(13px, 1.146vw, 22px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.56vh,8px)" }}>{title}</p>
-              <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(10px, 0.833vw, 16px)", lineHeight: 1.35, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
+              <p className="case1c-step-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(13px, 1.146vw, 22px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.56vh,8px)" }}>{title}</p>
+              <p className="case1c-step-desc" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(10px, 0.833vw, 16px)", lineHeight: 1.35, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
             </div>
           </GlowCard>
         ))}
       </div>
-      <div style={{ position: "absolute", right: "3.125vw", top: "50%", transform: "translateY(-50%)", width: "clamp(260px, 44vw, 820px)", height: "clamp(260px, 44vw, 820px)" }}>
+      <div className="case1c-steps-visual" style={{ position: "absolute", right: "3.125vw", top: "50%", transform: "translateY(-50%)", width: "clamp(260px, 44vw, 820px)", height: "clamp(260px, 44vw, 820px)" }}>
         <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }}>
           <defs>
             <filter id="layGlow2"><feGaussianBlur stdDeviation="5" result="blur" /><feComposite in="SourceGraphic" in2="blur" operator="over" /></filter>
@@ -265,6 +268,74 @@ export default function CaseAutomation1CPage() {
       .case-cta-btn:hover {
         box-shadow: 0 0 0 2px rgba(10,186,181,0.4), 0 0 30px rgba(10,186,181,0.5), 0 10px 40px rgba(10,186,181,0.3);
         transform: translateY(-2px);
+      }
+
+      @media (max-width: 900px) {
+        .case1c-steps-section {
+          min-height: auto !important;
+          padding: 24px 20px 40px;
+        }
+
+        .case1c-steps-heading {
+          position: relative !important;
+          left: auto !important;
+          top: auto !important;
+          flex-direction: column;
+          align-items: flex-start !important;
+          gap: 8px !important;
+          margin-bottom: 18px;
+        }
+
+        .case1c-steps-title {
+          white-space: normal !important;
+        }
+
+        .case1c-steps-kicker {
+          max-width: 100%;
+          line-height: 1.3;
+        }
+
+        .case1c-steps-grid {
+          position: relative !important;
+          left: auto !important;
+          top: auto !important;
+          bottom: auto !important;
+          width: 100% !important;
+          grid-template-columns: 1fr !important;
+          grid-template-rows: none !important;
+          gap: 12px !important;
+        }
+
+        .case1c-step-card {
+          justify-content: flex-start !important;
+          gap: 14px;
+          padding: 18px !important;
+        }
+
+        .case1c-step-num {
+          font-size: 34px !important;
+        }
+
+        .case1c-step-title {
+          font-size: 18px !important;
+          line-height: 1.15 !important;
+          margin-bottom: 8px !important;
+        }
+
+        .case1c-step-desc {
+          font-size: 13px !important;
+          line-height: 1.45 !important;
+        }
+
+        .case1c-steps-visual {
+          position: relative !important;
+          right: auto !important;
+          top: auto !important;
+          transform: none !important;
+          width: min(100%, 320px) !important;
+          height: clamp(220px, 72vw, 320px) !important;
+          margin: 20px auto 0;
+        }
       }
     `}</style>
     </>

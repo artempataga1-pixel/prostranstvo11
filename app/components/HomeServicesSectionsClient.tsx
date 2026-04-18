@@ -176,6 +176,8 @@ function ServicesSection() {
       <div className="svc-infinity" style={{ position: "absolute", left: "86.72vw", top: "clamp(20px, 4.26vh, 46px)", width: "clamp(80px, 11.3vw, 217px)", height: "clamp(40px, 10.28vh, 111px)", pointerEvents: "none", zIndex: 2 }}>
                   <InfinityMark />
       </div>
+      {/* Переход → ServicesPodborSection rgb(15,5,14) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(15,5,14,0) 0%,rgba(15,5,14,0) 55%,rgba(15,5,14,0.12) 68%,rgba(15,5,14,0.38) 80%,rgba(15,5,14,0.72) 92%,rgb(15,5,14) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -497,8 +499,8 @@ function ServicesExternalSection() {
       <p style={{ position: "absolute", left: "3.125vw", top: "clamp(560px, 79.54vh, 859px)", width: "clamp(260px, 54.01vw, 1037px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(30px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, zIndex: 3 }}>
         Выход за пределы маркетплейсов
       </p>
-      {/* Переход → ServicesManagement #D400AA */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(60px,8vw,100px)", background: "linear-gradient(to bottom,transparent,#D400AA)", pointerEvents: "none", zIndex: 5 }} />
+      {/* Переход → TeamSection rgb(13,31,31) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -572,8 +574,6 @@ function ServicesAiSection() {
         <span style={{ color: "#0bbab5" }}>Автоматизация</span>
         {" \nчерез искусственный интеллект"}
       </p>
-      {/* Переход → ServicesAccounting #ffffff */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(60px,8vw,100px)", background: "linear-gradient(to bottom,transparent,#ffffff)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -643,8 +643,6 @@ function ServicesAccountingSection() {
           </div>
         </div>
       </div>
-      {/* Переход → ServicesExternal #0ABAB5 */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(60px,8vw,100px)", background: "linear-gradient(to bottom,transparent,#0ABAB5)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -880,8 +878,8 @@ function ServicesManagementSection() {
           <p style={{ margin: 0 }}>{"• Команда: менеджер, аналитик, дизайнер"}</p>
         </div>
       </div>
-      {/* Переход → ServicesAi #0d1f1f */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(60px,8vw,100px)", background: "linear-gradient(to bottom,transparent,#0d1f1f)", pointerEvents: "none", zIndex: 5 }} />
+      {/* Переход → AiSection rgb(13,31,31) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -1141,8 +1139,8 @@ function ServicesPodborSection() {
           подбор новинок
         </p>
       </div>
-      {/* Переход → ServicesTeam (тёмный старт rgb(13,31,31)) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(60px,8vw,100px)", background: "linear-gradient(to bottom,transparent,rgb(13,31,31))", pointerEvents: "none", zIndex: 5 }} />
+      {/* Переход → ServicesAuditSection rgb(13,31,31) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -1316,7 +1314,7 @@ function ServicesTeamSection() {
         </div>
       </div>
       {/* Переход → ServicesHrTeam #ffffff */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(60px,8vw,100px)", background: "linear-gradient(to bottom,transparent,#ffffff)", pointerEvents: "none", zIndex: 5 }} />
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,rgba(255,255,255,0.12) 68%,rgba(255,255,255,0.38) 80%,rgba(255,255,255,0.72) 92%,rgb(255,255,255) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -1620,8 +1618,8 @@ function ServicesHrTeamSection() {
       >
         Развиваем действующую команду
       </p>
-      {/* Переход → WorkWithUs #070f0c */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(60px,8vw,100px)", background: "linear-gradient(to bottom,transparent,#070f0c)", pointerEvents: "none", zIndex: 5 }} />
+      {/* Переход → WorkWithUs rgb(7,15,12) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(7,15,12,0) 0%,rgba(7,15,12,0) 55%,rgba(7,15,12,0.12) 68%,rgba(7,15,12,0.38) 80%,rgba(7,15,12,0.72) 92%,rgb(7,15,12) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }

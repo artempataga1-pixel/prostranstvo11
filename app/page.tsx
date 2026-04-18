@@ -301,7 +301,7 @@ function HeroSection() {
         </div>
       </div>
       {/* Плавный переход Hero → GrowthModel (#0ABAB5) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(60px, 8vw, 100px)", background: "linear-gradient(to bottom, transparent, #0ABAB5)", pointerEvents: "none", zIndex: 5 }} />
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(10,186,181,0) 0%,rgba(10,186,181,0) 55%,rgba(10,186,181,0.12) 68%,rgba(10,186,181,0.38) 80%,rgba(10,186,181,0.72) 92%,rgb(10,186,181) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -446,6 +446,8 @@ function WhyChooseUsSection() {
           </GlowCard>
         ))}
       </div>
+      {/* Переход WhyChooseUs → Orbital rgb(7,21,24) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -725,8 +727,8 @@ function GrowthModelSection() {
           </div>
         </div>
       </div>
-      {/* Плавный переход GrowthModel → WhyChooseUs (#071518) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(60px, 8vw, 100px)", background: "linear-gradient(to bottom, transparent, #071518)", pointerEvents: "none", zIndex: 5 }} />
+      {/* Плавный переход GrowthModel → WhyChooseUs (начало градиента блока 3) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(240px,28vw,360px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -4647,6 +4649,8 @@ function WorkWithUsSection() {
           transform: translateY(-2px);
         }
       `}</style>
+      {/* Переход WorkWithUs → Faq rgb(7,21,24) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -4675,6 +4679,8 @@ function OrbitalSection() {
         </h2>
       </div>
       <DeferredOrbitalCasesTimeline />
+      {/* Переход Orbital → Services rgb(15,5,14) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(15,5,14,0) 0%,rgba(15,5,14,0) 55%,rgba(15,5,14,0.12) 68%,rgba(15,5,14,0.38) 80%,rgba(15,5,14,0.72) 92%,rgb(15,5,14) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }

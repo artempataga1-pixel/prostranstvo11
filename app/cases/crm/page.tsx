@@ -33,6 +33,7 @@ export default function CaseCrmPage() {
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
         fontFamily: FONT,
         color: "#fff",
+        position: "relative",
       }}
     >
       <header
@@ -132,27 +133,29 @@ export default function CaseCrmPage() {
         </div>
 
       </main>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(8,15,24,0) 0%,rgba(8,15,24,0) 55%,rgba(8,15,24,0.12) 68%,rgba(8,15,24,0.38) 80%,rgba(8,15,24,0.72) 92%,rgb(8,15,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* CaseCRMIntroSection */}
-    <section style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#080f18" }}>
+    <section className="crm-intro-section" style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#080f18" }}>
       <div style={{ position: "absolute", right: "-8vw", top: "10vh", width: "55vw", height: "55vw", background: "radial-gradient(circle, rgba(56,189,248,0.10) 0%, transparent 65%)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", left: "-5vw", bottom: "0", width: "40vw", height: "40vw", background: "radial-gradient(circle, rgba(56,189,248,0.05) 0%, transparent 65%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", top: "clamp(30px, 5.56vh, 60px)", right: "3.125vw", display: "flex", alignItems: "center", padding: "clamp(8px, 1.11vh, 12px) clamp(10px, 0.83vw, 16px)", borderRadius: "300px", background: "rgba(56,189,248,0.10)", border: "1px solid rgba(56,189,248,0.3)", backdropFilter: "blur(15px)", WebkitBackdropFilter: "blur(15px)" }}>
+      <div className="crm-intro-pill" style={{ position: "absolute", top: "clamp(30px, 5.56vh, 60px)", right: "3.125vw", display: "flex", alignItems: "center", padding: "clamp(8px, 1.11vh, 12px) clamp(10px, 0.83vw, 16px)", borderRadius: "300px", background: "rgba(56,189,248,0.10)", border: "1px solid rgba(56,189,248,0.3)", backdropFilter: "blur(15px)", WebkitBackdropFilter: "blur(15px)" }}>
         <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(10px, 1.302vw, 25px)", lineHeight: 1, letterSpacing: "-0.035em", color: "#38bdf8", textTransform: "uppercase", whiteSpace: "nowrap", margin: 0 }}>
           кейсы  •  CRM системы
         </p>
       </div>
-      <h2 style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.65vh, 61px)", width: "min(50vw, 960px)", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.688vw, 90px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-line" }}>
+      <h2 className="crm-intro-h2" style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.65vh, 61px)", width: "min(50vw, 960px)", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.688vw, 90px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-line" }}>
         {"Внедрение\nCRM Системы"}
       </h2>
-      <p style={{ position: "absolute", left: "3.125vw", top: "clamp(200px, 29vh, 315px)", width: "min(44vw, 840px)", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.563vw, 30px)", lineHeight: 1.35, letterSpacing: "-0.025em", color: "rgba(255,255,255,0.45)", margin: 0 }}>
+      <p className="crm-intro-desc" style={{ position: "absolute", left: "3.125vw", top: "clamp(200px, 29vh, 315px)", width: "min(44vw, 840px)", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.563vw, 30px)", lineHeight: 1.35, letterSpacing: "-0.025em", color: "rgba(255,255,255,0.45)", margin: 0 }}>
         Полный цикл: от аудита бизнес-модели и подбора оптимального CRM-инструмента до обучения персонала и месяца технической поддержки
       </p>
-      <div style={{ position: "absolute", right: "clamp(20px, 3vw, 60px)", top: "50%", transform: "translateY(-50%)", width: "clamp(280px, 43vw, 820px)", height: "clamp(280px, 43vw, 820px)", pointerEvents: "none" }}>
+      <div className="crm-intro-3d" style={{ position: "absolute", right: "clamp(20px, 3vw, 60px)", top: "50%", transform: "translateY(-50%)", width: "clamp(280px, 43vw, 820px)", height: "clamp(280px, 43vw, 820px)", pointerEvents: "none" }}>
         <DeferredCRM3D />
       </div>
-      <div style={{ position: "absolute", left: "3.125vw", bottom: "clamp(36px, 6.67vh, 72px)", display: "flex", gap: "clamp(24px, 5.21vw, 100px)", alignItems: "flex-end" }}>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(8,13,22,0) 0%,rgba(8,13,22,0) 55%,rgba(8,13,22,0.12) 68%,rgba(8,13,22,0.38) 80%,rgba(8,13,22,0.72) 92%,rgb(8,13,22) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="crm-intro-stats" style={{ position: "absolute", left: "3.125vw", bottom: "clamp(36px, 6.67vh, 72px)", display: "flex", gap: "clamp(24px, 5.21vw, 100px)", alignItems: "flex-end" }}>
         {[
           { value: <CountUp value={13} duration={2000} />, label: "этапов внедрения" },
           { value: "CRM", label: "под бизнес клиента" },
@@ -171,13 +174,13 @@ export default function CaseCrmPage() {
     </section>
 
     {/* CaseCRMStepsSection */}
-    <section style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#080d16" }}>
+    <section className="crm-steps-section" style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#080d16" }}>
       <div style={{ position: "absolute", left: "50%", top: "-10vh", transform: "translateX(-50%)", width: "70vw", height: "40vw", background: "radial-gradient(ellipse, rgba(56,189,248,0.07) 0%, transparent 65%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.56vh, 60px)", display: "flex", alignItems: "baseline", gap: "clamp(12px, 1.5vw, 28px)" }}>
-        <h2 style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.167vw, 80px)", lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", margin: 0, whiteSpace: "nowrap" }}>
+      <div className="crm-steps-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.56vh, 60px)", display: "flex", alignItems: "baseline", gap: "clamp(12px, 1.5vw, 28px)" }}>
+        <h2 className="crm-steps-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.167vw, 80px)", lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", margin: 0, whiteSpace: "nowrap" }}>
           Как это работает
         </h2>
-        <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 1.25vw, 24px)", letterSpacing: "-0.02em", color: "rgba(255,255,255,0.3)", margin: 0 }}>
+        <p className="crm-steps-kicker" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 1.25vw, 24px)", letterSpacing: "-0.02em", color: "rgba(255,255,255,0.3)", margin: 0 }}>
           CRM · 6 этапов
         </p>
       </div>
@@ -190,7 +193,7 @@ export default function CaseCrmPage() {
           { num: "05", title: "Обучение персонала", desc: "Регламенты по ролям, типовые ошибки, цикл ведения отчётности", color: "#38bdf8" },
           { num: "06", title: "Поддержка", desc: "Месяц сопровождения по всем вопросам и проблемам после запуска", color: "#60a5fa" },
         ].map(({ num, title, desc, color }) => (
-          <GlowCard key={num} glowColor="cyan" style={{ background: "rgba(255,255,255,0.025)", borderRadius: "clamp(10px, 1.04vw, 20px)", padding: "clamp(12px, 1.67vh, 22px) clamp(12px, 1.04vw, 20px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
+          <GlowCard key={num} glowColor="cyan" className="crm-step-card" style={{ background: "rgba(255,255,255,0.025)", borderRadius: "clamp(10px, 1.04vw, 20px)", padding: "clamp(12px, 1.67vh, 22px) clamp(12px, 1.04vw, 20px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
             <span style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(22px, 2.5vw, 48px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
             <div>
               <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 0.938vw, 18px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(3px,0.42vh,6px)" }}>{title}</p>
@@ -244,6 +247,7 @@ export default function CaseCrmPage() {
           <text x="230" y="432" textAnchor="middle" fill="rgba(56,189,248,0.45)" fontSize="12" fontFamily="Helvetica Neue, sans-serif" letterSpacing="-0.02em">CRM · ДАННЫЕ · ПРОЦЕССЫ · РЕЗУЛЬТАТ</text>
         </svg>
       </div>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
 
     {/* CTA Section */}
@@ -274,6 +278,119 @@ export default function CaseCrmPage() {
       .case-cta-btn:hover {
         box-shadow: 0 0 0 2px rgba(56,189,248,0.4), 0 0 30px rgba(56,189,248,0.5), 0 10px 40px rgba(56,189,248,0.3);
         transform: translateY(-2px);
+      }
+
+      @media (max-width: 900px) {
+        /* CRM Intro Section */
+        .crm-intro-section {
+          min-height: auto !important;
+          padding: 60px 20px 48px;
+          display: flex !important;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .crm-intro-pill {
+          position: relative !important;
+          top: auto !important;
+          right: auto !important;
+          align-self: flex-end;
+        }
+
+        .crm-intro-h2 {
+          position: relative !important;
+          left: auto !important;
+          top: auto !important;
+          width: 100% !important;
+          font-size: clamp(36px, 9vw, 56px) !important;
+          white-space: normal !important;
+        }
+
+        .crm-intro-desc {
+          position: relative !important;
+          left: auto !important;
+          top: auto !important;
+          width: 100% !important;
+          font-size: 14px !important;
+          line-height: 1.55 !important;
+        }
+
+        .crm-intro-3d {
+          position: relative !important;
+          right: auto !important;
+          top: auto !important;
+          transform: none !important;
+          width: min(100%, 300px) !important;
+          height: clamp(240px, 72vw, 300px) !important;
+          align-self: center;
+        }
+
+        .crm-intro-stats {
+          position: relative !important;
+          left: auto !important;
+          bottom: auto !important;
+          flex-wrap: wrap;
+          gap: 20px !important;
+          align-items: flex-start !important;
+        }
+
+        /* CRM Steps Section */
+        .crm-steps-section {
+          min-height: auto !important;
+          padding: 24px 20px 40px;
+        }
+
+        .crm-steps-heading {
+          position: relative !important;
+          left: auto !important;
+          top: auto !important;
+          flex-direction: column;
+          align-items: flex-start !important;
+          gap: 8px !important;
+          margin-bottom: 18px;
+        }
+
+        .crm-steps-title {
+          white-space: normal !important;
+          font-size: clamp(28px, 7vw, 40px) !important;
+        }
+
+        .crm-steps-kicker {
+          line-height: 1.3;
+        }
+
+        .crm-cards-grid {
+          position: relative !important;
+          left: auto !important;
+          top: auto !important;
+          bottom: auto !important;
+          width: 100% !important;
+          grid-template-columns: 1fr 1fr !important;
+          grid-template-rows: none !important;
+          gap: 10px !important;
+        }
+
+        .crm-step-card {
+          justify-content: flex-start !important;
+          gap: 14px;
+          padding: 16px !important;
+        }
+
+        .crm-diagram {
+          position: relative !important;
+          right: auto !important;
+          top: auto !important;
+          transform: none !important;
+          width: min(100%, 260px) !important;
+          height: clamp(200px, 64vw, 260px) !important;
+          margin: 16px auto 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .crm-cards-grid {
+          grid-template-columns: 1fr !important;
+        }
       }
     `}</style>
     </>

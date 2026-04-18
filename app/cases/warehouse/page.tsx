@@ -147,6 +147,7 @@ export default function CaseWarehousePage() {
         }}
       >
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(54% 72% at 14% 86%, rgba(57, 198, 193, 0.34) 0%, rgba(57, 198, 193, 0.16) 38%, rgba(57, 198, 193, 0) 74%), radial-gradient(38% 52% at 84% 18%, rgba(9, 50, 51, 0.52) 0%, rgba(9, 50, 51, 0) 72%)", pointerEvents: "none" }} />
+        <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgb(7,21,24) 0%,rgba(7,21,24,0.72) 8%,rgba(7,21,24,0.38) 20%,rgba(7,21,24,0.12) 32%,rgba(7,21,24,0) 45%,rgba(7,21,24,0) 100%)", pointerEvents: "none", zIndex: 5 }} />
         <div style={{ position: "absolute", top: "clamp(30px, 5.56vh, 60px)", right: "3.125vw", display: "flex", alignItems: "center", padding: "clamp(8px, 1.11vh, 12px) clamp(10px, 0.83vw, 16px)", borderRadius: "300px", background: "rgba(255, 255, 255, 0.08)", border: "1px solid rgba(255, 255, 255, 0.12)", backdropFilter: "blur(15px)", WebkitBackdropFilter: "blur(15px)", zIndex: 2 }}>
           <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(10px, 1.302vw, 25px)", lineHeight: 1, letterSpacing: "-0.035em", color: "#ffffff", textTransform: "uppercase", whiteSpace: "nowrap", margin: 0 }}>
             {"кейсы  •  склад фф"}
@@ -214,6 +215,7 @@ export default function CaseWarehousePage() {
             </GlowCard>
           </div>
         </div>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(240px,28vw,360px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
       </section>
 
       {/* CaseWarehousePlanSection */}
@@ -281,6 +283,7 @@ export default function CaseWarehousePage() {
             ))}
           </div>
         </div>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
       </section>
 
       {/* CTA Section with Result Metrics */}

@@ -35,6 +35,7 @@ export default function CaseSeasonalPage() {
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
         fontFamily: FONT,
         color: "#fff",
+        position: "relative",
       }}
     >
       <header
@@ -134,6 +135,7 @@ export default function CaseSeasonalPage() {
         </div>
 
       </main>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,rgba(255,255,255,0.12) 68%,rgba(255,255,255,0.38) 80%,rgba(255,255,255,0.72) 92%,rgb(255,255,255) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* CaseSeasonalScreenshotSection */}
@@ -314,6 +316,7 @@ export default function CaseSeasonalPage() {
           {"кейсы  •  сезонный товар"}
         </p>
       </div>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
 
     {/* CTA Section */}

@@ -35,6 +35,7 @@ export default function CaseJeansPage() {
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
         fontFamily: FONT,
         color: "#fff",
+        position: "relative",
       }}
     >
       {/* Header */}
@@ -141,6 +142,7 @@ export default function CaseJeansPage() {
         </div>
 
       </main>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(240px,28vw,360px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* Revenue Section */}
@@ -390,6 +392,7 @@ export default function CaseJeansPage() {
           Скриншот личного кабинета Ozon
         </p>
       </div>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(240px,28vw,360px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
 
     {/* CTA Section */}

@@ -33,6 +33,7 @@ export default function CaseAiAgentsPage() {
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
         fontFamily: FONT,
         color: "#fff",
+        position: "relative",
       }}
     >
       <header
@@ -132,6 +133,7 @@ export default function CaseAiAgentsPage() {
         </div>
 
       </main>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,15,31,0) 0%,rgba(13,15,31,0) 55%,rgba(13,15,31,0.12) 68%,rgba(13,15,31,0.38) 80%,rgba(13,15,31,0.72) 92%,rgb(13,15,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* CaseAIIntroSection */}
@@ -161,6 +163,7 @@ export default function CaseAiAgentsPage() {
           </div>
         ))}
       </div>
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(10,13,26,0) 0%,rgba(10,13,26,0) 55%,rgba(10,13,26,0.12) 68%,rgba(10,13,26,0.38) 80%,rgba(10,13,26,0.72) 92%,rgb(10,13,26) 100%)", pointerEvents: "none", zIndex: 5 }} />
       <div style={{ position: "absolute", right: "3.125vw", top: "50%", transform: "translateY(-50%)", width: "clamp(260px, 42vw, 780px)", height: "clamp(260px, 42vw, 780px)" }}>
         <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }}>
           <defs>
@@ -212,35 +215,36 @@ export default function CaseAiAgentsPage() {
     </section>
 
     {/* CaseAIStepsSection */}
-    <section style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#0a0d1a" }}>
+    <section className="ai-case-steps-section" style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#0a0d1a" }}>
       <div style={{ position: "absolute", left: "50%", top: "-10vh", transform: "translateX(-50%)", width: "80vw", height: "40vw", background: "radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 65%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.56vh, 60px)", display: "flex", alignItems: "baseline", gap: "clamp(12px, 1.5vw, 28px)" }}>
-        <h2 style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.167vw, 80px)", lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", margin: 0, whiteSpace: "nowrap" }}>
+      <div className="ai-case-steps-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.56vh, 60px)", display: "flex", alignItems: "baseline", gap: "clamp(12px, 1.5vw, 28px)" }}>
+        <h2 className="ai-case-steps-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.167vw, 80px)", lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", margin: 0, whiteSpace: "nowrap" }}>
           4 фазы внедрения
         </h2>
-        <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 1.25vw, 24px)", letterSpacing: "-0.02em", color: "rgba(255,255,255,0.3)", margin: 0 }}>
+        <p className="ai-case-steps-kicker" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 1.25vw, 24px)", letterSpacing: "-0.02em", color: "rgba(255,255,255,0.3)", margin: 0 }}>
           ИИ Агентов
         </p>
       </div>
-      <div style={{ position: "absolute", left: "3.125vw", top: "clamp(100px, 14.7vh, 155px)", bottom: "clamp(20px, 3vh, 36px)", width: "48%", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "clamp(8px, 1.04vw, 18px)" }}>
+      <div className="ai-case-steps-grid" style={{ position: "absolute", left: "3.125vw", top: "clamp(100px, 14.7vh, 155px)", bottom: "clamp(20px, 3vh, 36px)", width: "48%", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "clamp(8px, 1.04vw, 18px)" }}>
         {[
           { num: "01", title: "Аудит", desc: "Анализ узких мест и оценка бизнес-процессов", color: "#0ABAB5" },
           { num: "02", title: "Проектирование", desc: "Формирование ТЗ и согласование с заказчиком", color: "#38bdf8" },
           { num: "03", title: "Разработка", desc: "Тестовое внедрение, постоянная доработка (2–14 дней)", color: "#8b5cf6" },
           { num: "04", title: "Тестирование", desc: "Финальный тест 3–7 дней и запуск в работу", color: "#34d399" },
         ].map(({ num, title, desc, color }) => (
-          <GlowCard key={num} glowColor="purple" style={{ background: "rgba(255,255,255,0.03)", borderRadius: "clamp(12px, 1.25vw, 24px)", padding: "clamp(16px, 2.22vh, 28px) clamp(16px, 1.46vw, 28px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
-            <span style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 3.125vw, 60px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
+          <GlowCard className="ai-case-step-card" key={num} glowColor="purple" style={{ background: "rgba(255,255,255,0.03)", borderRadius: "clamp(12px, 1.25vw, 24px)", padding: "clamp(16px, 2.22vh, 28px) clamp(16px, 1.46vw, 28px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
+            <span className="ai-case-step-num" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 3.125vw, 60px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
             <div>
-              <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(13px, 1.146vw, 22px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.56vh,8px)" }}>{title}</p>
-              <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(10px, 0.833vw, 16px)", lineHeight: 1.35, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
+              <p className="ai-case-step-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(13px, 1.146vw, 22px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.56vh,8px)" }}>{title}</p>
+              <p className="ai-case-step-desc" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(10px, 0.833vw, 16px)", lineHeight: 1.35, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
             </div>
           </GlowCard>
         ))}
       </div>
-      <div style={{ position: "absolute", right: "3.125vw", top: "50%", transform: "translateY(-50%)", width: "clamp(260px, 44vw, 820px)", height: "clamp(260px, 44vw, 820px)", pointerEvents: "none" }}>
+      <div className="ai-case-steps-visual" style={{ position: "absolute", right: "3.125vw", top: "50%", transform: "translateY(-50%)", width: "clamp(260px, 44vw, 820px)", height: "clamp(260px, 44vw, 820px)", pointerEvents: "none" }}>
         <DeferredNeuralNet3D />
       </div>
+      <div className="ai-case-steps-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
 
     {/* CTA Section */}
@@ -271,6 +275,78 @@ export default function CaseAiAgentsPage() {
       .case-cta-btn:hover {
         box-shadow: 0 0 0 2px rgba(139,92,246,0.4), 0 0 30px rgba(139,92,246,0.5), 0 10px 40px rgba(139,92,246,0.3);
         transform: translateY(-2px);
+      }
+
+      @media (max-width: 900px) {
+        .ai-case-steps-section {
+          min-height: auto !important;
+          padding: 24px 20px 40px;
+        }
+
+        .ai-case-steps-heading {
+          position: relative !important;
+          left: auto !important;
+          top: auto !important;
+          flex-direction: column;
+          align-items: flex-start !important;
+          gap: 8px !important;
+          margin-bottom: 18px;
+        }
+
+        .ai-case-steps-title {
+          white-space: normal !important;
+        }
+
+        .ai-case-steps-kicker {
+          max-width: 100%;
+          line-height: 1.3;
+        }
+
+        .ai-case-steps-grid {
+          position: relative !important;
+          left: auto !important;
+          top: auto !important;
+          bottom: auto !important;
+          width: 100% !important;
+          grid-template-columns: 1fr !important;
+          grid-template-rows: none !important;
+          gap: 12px !important;
+        }
+
+        .ai-case-step-card {
+          justify-content: flex-start !important;
+          gap: 14px;
+          padding: 18px !important;
+        }
+
+        .ai-case-step-num {
+          font-size: 34px !important;
+        }
+
+        .ai-case-step-title {
+          font-size: 18px !important;
+          line-height: 1.15 !important;
+          margin-bottom: 8px !important;
+        }
+
+        .ai-case-step-desc {
+          font-size: 13px !important;
+          line-height: 1.45 !important;
+        }
+
+        .ai-case-steps-visual {
+          position: relative !important;
+          right: auto !important;
+          top: auto !important;
+          transform: none !important;
+          width: min(100%, 320px) !important;
+          height: clamp(220px, 72vw, 320px) !important;
+          margin: 20px auto 0;
+        }
+
+        .ai-case-steps-fade {
+          display: none;
+        }
       }
     `}</style>
     </>
