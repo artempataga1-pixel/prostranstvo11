@@ -5,6 +5,7 @@ import { ScrollAnimationsOptimized } from "./components/ScrollAnimationsOptimize
 export const metadata: Metadata = {
   title: "PROстранство — Получить разбор",
   description: "Превращаем хаос на маркетплейсах в управляемую модель роста",
+  themeColor: "#0d1f1f",
 };
 
 export const viewport: Viewport = {
