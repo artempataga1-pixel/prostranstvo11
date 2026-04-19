@@ -49,9 +49,7 @@ const HRTEAM_DOTLINE2_IMG = "/figma-assets/hrteam-dotline2.svg";
 const EXT_ELLIPSE_IMG = "/figma-assets/ext-ellipse.svg";
 const EXT_GROUP_IMG = "/figma-assets/ext-group.svg";
 
-// Figma node: 2040:648 "Услуги — Внедрение AI-агентов" — file MOHJ9F1OX9kaB0rKsCZm7i
-const AI_LINE_DOWN_IMG = "";
-const AI_LINE_UP_IMG = "";
+// Figma node: 2040:648 "Услуги — Внедрение AI-агентов" — pure CSS lines, no images
 
 // Figma node: 2040:162 "Услуги — аудит кабинета" — no image assets
 
@@ -68,38 +66,19 @@ function AiVerticalLine({
   direction: "down" | "up";
   height: string;
 }) {
-  const transform =
-    direction === "down" ? "rotate(90deg) scaleY(-1)" : "rotate(-90deg)";
-  const anchor =
-    direction === "down"
-      ? { top: 0, transformOrigin: "top left" as const }
-      : { bottom: 0, transformOrigin: "bottom left" as const };
-  const src = direction === "down" ? AI_LINE_DOWN_IMG : AI_LINE_UP_IMG;
-
   return (
-    <div style={{ width: 0, height, flexShrink: 0, position: "relative" }}>
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          width: height,
-          overflow: "hidden",
-          transform,
-          ...anchor,
-        }}
-      >
-        <Img
-          alt=""
-          src={src}
-          style={{
-            display: "block",
-            width: "100%",
-            height: "4px",
-            maxWidth: "none",
-          }}
-        />
-      </div>
-    </div>
+    <div
+      style={{
+        width: 2,
+        height,
+        flexShrink: 0,
+        borderRadius: 2,
+        background:
+          direction === "down"
+            ? "linear-gradient(to bottom, rgba(11,186,181,0.15), rgba(11,186,181,0.9))"
+            : "linear-gradient(to top, rgba(11,186,181,0.15), rgba(11,186,181,0.9))",
+      }}
+    />
   );
 }
 
