@@ -348,6 +348,17 @@ export default function CaseSeasonalPage() {
         box-shadow: 0 0 0 2px rgba(249,115,22,0.4), 0 0 30px rgba(249,115,22,0.5), 0 10px 40px rgba(249,115,22,0.3);
         transform: translateY(-2px);
       }
+      @media (max-width: 768px) {
+        .seasonal-split-section {
+          background: #0d1f1f !important;
+        }
+        .seasonal-left-content > p:first-child {
+          color: #ffffff !important;
+        }
+        .seasonal-left-content > div p {
+          color: rgba(255,255,255,0.65) !important;
+        }
+      }
     `}</style>
     </>
   );

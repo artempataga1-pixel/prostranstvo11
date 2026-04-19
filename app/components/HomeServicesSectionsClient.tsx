@@ -475,7 +475,7 @@ function ServicesExternalSection() {
       </div>
 
       {/* Heading — Figma: left:60 top:859 font:100px w:1037 */}
-      <p style={{ position: "absolute", left: "3.125vw", top: "clamp(560px, 79.54vh, 859px)", width: "clamp(260px, 54.01vw, 1037px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(30px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, zIndex: 3 }}>
+      <p className="ext-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(500px, 72vh, 800px)", width: "clamp(260px, 54.01vw, 1037px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(30px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, zIndex: 3 }}>
         Выход за пределы маркетплейсов
       </p>
       {/* Переход → TeamSection rgb(13,31,31) */}
@@ -683,6 +683,7 @@ function ServicesManagementSection() {
 
       {/* Heading row — Figma: right:60 top:60 w:1800 justify-between */}
       <div
+        className="sales-heading-row"
         style={{
           position: "absolute",
           right: "3.125vw",
@@ -1270,7 +1271,7 @@ function ServicesTeamSection() {
         </div>
 
       {/* Dot 1 — left:444 top:850 size:67px */}
-      <div className="team-dot" style={{ position: "absolute", left: "23.125vw", top: "78.7vh", width: "clamp(30px, 3.49vw, 67px)", height: "clamp(30px, 3.49vw, 67px)", zIndex: 3, pointerEvents: "none" }}>
+      <div className="team-dot team-dot-1" style={{ position: "absolute", left: "23.125vw", top: "78.7vh", width: "clamp(30px, 3.49vw, 67px)", height: "clamp(30px, 3.49vw, 67px)", zIndex: 3, pointerEvents: "none" }}>
         <div style={{ position: "absolute", inset: "-74.63%" }}>
           { }
           <Img alt="" src={TEAM_DOT1_IMG} style={{ display: "block", width: "100%", height: "100%", maxWidth: "none" }} />
@@ -1278,7 +1279,7 @@ function ServicesTeamSection() {
       </div>
 
       {/* Dot 2 — left:797 top:848 size:67px */}
-      <div className="team-dot" style={{ position: "absolute", left: "41.51vw", top: "78.52vh", width: "clamp(30px, 3.49vw, 67px)", height: "clamp(30px, 3.49vw, 67px)", zIndex: 3, pointerEvents: "none" }}>
+      <div className="team-dot team-dot-2" style={{ position: "absolute", left: "41.51vw", top: "78.52vh", width: "clamp(30px, 3.49vw, 67px)", height: "clamp(30px, 3.49vw, 67px)", zIndex: 3, pointerEvents: "none" }}>
         <div style={{ position: "absolute", inset: "-74.63%" }}>
           { }
           <Img alt="" src={TEAM_DOT1_IMG} style={{ display: "block", width: "100%", height: "100%", maxWidth: "none" }} />
@@ -1286,7 +1287,7 @@ function ServicesTeamSection() {
       </div>
 
       {/* Dot 3 — left:1027 top:696 size:67px */}
-      <div className="team-dot" style={{ position: "absolute", left: "53.49vw", top: "64.44vh", width: "clamp(30px, 3.49vw, 67px)", height: "clamp(30px, 3.49vw, 67px)", zIndex: 3, pointerEvents: "none" }}>
+      <div className="team-dot team-dot-3" style={{ position: "absolute", left: "53.49vw", top: "64.44vh", width: "clamp(30px, 3.49vw, 67px)", height: "clamp(30px, 3.49vw, 67px)", zIndex: 3, pointerEvents: "none" }}>
         <div style={{ position: "absolute", inset: "-74.63%" }}>
           { }
           <Img alt="" src={TEAM_DOT2_IMG} style={{ display: "block", width: "100%", height: "100%", maxWidth: "none" }} />
@@ -1605,6 +1606,53 @@ function ServicesHrTeamSection() {
 export default function HomeServicesSectionsClient() {
   return (
     <>
+      <style>{`
+        @media (max-width: 768px) {
+          .sales-icons-col {
+            position: absolute !important;
+            top: clamp(88px, 15vw, 120px) !important;
+            left: 0 !important;
+            right: auto !important;
+            width: auto !important;
+            align-items: flex-start !important;
+          }
+          .ext-heading {
+            top: clamp(580px, 82vh, 950px) !important;
+          }
+          .team-section {
+            min-height: 0 !important;
+            padding-bottom: 280px !important;
+          }
+          .team-dot {
+            display: block !important;
+            width: 20px !important;
+            height: 20px !important;
+          }
+          .team-dot-1 {
+            left: 6vw !important;
+            top: auto !important;
+            bottom: 155px !important;
+          }
+          .team-dot-2 {
+            left: 36vw !important;
+            top: auto !important;
+            bottom: 195px !important;
+          }
+          .team-dot-3 {
+            left: 62vw !important;
+            top: auto !important;
+            bottom: 170px !important;
+          }
+          .team-radar {
+            top: auto !important;
+            bottom: -300px !important;
+            left: 50% !important;
+            transform: translateX(-50%) scaleY(-1) !important;
+            width: 100vw !important;
+            height: 600px !important;
+          }
+        }
+      `}</style>
       <FadeIn><ServicesSection /></FadeIn>
       <FadeIn><ServicesPodborSection /></FadeIn>
       <FadeIn><ServicesAuditSection /></FadeIn>

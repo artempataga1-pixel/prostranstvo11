@@ -808,8 +808,8 @@ section {
   .team-section {
     display: flex !important;
     flex-direction: column !important;
-    min-height: 480px !important;
-    padding-bottom: 80px !important;
+    min-height: 0 !important;
+    padding-bottom: 320px !important;
   }
   .team-heading {
     order: 1 !important;
@@ -920,70 +920,24 @@ section {
     font-size: clamp(13px, 3.3vw, 18px) !important;
     white-space: normal !important;
   }
-  /* Блок 12% */
-  .chairs-margin-stat {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    order: 3 !important;
-    margin: 20px 16px 0 !important;
-    z-index: auto !important;
-  }
-  .chairs-margin-stat p { white-space: normal !important; }
-  /* Уменьшить цифру 12% */
-  .chairs-margin-stat p:last-child {
-    font-size: 28px !important;
-    line-height: 1 !important;
-  }
+  /* Скрываем старые десктопные блоки 12% и 25% — v2 */
+  .chairs-margin-stat { display: none !important; }
+  .chairs-margin-section .chairs-margin-25 { display: none !important; }
+  .chairs-margin-section .chairs-right-stat { display: none !important; }
+  .chairs-margin-graph { display: none !important; }
+  .chairs-margin-problems { display: none !important; }
+  .chairs-margin-line { display: none !important; }
 
-  /* Блок 25% — вернуть в поток поверх скрытия chairs-right-stat */
-  .chairs-margin-section .chairs-margin-25 {
+  /* Новый мобильный 2-колонный блок */
+  .chairs-mobile-stats {
     display: flex !important;
-    flex-direction: column !important;
     position: relative !important;
+    top: auto !important;
     left: auto !important;
-    top: auto !important;
-    order: 4 !important;
-    margin: 12px 16px 0 !important;
-    z-index: auto !important;
-  }
-  /* Уменьшить цифру 25% */
-  .chairs-margin-section .chairs-margin-25 p:last-child {
-    font-size: 28px !important;
-    line-height: 1 !important;
-  }
-  .chairs-margin-section .chairs-margin-25 p:first-child {
-    margin-bottom: 8px !important;
-    white-space: normal !important;
-  }
-
-  /* Граф — вдвое меньше */
-  .chairs-margin-graph {
-    position: relative !important;
-    left: -16px !important;
-    top: auto !important;
-    order: 5 !important;
-    width: calc(100% + 32px) !important;
-    height: 80px !important;
-    margin: 16px 0 0 !important;
-    max-width: none !important;
-    z-index: auto !important;
-  }
-  .chairs-margin-problems {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    order: 6 !important;
-    width: calc(100% - 32px) !important;
-    margin: 12px 16px 0 !important;
-    z-index: auto !important;
-  }
-  .chairs-margin-problems p {
-    font-size: clamp(13px, 3.3vw, 18px) !important;
-    white-space: normal !important;
-  }
-  .chairs-margin-line {
-    display: none !important;
+    right: auto !important;
+    order: 3 !important;
+    margin: 20px 0 0 !important;
+    width: 100% !important;
   }
 
   /* ══════════════════════════════════════════════════════
@@ -1133,6 +1087,7 @@ section {
   .seasonal-left-content > p:first-child {
     font-size: clamp(26px, 6.5vw, 40px) !important;
     line-height: 1.05 !important;
+    color: #ffffff !important;
   }
   /* Список буллетов — полная ширина + читаемый шрифт */
   .seasonal-left-content > div {
@@ -1142,6 +1097,7 @@ section {
     font-size: clamp(13px, 3.3vw, 18px) !important;
     white-space: normal !important;
     line-height: 1.4 !important;
+    color: #ffffff !important;
   }
 
   /* Right panel — показать как блок ниже текста */

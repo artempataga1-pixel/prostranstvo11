@@ -389,6 +389,31 @@ export default function CaseChairsPage() {
           {"Рост прибыли в 2+ раза\nбез увеличения рекламы"}
         </p>
       </div>
+
+      {/* Mobile-only two-column stats */}
+      <div className="chairs-mobile-stats" style={{ display: "none", flexDirection: "row", padding: "0 5vw" }}>
+        {/* Left: 12% */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "6px", paddingRight: "12px" }}>
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "11px", lineHeight: 1, letterSpacing: "-0.02em", color: "#2e132b", opacity: 0.5, margin: 0 }}>Маржинальность</p>
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(48px, 14vw, 72px)", lineHeight: 1, letterSpacing: "-0.035em", color: "#2e132b", margin: 0 }}>12%</p>
+          <div style={{ width: "2px", height: "36px", borderLeft: "2px dashed rgba(46,19,43,0.25)", marginLeft: "4px", marginTop: "4px", marginBottom: "4px" }} />
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "12px", lineHeight: 1.3, letterSpacing: "-0.02em", color: "#2e132b", opacity: 0.6, margin: 0 }}>Высокая себестоимость и логистика</p>
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "12px", lineHeight: 1.3, letterSpacing: "-0.02em", color: "#2e132b", opacity: 0.6, margin: 0 }}>Размытая ЦА</p>
+        </div>
+        {/* Divider */}
+        <div style={{ width: "1px", background: "rgba(46,19,43,0.12)", alignSelf: "stretch" }} />
+        {/* Right: 25% */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "6px", paddingLeft: "12px" }}>
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "11px", lineHeight: 1, letterSpacing: "-0.02em", color: "#2e132b", opacity: 0.5, margin: 0 }}>Маржинальность</p>
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(48px, 14vw, 72px)", lineHeight: 1, letterSpacing: "-0.035em", color: "#ff00e6", margin: 0 }}>25%</p>
+          <div style={{ width: "2px", height: "36px", borderLeft: "2px dashed rgba(255,0,230,0.3)", marginLeft: "4px", marginTop: "4px", marginBottom: "4px" }} />
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "12px", lineHeight: 1.3, letterSpacing: "-0.02em", color: "#2e132b", opacity: 0.6, margin: 0 }}>40.5 млн ₽ оборот</p>
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "12px", lineHeight: 1.3, letterSpacing: "-0.02em", color: "#2e132b", opacity: 0.6, margin: 0 }}>1 989 заказов в месяц</p>
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "12px", lineHeight: 1.3, letterSpacing: "-0.02em", color: "#2e132b", opacity: 0.6, margin: 0 }}>88%</p>
+          <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "12px", lineHeight: 1.3, letterSpacing: "-0.02em", color: "#2e132b", opacity: 0.6, margin: 0 }}>Рост прибыли в 2+ раза без увеличения рекламы</p>
+        </div>
+      </div>
+
       <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
 
@@ -420,6 +445,15 @@ export default function CaseChairsPage() {
       .case-cta-btn:hover {
         box-shadow: 0 0 0 2px rgba(245,158,11,0.4), 0 0 30px rgba(245,158,11,0.5), 0 10px 40px rgba(245,158,11,0.3);
         transform: translateY(-2px);
+      }
+      @media (max-width: 768px) {
+        .chairs-margin-graph { display: none !important; }
+        .chairs-margin-stat { display: none !important; }
+        .chairs-right-stat { display: none !important; }
+        .chairs-margin-25 { display: none !important; }
+        .chairs-margin-line { display: none !important; }
+        .chairs-margin-problems { display: none !important; }
+        .chairs-mobile-stats { display: flex !important; }
       }
     `}</style>
     </>
