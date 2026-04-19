@@ -5,13 +5,13 @@ import { ScrollAnimationsOptimized } from "./components/ScrollAnimationsOptimize
 export const metadata: Metadata = {
   title: "PROстранство — Получить разбор",
   description: "Превращаем хаос на маркетплейсах в управляемую модель роста",
-  themeColor: "#0d1f1f",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#0d1f1f",
   // Клавиатура на мобильном ресайзит только визуальный viewport,
   // не layout-viewport → нет layout shift и перерендера при фокусе на input
   interactiveWidget: "resizes-visual",
