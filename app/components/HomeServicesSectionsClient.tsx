@@ -350,7 +350,7 @@ function ServicesExternalSection() {
     "Настраиваем воронки продаж",
   ];
   return (
-    <section className="split-section" style={{ ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#0ABAB5" }}>
+    <section className="split-section ext-section" style={{ ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#0ABAB5" }}>
 
       {/* Ellipse blob — Figma: left:-395 top:-1055 size:2756, inset:-3.63% */}
       <div style={{ position: "absolute", left: "-20.57vw", top: "-97.69vh", width: "143.54vw", height: "143.54vw", pointerEvents: "none" }}>
@@ -479,7 +479,7 @@ function ServicesExternalSection() {
         Выход за пределы маркетплейсов
       </p>
       {/* Переход → TeamSection rgb(13,31,31) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="ext-transition-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -499,7 +499,7 @@ function ServicesAiSection() {
     <section className="split-section" style={{ ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#0d1f1f" }}>
 
       {/* Infinity logo — animated */}
-      <div style={{ position: "absolute", left: "2.76vw", top: "5vh", width: "clamp(50px, 6.094vw, 117px)", height: "clamp(26px, 5.56vh, 60px)", pointerEvents: "none" }}>
+      <div className="ai-infinity-wrapper" style={{ position: "absolute", left: "2.76vw", top: "5vh", width: "clamp(50px, 6.094vw, 117px)", height: "clamp(26px, 5.56vh, 60px)", pointerEvents: "none" }}>
               <InfinityMark />
       </div>
 
@@ -631,7 +631,7 @@ function ServicesManagementSection() {
   const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
   return (
     <section
-      className="split-section"
+      className="split-section sales-section"
       style={{
         ...deferredSectionStyle,
         minHeight: "max(100svh, 760px)",
@@ -800,6 +800,7 @@ function ServicesManagementSection() {
 
       {/* White bottom panel — Figma: top:703 h:377 bg:white borderRadius:40px top */}
       <div
+        className="sales-white-card"
         style={{
           position: "absolute",
           left: 0,
@@ -859,7 +860,7 @@ function ServicesManagementSection() {
         </div>
       </div>
       {/* Переход → AiSection rgb(13,31,31) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="sales-transition-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -925,6 +926,14 @@ function ServicesPodborSection() {
           boxShadow: "inset 0 0 clamp(30px, 5.07vw, 97px) clamp(5px, 0.76vw, 15px) rgba(255,0,230,0.4)",
         }}
       >
+        {/* Mobile decorative strips — hidden on desktop, shown on mobile */}
+        <div className="podbor-strip podbor-strip-1" style={{ display: "none", position: "absolute", top: 0, right: 0, height: 4, background: "rgba(255,255,255,0.15)", borderRadius: 2, width: "100%" }} />
+        <div className="podbor-strip podbor-strip-2" style={{ display: "none", position: "absolute", top: 6, right: 0, height: 4, background: "rgba(255,255,255,0.12)", borderRadius: 2, width: "85%" }} />
+        <div className="podbor-strip podbor-strip-3" style={{ display: "none", position: "absolute", top: 12, right: 0, height: 4, background: "rgba(255,255,255,0.09)", borderRadius: 2, width: "70%" }} />
+        {/* Subtitle inside card — shown on mobile only */}
+        <p className="podbor-subtitle-inside" style={{ display: "none", position: "absolute", top: 20, left: 20, right: 20, fontFamily: font, fontWeight: 400, fontSize: "clamp(12px, 3vw, 16px)", lineHeight: 1.3, letterSpacing: "-0.03em", color: "#ffffff", margin: 0 }}>
+          Получаете презентацию с 3 товарами: анализ ниши, конкуренты, расчет юнит-экономики, оценка рисков, пошаговый план запуска
+        </p>
         {/* Brand logo area — Figma (in card): left:43.85 top:426.36 w:195.593 h:46.397 */}
         <div
           style={{
@@ -997,7 +1006,7 @@ function ServicesPodborSection() {
           </div>
 
           {/* Infinity/logo mark — animated */}
-          <div style={{ position: "absolute", left: 0, top: "23.8%", width: "23.4%", height: "66.3%", pointerEvents: "none" }}>
+          <div className="podbor-infinity-inner" style={{ position: "absolute", left: 0, top: "23.8%", width: "23.4%", height: "66.3%", pointerEvents: "none" }}>
               <InfinityMark />
           </div>
         </div>
@@ -1047,6 +1056,7 @@ function ServicesPodborSection() {
 
       {/* Subtitle — Figma: left:60 top:282 font:45px tracking:-1.575px w:770 */}
       <p
+        className="podbor-subtitle-outside"
         style={{
           position: "absolute",
           left: "3.125vw",
@@ -1608,17 +1618,110 @@ export default function HomeServicesSectionsClient() {
     <>
       <style>{`
         @media (max-width: 768px) {
+          /* ── SALES: Отдел продаж под ключ ─────────────────── */
+          .sales-section {
+            min-height: max(72svh, 520px) !important;
+          }
+          /* Heading row: position relative (z-index > blur overlay) */
+          .sales-heading-row {
+            position: relative !important;
+            display: block !important;
+            top: auto !important;
+            right: auto !important;
+            left: auto !important;
+            width: calc(100% - 120px) !important;
+            margin: 0 16px 0 !important;
+            padding-top: 24px !important;
+            z-index: 3 !important;
+          }
+          .sales-heading-row > p {
+            font-size: clamp(30px, 8vw, 50px) !important;
+            width: 100% !important;
+          }
+          /* Icons: абсолютно в правый верхний угол СЕКЦИИ */
           .sales-icons-col {
             position: absolute !important;
-            top: clamp(88px, 15vw, 120px) !important;
-            left: 0 !important;
-            right: auto !important;
+            top: 16px !important;
+            right: 16px !important;
+            left: auto !important;
             width: auto !important;
-            align-items: flex-start !important;
+            align-items: flex-end !important;
+            gap: 8px !important;
+            flex-direction: column !important;
+          }
+          /* Скрыть badge "управление кабинетами" на мобильном */
+          .sales-icons-col > div:first-child {
+            display: none !important;
+          }
+          /* Белая карточка: в поток, padding 16px, убираем top */
+          .sales-white-card {
+            position: relative !important;
+            left: auto !important;
+            top: auto !important;
+            bottom: auto !important;
+            width: 100% !important;
+            margin-top: 20px !important;
+            border-radius: 20px 20px 0 0 !important;
+            padding: 16px !important;
+            box-sizing: border-box !important;
+          }
+          .sales-card-left {
+            position: relative !important;
+            left: auto !important;
+            top: auto !important;
+            width: 100% !important;
+            margin: 0 0 12px !important;
+            font-size: clamp(14px, 3.8vw, 20px) !important;
+          }
+          .sales-card-right {
+            position: relative !important;
+            left: auto !important;
+            top: auto !important;
+            white-space: normal !important;
+            font-size: clamp(11px, 3vw, 15px) !important;
+            line-height: 1.4 !important;
+          }
+          /* Убрать тёмный gradient-переход снизу */
+          .sales-transition-fade {
+            display: none !important;
+          }
+          /* ── PODBOR: Подбираем новинки ────────────────────── */
+          .podbor-subtitle-outside {
+            display: none !important;
+          }
+          .podbor-subtitle-inside {
+            display: block !important;
+          }
+          .podbor-strip {
+            display: block !important;
+          }
+          .podbor-infinity-inner {
+            width: 40px !important;
+            height: 24px !important;
+            top: 20% !important;
+            left: 4% !important;
+          }
+          .podbor-phone-card {
+            padding: 20px !important;
+          }
+          /* ── EXTERNAL: Внешние каналы продаж ─────────────── */
+          .ext-section {
+            min-height: max(83svh, 620px) !important;
+          }
+          .ext-transition-fade {
+            display: none !important;
           }
           .ext-heading {
-            top: clamp(580px, 82vh, 950px) !important;
+            top: auto !important;
+            bottom: 24px !important;
+            opacity: 0.95 !important;
           }
+          /* ── AI: infinity 2:1 ─────────────────────────────── */
+          .ai-infinity-wrapper {
+            width: 48px !important;
+            height: 28px !important;
+          }
+          /* ── TEAM: radar идеальный полукруг ──────────────── */
           .team-section {
             min-height: 0 !important;
             padding-bottom: 280px !important;
@@ -1645,11 +1748,13 @@ export default function HomeServicesSectionsClient() {
           }
           .team-radar {
             top: auto !important;
-            bottom: -300px !important;
+            bottom: -50vw !important;
             left: 50% !important;
             transform: translateX(-50%) scaleY(-1) !important;
             width: 100vw !important;
-            height: 600px !important;
+            height: 100vw !important;
+            background-size: 100% 100% !important;
+            background-position: center center !important;
           }
         }
       `}</style>

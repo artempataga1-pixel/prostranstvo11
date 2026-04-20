@@ -1151,4 +1151,101 @@ section {
     line-height: 1 !important;
     white-space: normal !important;
   }
+
+  /* ══════════════════════════════════════════════════════
+     FIX-MOB-1 — ServicesTeamSection: radar → идеальный полукруг
+     Размер 100vw×100vw задан в inline <style> (bottom: -50vw)
+     Здесь переопределяем background-size для точного отображения дуги
+     ══════════════════════════════════════════════════════ */
+  .team-radar {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     FIX-MOB-2 — ServicesExternalSection
+     ══════════════════════════════════════════════════════ */
+  .ext-section {
+    min-height: max(83svh, 620px) !important;
+  }
+  .ext-transition-fade {
+    display: none !important;
+  }
+  .ext-heading {
+    opacity: 0.95 !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     FIX-MOB-3 — ServicesAiSection: infinity 2:1 пропорция
+     ══════════════════════════════════════════════════════ */
+  .ai-infinity-wrapper {
+    width: 48px !important;
+    height: 28px !important;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     FIX-MOB-4 — ServicesManagementSection
+     ══════════════════════════════════════════════════════ */
+  .sales-section {
+    min-height: max(72svh, 520px) !important;
+    padding-bottom: 0 !important;
+  }
+  /* Скрываем badge "управление кабинетами" в иконках на мобильном */
+  .sales-icons-col > div:first-child {
+    display: none !important;
+  }
+  /* Белая карточка: относительное позиционирование → размер по контенту */
+  .sales-white-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 16px !important;
+    box-sizing: border-box !important;
+  }
+  .sales-card-left {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    margin: 0 0 12px !important;
+    font-size: clamp(14px, 3.8vw, 20px) !important;
+  }
+  .sales-card-right {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    white-space: normal !important;
+    font-size: clamp(11px, 3vw, 15px) !important;
+    line-height: 1.4 !important;
+  }
+  .sales-transition-fade {
+    display: none !important;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     FIX-MOB-5 — ServicesPodborSection
+     ══════════════════════════════════════════════════════ */
+  .podbor-subtitle-outside {
+    display: none !important;
+  }
+  .podbor-subtitle-inside {
+    display: block !important;
+  }
+  .podbor-strip {
+    display: block !important;
+  }
+  .podbor-infinity-inner {
+    width: 40px !important;
+    height: 24px !important;
+    top: 20% !important;
+    left: 4% !important;
+  }
+  .podbor-phone-card {
+    padding: 20px !important;
+  }
 }
