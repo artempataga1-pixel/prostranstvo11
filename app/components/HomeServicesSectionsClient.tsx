@@ -369,7 +369,7 @@ function ServicesExternalSection() {
       </div>
 
       {/* Horizontal blur band — top:0 h:745 bg:rgba(255,255,255,0.1) blur:50px */}
-      <div className="ext-blur-band" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "68.98vh", background: "rgba(255,255,255,0.1)", backdropFilter: "blur(50px)", WebkitBackdropFilter: "blur(50px)", pointerEvents: "none", zIndex: 1 }} />
+      <div className="ext-blur-band" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "80vh", background: "linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 75%, transparent 100%)", backdropFilter: "blur(50px)", WebkitBackdropFilter: "blur(50px)", pointerEvents: "none", zIndex: 1 }} />
 
       {/* Vertical stripe overlay — CSS repeating gradient, 43px bands + 2px gap */}
       <div
