@@ -369,7 +369,7 @@ function ServicesExternalSection() {
       </div>
 
       {/* Horizontal blur band — top:0 h:745 bg:rgba(255,255,255,0.1) blur:50px */}
-      <div style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "68.98vh", background: "rgba(255,255,255,0.1)", backdropFilter: "blur(50px)", WebkitBackdropFilter: "blur(50px)", pointerEvents: "none", zIndex: 1 }} />
+      <div className="ext-blur-band" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "68.98vh", background: "rgba(255,255,255,0.1)", backdropFilter: "blur(50px)", WebkitBackdropFilter: "blur(50px)", pointerEvents: "none", zIndex: 1 }} />
 
       {/* Vertical stripe overlay — CSS repeating gradient, 43px bands + 2px gap */}
       <div
@@ -880,6 +880,7 @@ function ServicesPodborSection() {
       {/* Gray decorative rects behind phone — Figma: #454545, opacity:0.6 */}
       {/* Rect 1: left:calc(50%+137px) top:230 w:571 h:1130 r:30 */}
       <div
+        className="podbor-rect-1"
         style={{
           position: "absolute",
           left: "calc(50% + 7.14vw)",
@@ -894,6 +895,7 @@ function ServicesPodborSection() {
       />
       {/* Rect 2: left:calc(50%+99px) top:267 w:651 h:1130 r:30 */}
       <div
+        className="podbor-rect-2"
         style={{
           position: "absolute",
           left: "calc(50% + 5.16vw)",
@@ -926,12 +928,17 @@ function ServicesPodborSection() {
           boxShadow: "inset 0 0 clamp(30px, 5.07vw, 97px) clamp(5px, 0.76vw, 15px) rgba(255,0,230,0.4)",
         }}
       >
-        {/* Mobile decorative strips — hidden on desktop, shown on mobile */}
-        <div className="podbor-strip podbor-strip-1" style={{ display: "none", position: "absolute", top: 0, right: 0, height: 4, background: "rgba(255,255,255,0.15)", borderRadius: 2, width: "100%" }} />
-        <div className="podbor-strip podbor-strip-2" style={{ display: "none", position: "absolute", top: 6, right: 0, height: 4, background: "rgba(255,255,255,0.12)", borderRadius: 2, width: "85%" }} />
-        <div className="podbor-strip podbor-strip-3" style={{ display: "none", position: "absolute", top: 12, right: 0, height: 4, background: "rgba(255,255,255,0.09)", borderRadius: 2, width: "70%" }} />
+        {/* Mobile stair strips — hidden on desktop; bottom:100% puts them above card top edge */}
+        <div className="podbor-strips-wrapper" style={{ display: "none", position: "absolute", left: 0, right: 0, height: 0, bottom: 0 }}>
+          {/* Strip 1 — bottom, widest, prilezhit k karte */}
+          <div className="podbor-step-1" style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "100%", height: 56, background: "rgba(255,255,255,0.08)", borderRadius: 12 }} />
+          {/* Strip 2 — middle, 80%, 32px higher */}
+          <div className="podbor-step-2" style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", width: "80%", height: 56, background: "rgba(255,255,255,0.08)", borderRadius: 12 }} />
+          {/* Strip 3 — top, 60%, 32px higher still */}
+          <div className="podbor-step-3" style={{ position: "absolute", bottom: 64, left: "50%", transform: "translateX(-50%)", width: "60%", height: 56, background: "rgba(255,255,255,0.08)", borderRadius: 12 }} />
+        </div>
         {/* Subtitle inside card — shown on mobile only */}
-        <p className="podbor-subtitle-inside" style={{ display: "none", position: "absolute", top: 20, left: 20, right: 20, fontFamily: font, fontWeight: 400, fontSize: "clamp(12px, 3vw, 16px)", lineHeight: 1.3, letterSpacing: "-0.03em", color: "#ffffff", margin: 0 }}>
+        <p className="podbor-subtitle-inside" style={{ display: "none", position: "absolute", top: 20, left: 24, right: 24, fontFamily: font, fontWeight: 400, fontSize: "clamp(12px, 3vw, 16px)", lineHeight: 1.3, letterSpacing: "-0.03em", color: "#ffffff", margin: 0 }}>
           Получаете презентацию с 3 товарами: анализ ниши, конкуренты, расчет юнит-экономики, оценка рисков, пошаговый план запуска
         </p>
         {/* Brand logo area — Figma (in card): left:43.85 top:426.36 w:195.593 h:46.397 */}
@@ -1076,6 +1083,7 @@ function ServicesPodborSection() {
 
       {/* "Что делаем:" list — Figma: left:60 top:795 font:35px opacity:0.5 tracking:-1.225px */}
       <div
+        className="podbor-list"
         style={{
           position: "absolute",
           left: "3.125vw",
@@ -1622,23 +1630,24 @@ export default function HomeServicesSectionsClient() {
           .sales-section {
             min-height: max(72svh, 520px) !important;
           }
-          /* Heading row: position relative (z-index > blur overlay) */
+          /* Heading row: absolute, full width, z-index > blur */
           .sales-heading-row {
-            position: relative !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
             display: block !important;
-            top: auto !important;
-            right: auto !important;
-            left: auto !important;
-            width: calc(100% - 120px) !important;
-            margin: 0 16px 0 !important;
-            padding-top: 24px !important;
+            padding: 16px 16px 0 !important;
+            box-sizing: border-box !important;
             z-index: 3 !important;
           }
           .sales-heading-row > p {
             font-size: clamp(30px, 8vw, 50px) !important;
-            width: 100% !important;
+            width: auto !important;
+            max-width: calc(100% - 100px) !important;
           }
-          /* Icons: абсолютно в правый верхний угол СЕКЦИИ */
+          /* Icons: абсолютно в правый верхний угол секции */
           .sales-icons-col {
             position: absolute !important;
             top: 16px !important;
@@ -1647,53 +1656,66 @@ export default function HomeServicesSectionsClient() {
             width: auto !important;
             align-items: flex-end !important;
             gap: 8px !important;
-            flex-direction: column !important;
+            flex-direction: column-reverse !important;
           }
-          /* Скрыть badge "управление кабинетами" на мобильном */
+          /* Badge явно виден */
           .sales-icons-col > div:first-child {
-            display: none !important;
+            display: flex !important;
           }
-          /* Белая карточка: в поток, padding 16px, убираем top */
+          /* Белая карточка: прижать к низу секции */
           .sales-white-card {
-            position: relative !important;
-            left: auto !important;
+            position: absolute !important;
             top: auto !important;
-            bottom: auto !important;
-            width: 100% !important;
-            margin-top: 20px !important;
-            border-radius: 20px 20px 0 0 !important;
-            padding: 16px !important;
-            box-sizing: border-box !important;
-          }
-          .sales-card-left {
-            position: relative !important;
-            left: auto !important;
-            top: auto !important;
-            width: 100% !important;
-            margin: 0 0 12px !important;
-            font-size: clamp(14px, 3.8vw, 20px) !important;
-          }
-          .sales-card-right {
-            position: relative !important;
-            left: auto !important;
-            top: auto !important;
-            white-space: normal !important;
-            font-size: clamp(11px, 3vw, 15px) !important;
-            line-height: 1.4 !important;
-          }
-          /* Убрать тёмный gradient-переход снизу */
-          .sales-transition-fade {
-            display: none !important;
+            bottom: 0 !important;
+            padding: 16px 20px !important;
           }
           /* ── PODBOR: Подбираем новинки ────────────────────── */
+          /* Серые прямоугольники — по центру, на высоту основной карточки */
+          .podbor-rect-1 {
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 88% !important;
+            top: 29.07vh !important;
+            height: clamp(300px, 94.97vh, 1026px) !important;
+          }
+          .podbor-rect-2 {
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 96% !important;
+            top: 29.07vh !important;
+            height: clamp(300px, 94.97vh, 1026px) !important;
+          }
           .podbor-subtitle-outside {
             display: none !important;
           }
+          .podbor-list {
+            font-size: 17px !important;
+            line-height: 1.4 !important;
+            left: 20px !important;
+            right: 8px !important;
+            max-width: none !important;
+          }
           .podbor-subtitle-inside {
             display: block !important;
+            font-size: 16px !important;
+            line-height: 1.45 !important;
           }
-          .podbor-strip {
+          /* Враппер: высота 120px, bottom: 100% = прямо над верхним краем карточки */
+          .podbor-strips-wrapper {
             display: block !important;
+            top: auto !important;
+            bottom: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            height: 120px !important;
+            z-index: 1 !important;
+          }
+          /* Backdrop-filter на полосах */
+          .podbor-step-1,
+          .podbor-step-2,
+          .podbor-step-3 {
+            backdrop-filter: blur(4px) !important;
+            -webkit-backdrop-filter: blur(4px) !important;
           }
           .podbor-infinity-inner {
             width: 40px !important;
@@ -1701,15 +1723,13 @@ export default function HomeServicesSectionsClient() {
             top: 20% !important;
             left: 4% !important;
           }
-          .podbor-phone-card {
-            padding: 20px !important;
-          }
           /* ── EXTERNAL: Внешние каналы продаж ─────────────── */
           .ext-section {
             min-height: max(83svh, 620px) !important;
           }
-          .ext-transition-fade {
-            display: none !important;
+          /* Убрать артефакт 68.98vh — растянуть blur на весь блок */
+          .ext-blur-band {
+            height: 100% !important;
           }
           .ext-heading {
             top: auto !important;
@@ -1731,20 +1751,25 @@ export default function HomeServicesSectionsClient() {
             width: 20px !important;
             height: 20px !important;
           }
+          /* Dots на дугах: центр радара = низ секции (bottom:0)
+             Dot-1: r≈42vw, θ=140° → left=17vw, bottom=27vw
+             Dot-2: r≈30vw, θ=90°  → left=49vw, bottom=30vw
+             Dot-3: r≈18vw, θ=50°  → left=61vw, bottom=14vw */
           .team-dot-1 {
-            left: 6vw !important;
+            left: 17vw !important;
             top: auto !important;
-            bottom: 155px !important;
+            bottom: 27vw !important;
           }
           .team-dot-2 {
-            left: 36vw !important;
+            left: 49vw !important;
             top: auto !important;
-            bottom: 195px !important;
+            bottom: calc(30vw + 7px) !important;
           }
+          /* Dot-3: верхняя дуга, правая часть — +9px вверх */
           .team-dot-3 {
-            left: 62vw !important;
+            left: 70vw !important;
             top: auto !important;
-            bottom: 170px !important;
+            bottom: calc(36vw + 23px) !important;
           }
           .team-radar {
             top: auto !important;
