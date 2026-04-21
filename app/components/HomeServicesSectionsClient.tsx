@@ -1579,7 +1579,7 @@ function ServicesHrTeamSection() {
         style={{
           position: "absolute",
           left: "3.125vw",
-          top: "70.926vh",
+          top: "74vh",
           fontFamily: "'Helvetica Neue', sans-serif",
           fontWeight: 400,
           fontStyle: "normal",
