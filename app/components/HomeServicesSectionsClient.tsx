@@ -1415,7 +1415,7 @@ function ServicesHrTeamSection() {
         style={{
           position: "absolute",
           left: "-11.563vw",
-          top: "33.519vh",
+          top: "33.796vh",
           width: "107.760vw",
           height: "66.389vh",
           display: "flex",
@@ -1448,7 +1448,7 @@ function ServicesHrTeamSection() {
         style={{
           position: "absolute",
           left: "14.010vw",
-          top: "65.5vh",
+          top: "63.6vh",
           width: "37.344vw",
           height: "1.667vh",
           display: "flex",
@@ -1601,7 +1601,7 @@ function ServicesHrTeamSection() {
         style={{
           position: "absolute",
           left: "calc(25% + 3.333vw)",
-          top: "49vh",
+          top: "49.5vh",
           fontFamily: "'Helvetica Neue', sans-serif",
           fontWeight: 400,
           fontStyle: "normal",
