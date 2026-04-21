@@ -36,8 +36,6 @@ const MGMT_AVATAR3_IMG = "/figma-assets/mgmt-avatar3.png"; // Маркет
 // Figma node: 2040:389 "Услуги — Подбор и развитие команды" — file MOHJ9F1OX9kaB0rKsCZm7i
 const TEAM_GRADIENT_IMG = "/figma-assets/team-gradient.png";
 const TEAM_RADAR_IMG = "/figma-assets/team-radar.svg";
-const TEAM_DOT1_IMG = "/figma-assets/team-dot1.svg";
-const TEAM_DOT2_IMG = "/figma-assets/team-dot2.svg";
 
 // Figma node: 2040:411 "Услуги — Постоянная работа с командой" — file MOHJ9F1OX9kaB0rKsCZm7i
 const HRTEAM_GRAPH_IMG = "/figma-assets/hrteam-graph.svg";
@@ -1146,12 +1144,6 @@ function ServicesPodborSection() {
 // Figma node: 2040:389 "Услуги — Подбор и развитие команды" — file MOHJ9F1OX9kaB0rKsCZm7i
 function ServicesTeamSection() {
   const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
-  const bullets = [
-    "Определяем, кто реально нужен",
-    "Разрабатываем портреты должностей",
-    "Подбираем и собеседуем кандидатов",
-    "Выстраиваем систему адаптации",
-  ];
   return (
     <section className="split-section team-section" style={{
       ...deferredSectionStyle,
@@ -1224,33 +1216,6 @@ function ServicesTeamSection() {
         Вы получаете документ с рекомендациями: что исправить в первую очередь, какой рост это даст в цифрах, план внедрения на 30 дней
       </p>
 
-      {/* Bullet list right — left:970 top:291 opacity:50% font:45px */}
-      <div className="team-bullets" style={{
-        position: "absolute",
-        left: "clamp(360px, 50.52vw, 970px)",
-        top: "clamp(160px, 26.94vh, 291px)",
-        display: "flex",
-        flexDirection: "column",
-        gap: 0,
-        opacity: 0.5,
-        zIndex: 2,
-      }}>
-        {bullets.map((text, i) => (
-          <p key={i} style={{
-            fontFamily: font,
-            fontWeight: 400,
-            fontSize: "clamp(14px, 2.344vw, 45px)",
-            lineHeight: 1,
-            letterSpacing: "-0.035em",
-            color: "#ffffff",
-            margin: 0,
-            whiteSpace: "nowrap",
-          }}>
-            • {text}
-          </p>
-        ))}
-      </div>
-
       {/* Radar — left:12 top:573 w:1896 h:1891 flipped vertically */}
       <div className="team-radar" style={{
         position: "absolute",
@@ -1288,29 +1253,93 @@ function ServicesTeamSection() {
           </div>
         </div>
 
-      {/* Dot 1 — left:444 top:850 size:67px */}
-      <div className="team-dot team-dot-1" style={{ position: "absolute", left: "23.125vw", top: "78.7vh", width: "clamp(30px, 3.49vw, 67px)", height: "clamp(30px, 3.49vw, 67px)", zIndex: 3, pointerEvents: "none" }}>
-        <div style={{ position: "absolute", inset: "-74.63%" }}>
-          { }
-          <Img alt="" src={TEAM_DOT1_IMG} style={{ display: "block", width: "100%", height: "100%", maxWidth: "none" }} />
-        </div>
+      {/* Arc dots: @property + @keyframes + 4 animated dots on arcs
+          cy = 140.61vh  (= radar top 53.06vh + radar_h/2 87.55vh, after scaleY(-1))
+          rx/ry from SVG radii scaled to vw/vh at 1920×1080 reference:
+            R1=658:  rx=34.27vw ry=60.93vh
+            R2=800:  rx=41.67vw ry=74.07vh
+            R3=948:  rx=49.38vw ry=87.78vh
+            R4=1096: rx=57.08vw ry=101.48vh
+      */}
+      <style>{`
+        @property --dot1-angle { syntax: "<angle>"; inherits: false; initial-value: 65deg; }
+        @property --dot2-angle { syntax: "<angle>"; inherits: false; initial-value: 60deg; }
+        @property --dot3-angle { syntax: "<angle>"; inherits: false; initial-value: 66deg; }
+        @property --dot4-angle { syntax: "<angle>"; inherits: false; initial-value: 114deg; }
+        @keyframes dot1-swing { from { --dot1-angle: 53deg; } to { --dot1-angle: 77deg; } }
+        @keyframes dot2-swing { from { --dot2-angle: 48deg; } to { --dot2-angle: 72deg; } }
+        @keyframes dot3-swing { from { --dot3-angle: 54deg; } to { --dot3-angle: 76deg; } }
+        @keyframes dot4-swing { from { --dot4-angle: 104deg; } to { --dot4-angle: 126deg; } }
+        .team-arc-dot-1 {
+          position: absolute;
+          width: 0; height: 0;
+          left: calc(50vw + 34.27vw * cos(var(--dot1-angle)));
+          top:  calc(140.61vh - 60.93vh * sin(var(--dot1-angle)));
+          z-index: 3;
+          pointer-events: none;
+          animation: dot1-swing 5s ease-in-out alternate infinite 0s;
+        }
+        .team-arc-dot-2 {
+          position: absolute;
+          width: 0; height: 0;
+          left: calc(50vw + 41.67vw * cos(var(--dot2-angle)));
+          top:  calc(140.61vh - 74.07vh * sin(var(--dot2-angle)));
+          z-index: 3;
+          pointer-events: none;
+          animation: dot2-swing 4.5s ease-in-out alternate infinite 1.5s;
+        }
+        .team-arc-dot-3 {
+          position: absolute;
+          width: 0; height: 0;
+          left: calc(50vw + 49.38vw * cos(var(--dot3-angle)));
+          top:  calc(140.61vh - 87.78vh * sin(var(--dot3-angle)));
+          z-index: 3;
+          pointer-events: none;
+          animation: dot3-swing 6s ease-in-out alternate infinite 3s;
+        }
+        .team-arc-dot-4 {
+          position: absolute;
+          width: 0; height: 0;
+          left: calc(50vw + 49.38vw * cos(var(--dot4-angle)));
+          top:  calc(140.61vh - 87.78vh * sin(var(--dot4-angle)));
+          z-index: 3;
+          pointer-events: none;
+          animation: dot4-swing 5.5s ease-in-out alternate infinite 4.5s;
+        }
+      `}</style>
+
+      {/* Arc dot 1 — R1 inner, θ=150° — text left */}
+      <div className="team-arc-dot-1">
+        <div style={{ position: "absolute", width: 10, height: 10, transform: "translate(-50%, -50%)", borderRadius: "50%", background: "white", boxShadow: "0 0 8px 3px rgba(255,255,255,0.6)" }} />
+        <span style={{ position: "absolute", right: 18, top: "50%", transform: "translateY(-50%)", fontSize: "clamp(16px, 1vw, 19px)", color: "rgba(255,255,255,0.75)", whiteSpace: "nowrap", fontFamily: font }}>
+          Определяем, кто реально нужен
+        </span>
       </div>
 
-      {/* Dot 2 — left:797 top:848 size:67px */}
-      <div className="team-dot team-dot-2" style={{ position: "absolute", left: "41.51vw", top: "78.52vh", width: "clamp(30px, 3.49vw, 67px)", height: "clamp(30px, 3.49vw, 67px)", zIndex: 3, pointerEvents: "none" }}>
-        <div style={{ position: "absolute", inset: "-74.63%" }}>
-          { }
-          <Img alt="" src={TEAM_DOT1_IMG} style={{ display: "block", width: "100%", height: "100%", maxWidth: "none" }} />
-        </div>
+      {/* Arc dot 2 — R2, θ=120° — text left-above */}
+      <div className="team-arc-dot-2">
+        <div style={{ position: "absolute", width: 10, height: 10, transform: "translate(-50%, -50%)", borderRadius: "50%", background: "white", boxShadow: "0 0 8px 3px rgba(255,255,255,0.6)" }} />
+        <span style={{ position: "absolute", right: 18, bottom: 14, fontSize: "clamp(16px, 1vw, 19px)", color: "rgba(255,255,255,0.75)", whiteSpace: "nowrap", fontFamily: font }}>
+          Разрабатываем портреты должностей
+        </span>
       </div>
 
-      {/* Dot 3 — left:1027 top:696 size:67px */}
-      <div className="team-dot team-dot-3" style={{ position: "absolute", left: "53.49vw", top: "64.44vh", width: "clamp(30px, 3.49vw, 67px)", height: "clamp(30px, 3.49vw, 67px)", zIndex: 3, pointerEvents: "none" }}>
-        <div style={{ position: "absolute", inset: "-74.63%" }}>
-          { }
-          <Img alt="" src={TEAM_DOT2_IMG} style={{ display: "block", width: "100%", height: "100%", maxWidth: "none" }} />
-        </div>
+      {/* Arc dot 3 — R3, θ=60° — text right-above */}
+      <div className="team-arc-dot-3">
+        <div style={{ position: "absolute", width: 10, height: 10, transform: "translate(-50%, -50%)", borderRadius: "50%", background: "white", boxShadow: "0 0 8px 3px rgba(255,255,255,0.6)" }} />
+        <span style={{ position: "absolute", left: 18, bottom: 14, fontSize: "clamp(16px, 1vw, 19px)", color: "rgba(255,255,255,0.75)", whiteSpace: "nowrap", fontFamily: font }}>
+          Подбираем и собеседуем кандидатов
+        </span>
       </div>
+
+      {/* Arc dot 4 — mirrored on the same arc as dot 3, left side */}
+      <div className="team-arc-dot-4">
+        <div style={{ position: "absolute", width: 10, height: 10, transform: "translate(-50%, -50%)", borderRadius: "50%", background: "white", boxShadow: "0 0 8px 3px rgba(255,255,255,0.6)" }} />
+        <span style={{ position: "absolute", right: 18, bottom: 14, fontSize: "clamp(16px, 1vw, 19px)", color: "rgba(255,255,255,0.75)", whiteSpace: "nowrap", fontFamily: font }}>
+          Выстраиваем систему адаптации
+        </span>
+      </div>
+
       {/* Переход → ServicesHrTeam #ffffff */}
       <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,rgba(255,255,255,0.12) 68%,rgba(255,255,255,0.38) 80%,rgba(255,255,255,0.72) 92%,rgb(255,255,255) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
@@ -1746,30 +1775,67 @@ export default function HomeServicesSectionsClient() {
             min-height: 0 !important;
             padding-bottom: 280px !important;
           }
-          .team-dot {
-            display: block !important;
-            width: 20px !important;
-            height: 20px !important;
-          }
-          /* Dots на дугах: центр радара = низ секции (bottom:0)
-             Dot-1: r≈42vw, θ=140° → left=17vw, bottom=27vw
-             Dot-2: r≈30vw, θ=90°  → left=49vw, bottom=30vw
-             Dot-3: r≈18vw, θ=50°  → left=61vw, bottom=14vw */
-          .team-dot-1 {
-            left: 17vw !important;
+          .team-arc-dot-1,
+          .team-arc-dot-2,
+          .team-arc-dot-3,
+          .team-arc-dot-4 {
             top: auto !important;
-            bottom: 27vw !important;
           }
-          .team-dot-2 {
-            left: 49vw !important;
-            top: auto !important;
-            bottom: calc(30vw + 7px) !important;
+          .team-arc-dot-1 {
+            left: calc(50vw + 34.7vw * cos(var(--dot1-angle))) !important;
+            bottom: calc(34.8vw * sin(var(--dot1-angle))) !important;
           }
-          /* Dot-3: верхняя дуга, правая часть — +9px вверх */
-          .team-dot-3 {
-            left: 70vw !important;
-            top: auto !important;
-            bottom: calc(36vw + 23px) !important;
+          .team-arc-dot-2 {
+            left: calc(50vw + 42.2vw * cos(var(--dot2-angle))) !important;
+            bottom: calc(42.3vw * sin(var(--dot2-angle))) !important;
+          }
+          .team-arc-dot-3 {
+            left: calc(50vw + 50vw * cos(var(--dot3-angle))) !important;
+            bottom: calc(50.13vw * sin(var(--dot3-angle))) !important;
+          }
+          .team-arc-dot-4 {
+            left: calc(50vw + 50vw * cos(var(--dot4-angle))) !important;
+            bottom: calc(50.13vw * sin(var(--dot4-angle))) !important;
+          }
+          .team-arc-dot-1 > div,
+          .team-arc-dot-2 > div,
+          .team-arc-dot-3 > div,
+          .team-arc-dot-4 > div {
+            width: 8px !important;
+            height: 8px !important;
+            box-shadow: 0 0 6px 2px rgba(255,255,255,0.45) !important;
+          }
+          .team-arc-dot-1 > span,
+          .team-arc-dot-2 > span,
+          .team-arc-dot-3 > span,
+          .team-arc-dot-4 > span {
+            font-size: 11px !important;
+            line-height: 1.15 !important;
+            white-space: normal !important;
+            max-width: 110px;
+          }
+          .team-arc-dot-1 > span {
+            right: 10px !important;
+            max-width: 92px;
+            text-align: right;
+          }
+          .team-arc-dot-2 > span {
+            right: 10px !important;
+            bottom: 8px !important;
+            max-width: 98px;
+            text-align: right;
+          }
+          .team-arc-dot-3 > span {
+            left: 10px !important;
+            bottom: 8px !important;
+            max-width: 118px;
+            text-align: left;
+          }
+          .team-arc-dot-4 > span {
+            right: 10px !important;
+            bottom: 8px !important;
+            max-width: 108px;
+            text-align: right;
           }
           .team-radar {
             top: auto !important;
