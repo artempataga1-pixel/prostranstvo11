@@ -1414,7 +1414,7 @@ function ServicesHrTeamSection() {
         className="hrteam-dotline"
         style={{
           position: "absolute",
-          left: "calc(-28.5675vw + 30.071vh)",
+          left: "calc(-56.38vw + 79.61vh)",
           top: "33.796vh",
           width: "107.760vw",
           height: "66.389vh",
