@@ -13,8 +13,8 @@ const TG_ME  = "https://t.me/pro_success_official"; // личный Telegram
 const TG_CH  = "https://t.me/prostranstvoecom";     // Telegram-канал
 
 // ── QR: положи файлы в /public/ с этими именами ──────────────────────────────
-const QR_TG   = "/qr-telegram.jpg";   // QR личного Telegram
-const QR_CH   = "/qr-channel.jpg";    // QR Telegram-канала
+const QR_TG   = "/qr-telegram-v2.jpg";   // QR личного Telegram
+const QR_CH   = "/qr-channel-v2.jpg";    // QR Telegram-канала
 
 // ── Иконки ────────────────────────────────────────────────────────────────────
 function IconMail() {
