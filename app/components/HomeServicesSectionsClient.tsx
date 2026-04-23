@@ -35,7 +35,7 @@ const MGMT_AVATAR3_IMG = "/figma-assets/mgmt-avatar3.png"; // Маркет
 
 // Figma node: 2040:389 "Услуги — Подбор и развитие команды" — file MOHJ9F1OX9kaB0rKsCZm7i
 const TEAM_GRADIENT_IMG = "/figma-assets/team-gradient.png";
-const TEAM_RADAR_IMG = "/figma-assets/team-radar.svg";
+const TEAM_RADAR_IMG = "/figma-assets/team-radar.svg?v=2";
 
 // Figma node: 2040:411 "Услуги — Постоянная работа с командой" — file MOHJ9F1OX9kaB0rKsCZm7i
 const HRTEAM_GRAPH_IMG = "/figma-assets/hrteam-graph.svg";
