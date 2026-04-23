@@ -2220,6 +2220,7 @@ export default function HomeServicesSectionsClient() {
           .team-section {
             min-height: 0 !important;
             padding-bottom: 280px !important;
+            overflow: hidden !important;
           }
           .team-arc-dot-1,
           .team-arc-dot-2,
