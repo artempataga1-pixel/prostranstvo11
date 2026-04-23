@@ -206,7 +206,6 @@ export default function ContactsSection() {
       {/* Ambient glow blobs */}
       <div style={{ position: "absolute", width: "65vw", height: "65vw", left: "-20vw", top: "-20vw", background: "radial-gradient(circle, rgba(10,186,181,0.09) 0%, transparent 65%)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", width: "50vw", height: "50vw", right: "-10vw", bottom: "-15vw", background: "radial-gradient(circle, rgba(10,186,181,0.06) 0%, transparent 65%)", pointerEvents: "none" }} />
-
       {/* Dot grid */}
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none",

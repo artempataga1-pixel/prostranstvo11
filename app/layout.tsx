@@ -24,6 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" data-scroll-behavior="smooth">
+      <head>
+        {/* Preload hero background — самый ранний discovery критического изображения */}
+        <link rel="preload" href="/bg.png" as="image" fetchPriority="high" />
+      </head>
       <body>
         {children}
         <ScrollAnimationsOptimized />

@@ -28,6 +28,7 @@ export default function CaseAiAgentsPage() {
   return (
     <>
     <div
+      className="ai-case-hero"
       style={{
         minHeight: "100vh",
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
@@ -72,8 +73,9 @@ export default function CaseAiAgentsPage() {
         <span style={{ color: "rgba(7,21,24,0.8)", fontSize: 14 }}>ИИ Агенты</span>
       </header>
 
-      <main style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
+      <main className="ai-case-hero-main" style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
         <p
+          className="ai-case-hero-kicker"
           style={{
             fontSize: "clamp(10px, 0.9vw, 13px)",
             letterSpacing: "0.15em",
@@ -86,6 +88,7 @@ export default function CaseAiAgentsPage() {
         </p>
 
         <h1
+          className="ai-case-hero-title"
           style={{
             fontWeight: 400,
             fontSize: "clamp(40px, 6vw, 96px)",
@@ -102,6 +105,7 @@ export default function CaseAiAgentsPage() {
         </h1>
 
         <p
+          className="ai-case-hero-desc"
           style={{
             fontSize: "clamp(16px, 1.5vw, 20px)",
             color: "rgba(255,255,255,0.75)",
@@ -114,6 +118,7 @@ export default function CaseAiAgentsPage() {
         </p>
 
         <div
+          className="ai-case-hero-metrics"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -133,7 +138,7 @@ export default function CaseAiAgentsPage() {
         </div>
 
       </main>
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,15,31,0) 0%,rgba(13,15,31,0) 55%,rgba(13,15,31,0.12) 68%,rgba(13,15,31,0.38) 80%,rgba(13,15,31,0.72) 92%,rgb(13,15,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="ai-case-hero-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,15,31,0) 0%,rgba(13,15,31,0) 55%,rgba(13,15,31,0.12) 68%,rgba(13,15,31,0.38) 80%,rgba(13,15,31,0.72) 92%,rgb(13,15,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* CaseAIIntroSection */}
@@ -278,6 +283,35 @@ export default function CaseAiAgentsPage() {
       }
 
       @media (max-width: 900px) {
+        .ai-case-hero {
+          min-height: auto !important;
+        }
+
+        .ai-case-hero-main {
+          padding: 32px 20px 56px !important;
+        }
+
+        .ai-case-hero-kicker {
+          margin-bottom: 12px !important;
+        }
+
+        .ai-case-hero-title {
+          margin-bottom: 20px !important;
+        }
+
+        .ai-case-hero-desc {
+          margin-bottom: 28px !important;
+        }
+
+        .ai-case-hero-metrics {
+          gap: 10px !important;
+          margin-bottom: 0 !important;
+        }
+
+        .ai-case-hero-fade {
+          height: 160px !important;
+        }
+
         .ai-case-steps-section {
           min-height: auto !important;
           padding: 24px 20px 40px;

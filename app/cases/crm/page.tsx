@@ -28,6 +28,7 @@ export default function CaseCrmPage() {
   return (
     <>
     <div
+      className="crm-case-hero"
       style={{
         minHeight: "100vh",
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
@@ -72,8 +73,9 @@ export default function CaseCrmPage() {
         <span style={{ color: "rgba(7,21,24,0.8)", fontSize: 14 }}>CRM Система</span>
       </header>
 
-      <main style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
+      <main className="crm-case-hero-main" style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
         <p
+          className="crm-case-hero-kicker"
           style={{
             fontSize: "clamp(10px, 0.9vw, 13px)",
             letterSpacing: "0.15em",
@@ -86,6 +88,7 @@ export default function CaseCrmPage() {
         </p>
 
         <h1
+          className="crm-case-hero-title"
           style={{
             fontWeight: 400,
             fontSize: "clamp(40px, 6vw, 96px)",
@@ -102,6 +105,7 @@ export default function CaseCrmPage() {
         </h1>
 
         <p
+          className="crm-case-hero-desc"
           style={{
             fontSize: "clamp(16px, 1.5vw, 20px)",
             color: "rgba(255,255,255,0.75)",
@@ -114,6 +118,7 @@ export default function CaseCrmPage() {
         </p>
 
         <div
+          className="crm-case-hero-metrics"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -133,7 +138,7 @@ export default function CaseCrmPage() {
         </div>
 
       </main>
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(8,15,24,0) 0%,rgba(8,15,24,0) 55%,rgba(8,15,24,0.12) 68%,rgba(8,15,24,0.38) 80%,rgba(8,15,24,0.72) 92%,rgb(8,15,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="crm-case-hero-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(8,15,24,0) 0%,rgba(8,15,24,0) 55%,rgba(8,15,24,0.12) 68%,rgba(8,15,24,0.38) 80%,rgba(8,15,24,0.72) 92%,rgb(8,15,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* CaseCRMIntroSection */}
@@ -281,6 +286,35 @@ export default function CaseCrmPage() {
       }
 
       @media (max-width: 900px) {
+        .crm-case-hero {
+          min-height: auto !important;
+        }
+
+        .crm-case-hero-main {
+          padding: 32px 20px 56px !important;
+        }
+
+        .crm-case-hero-kicker {
+          margin-bottom: 12px !important;
+        }
+
+        .crm-case-hero-title {
+          margin-bottom: 20px !important;
+        }
+
+        .crm-case-hero-desc {
+          margin-bottom: 28px !important;
+        }
+
+        .crm-case-hero-metrics {
+          gap: 10px !important;
+          margin-bottom: 0 !important;
+        }
+
+        .crm-case-hero-fade {
+          height: 160px !important;
+        }
+
         /* CRM Intro Section */
         .crm-intro-section {
           min-height: auto !important;

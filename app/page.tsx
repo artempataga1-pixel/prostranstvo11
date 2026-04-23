@@ -104,20 +104,15 @@ function HeroSection() {
         minHeight: "max(100svh, 760px)",
       }}
     >
-      {/* Background */}
-            <Img
+      {/* Background — Next.js Image: автоматический WebP/AVIF + srcset + priority */}
+      <Image
         alt=""
         src={BG}
-        loading="eager"
-        fetchPriority="high"
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          pointerEvents: "none",
-        }}
+        fill
+        priority
+        quality={85}
+        sizes="100vw"
+        style={{ objectFit: "cover", pointerEvents: "none" }}
       />
 
       {/* Title */}
@@ -166,8 +161,9 @@ function HeroSection() {
       {/* Floating pill shapes — падают сверху, плавают вверх-вниз */}
       <FloatingShapesOptimized />
 
-      {/* Backdrop blur — плавное появление сверху через mask, тянется до конца секции */}
+      {/* Backdrop blur — только десктоп: на мобиле экономим GPU */}
       <div
+        className="hero-backdrop-blur"
         style={{
           position: "absolute",
           left: 0,
@@ -181,6 +177,7 @@ function HeroSection() {
           WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 35%)",
         }}
       />
+      <style>{`@media (hover:none) and (pointer:coarse){.hero-backdrop-blur{backdrop-filter:none;-webkit-backdrop-filter:none;}}`}</style>
 
       {/* Subtitle */}
       <p
@@ -447,7 +444,7 @@ function WhyChooseUsSection() {
         ))}
       </div>
       {/* Переход WhyChooseUs → Orbital rgb(7,21,24) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(260px,30vw,360px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0.04) 42%,rgba(7,21,24,0.16) 58%,rgba(7,21,24,0.42) 74%,rgba(7,21,24,0.78) 90%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -737,8 +734,8 @@ function GrowthModelSection() {
 const GRAPH_IMG = "/jeans-graph.svg";
 
 // Figma node: 2040:613 "Кейс — скриншот" — file MOHJ9F1OX9kaB0rKsCZm7i
-const OZON_SCREENSHOT_IMG = "/figma-assets/ozon-screenshot.jpg";
-const OZON_LOGO_IMG = "/figma-assets/ozon-logo.png";
+const OZON_SCREENSHOT_IMG = "/figma-assets/ozon-screenshot.webp";
+const OZON_LOGO_IMG = "/figma-assets/ozon-logo.webp";
 
 function CaseRevenueSection() {
   const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
@@ -1025,11 +1022,9 @@ function CaseScreenshotSection() {
         <Image
           alt=""
           src={OZON_SCREENSHOT_IMG}
+          fill
+          sizes="85vw"
           style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
             objectFit: "cover",
             pointerEvents: "none",
           }}
@@ -1101,9 +1096,9 @@ const SERVICES_INFINITY_IMG = "";
 // Figma node: 2040:188 "Услуги — управление кабинетами" — file MOHJ9F1OX9kaB0rKsCZm7i
 const MGMT_ELLIPSE_IMG = "/figma-assets/mgmt-ellipse.svg";
 const MGMT_GROUP_IMG = "/figma-assets/mgmt-group.svg";
-const MGMT_AVATAR1_IMG = "/figma-assets/mgmt-avatar1.png"; // Ozon
-const MGMT_AVATAR2_IMG = "/figma-assets/mgmt-avatar2.png"; // WB
-const MGMT_AVATAR3_IMG = "/figma-assets/mgmt-avatar3.png"; // Маркет
+const MGMT_AVATAR1_IMG = "/figma-assets/mgmt-avatar1.webp"; // Ozon
+const MGMT_AVATAR2_IMG = "/figma-assets/mgmt-avatar2.webp"; // WB
+const MGMT_AVATAR3_IMG = "/figma-assets/mgmt-avatar3.webp"; // Маркет
 
 // Figma node: 2040:389 "Услуги — Подбор и развитие команды" — file MOHJ9F1OX9kaB0rKsCZm7i
 const TEAM_GRADIENT_IMG = "/figma-assets/team-gradient.png";
@@ -1120,8 +1115,8 @@ const HRTEAM_DOTLINE2_IMG = "/figma-assets/hrteam-dotline2.svg";
 // Figma node: 2040:255 "Услуги — Внешние каналы продаж" — file MOHJ9F1OX9kaB0rKsCZm7i
 const EXT_ELLIPSE_IMG = "/figma-assets/ext-ellipse.svg";
 const EXT_GROUP_IMG = "/figma-assets/ext-group.svg";
-const EXT_STRIP1_IMG = "/figma-assets/ext-strip1.png";
-const EXT_STRIP2_IMG = "/figma-assets/ext-strip2.png";
+const EXT_STRIP1_IMG = "/figma-assets/ext-strip1.webp";
+const EXT_STRIP2_IMG = "/figma-assets/ext-strip2.webp";
 
 // Figma node: 2040:648 "Услуги — Внедрение AI-агентов" — file MOHJ9F1OX9kaB0rKsCZm7i
 const AI_LOGO_IMG = "";
@@ -4648,9 +4643,15 @@ function WorkWithUsSection() {
           box-shadow: 0 0 0 2px rgba(10,186,181,0.5), 0 0 40px rgba(10,186,181,0.6), 0 0 80px rgba(10,186,181,0.25);
           transform: translateY(-2px);
         }
+        @media (max-width: 768px) {
+          .work-with-us-transition-fade {
+            height: 240px !important;
+            background: linear-gradient(to bottom, rgba(7,21,24,0) 0%, rgba(10,186,181,0.08) 22%, rgba(7,21,24,0.22) 46%, rgba(7,21,24,0.5) 68%, rgba(7,21,24,0.86) 90%, rgb(7,21,24) 100%) !important;
+          }
+        }
       `}</style>
       {/* Переход WorkWithUs → Faq rgb(7,21,24) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="work-with-us-transition-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,24vw,300px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 52%,rgba(7,21,24,0.1) 66%,rgba(7,21,24,0.28) 80%,rgba(7,21,24,0.6) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }

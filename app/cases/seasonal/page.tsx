@@ -17,7 +17,7 @@ const deferredSectionStyle = {
   containIntrinsicSize: "1000px",
 };
 
-const SEASONAL_SCREENSHOT_IMG = "/screenshots/seasonal-ozon.jpg";
+const SEASONAL_SCREENSHOT_IMG = "/screenshots/seasonal-ozon.webp";
 
 const metrics = [
   { value: "+180%", label: "рост продаж" },
@@ -30,6 +30,7 @@ export default function CaseSeasonalPage() {
   return (
     <>
     <div
+      className="seasonal-case-hero"
       style={{
         minHeight: "100vh",
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
@@ -74,8 +75,9 @@ export default function CaseSeasonalPage() {
         <span style={{ color: "rgba(7,21,24,0.8)", fontSize: 14 }}>Сезонный товар — WB</span>
       </header>
 
-      <main style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
+      <main className="seasonal-case-hero-main" style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
         <p
+          className="seasonal-case-hero-kicker"
           style={{
             fontSize: "clamp(10px, 0.9vw, 13px)",
             letterSpacing: "0.15em",
@@ -88,6 +90,7 @@ export default function CaseSeasonalPage() {
         </p>
 
         <h1
+          className="seasonal-case-hero-title"
           style={{
             fontWeight: 400,
             fontSize: "clamp(40px, 6vw, 96px)",
@@ -104,6 +107,7 @@ export default function CaseSeasonalPage() {
         </h1>
 
         <p
+          className="seasonal-case-hero-desc"
           style={{
             fontSize: "clamp(16px, 1.5vw, 20px)",
             color: "rgba(255,255,255,0.75)",
@@ -116,6 +120,7 @@ export default function CaseSeasonalPage() {
         </p>
 
         <div
+          className="seasonal-case-hero-metrics"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -135,18 +140,22 @@ export default function CaseSeasonalPage() {
         </div>
 
       </main>
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,rgba(255,255,255,0.12) 68%,rgba(255,255,255,0.38) 80%,rgba(255,255,255,0.72) 92%,rgb(255,255,255) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="seasonal-case-hero-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,rgba(255,255,255,0.12) 68%,rgba(255,255,255,0.38) 80%,rgba(255,255,255,0.72) 92%,rgb(255,255,255) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* CaseSeasonalScreenshotSection */}
-    <section style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, calc(37.25vw + 340px))", backgroundColor: "#ffffff" }}>
+    <section
+      className="seasonal-screenshot-section"
+      style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(76svh, calc(37.25vw + 260px))", backgroundColor: "#ffffff" }}
+    >
       <div className="seasonal-infinity" style={{ position: "absolute", left: "2.81vw", top: "5.09vh", width: "clamp(50px, 6.09vw, 117px)", height: "clamp(26px, 5.56vh, 60px)", pointerEvents: "none", overflow: "hidden" }}>
         <InfinityMark src="/figma-assets/infinity-light.png" mixBlendMode="normal" />
       </div>
       <div
+        className="seasonal-screenshot-badge"
         style={{
           position: "absolute",
-          top: "clamp(30px, 5.56vh, 60px)",
+          top: "clamp(24px, 4.44vh, 48px)",
           right: "3.49vw",
           display: "flex",
           alignItems: "center",
@@ -162,10 +171,11 @@ export default function CaseSeasonalPage() {
         </p>
       </div>
       <div
+        className="seasonal-screenshot-frame"
         style={{
           position: "absolute",
           left: "7.24vw",
-          top: "clamp(100px, 16.48vh, 178px)",
+          top: "clamp(88px, 14.44vh, 156px)",
           width: "85.52vw",
           aspectRatio: "1642 / 715",
           border: "clamp(3px, 0.78vw, 15px) solid rgba(13, 31, 31, 0.3)",
@@ -178,14 +188,18 @@ export default function CaseSeasonalPage() {
         <img alt="" src={SEASONAL_SCREENSHOT_IMG} loading="lazy" decoding="async" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
       </div>
       <div
+        className="seasonal-screenshot-caption"
         style={{
           position: "absolute",
-          left: "calc(25% + 9.01vw)",
-          top: "calc(clamp(100px, 16.48vh, 178px) + 37.25vw + 20px)",
+          left: "50%",
+          top: "calc(clamp(88px, 14.44vh, 156px) + 37.25vw + 18px)",
+          transform: "translateX(-50%)",
           display: "flex",
           alignItems: "center",
+          justifyContent: "center",
           gap: "clamp(10px, 1.2vw, 23px)",
-          whiteSpace: "nowrap",
+          width: "fit-content",
+          maxWidth: "calc(100% - 40px)",
         }}
       >
         <div style={{ width: "clamp(28px, 3.33vw, 64px)", height: "clamp(28px, 3.33vw, 64px)", borderRadius: "50%", background: "#CB11AB", overflow: "hidden", flexShrink: 0, position: "relative" }}>
@@ -194,7 +208,7 @@ export default function CaseSeasonalPage() {
             <text x="32" y="41" textAnchor="middle" fill="white" fontFamily="Arial" fontWeight="700" fontSize="20">WB</text>
           </svg>
         </div>
-        <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(14px, 1.823vw, 35px)", lineHeight: 1.2, letterSpacing: "-0.035em", color: "#0d1f1f", opacity: 0.5, margin: 0, whiteSpace: "nowrap" }}>
+        <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(14px, 1.823vw, 35px)", lineHeight: 1.2, letterSpacing: "-0.035em", color: "#0d1f1f", opacity: 0.5, margin: 0, textAlign: "center" }}>
           Скриншот личного кабинета Wildberries
         </p>
       </div>
@@ -349,6 +363,52 @@ export default function CaseSeasonalPage() {
         transform: translateY(-2px);
       }
       @media (max-width: 768px) {
+        .seasonal-case-hero {
+          min-height: auto !important;
+        }
+        .seasonal-case-hero-main {
+          padding: 32px 20px 56px !important;
+        }
+        .seasonal-case-hero-kicker {
+          margin-bottom: 12px !important;
+        }
+        .seasonal-case-hero-title {
+          margin-bottom: 20px !important;
+        }
+        .seasonal-case-hero-desc {
+          margin-bottom: 28px !important;
+        }
+        .seasonal-case-hero-metrics {
+          gap: 10px !important;
+          margin-bottom: 0 !important;
+        }
+        .seasonal-case-hero-fade {
+          height: 170px !important;
+        }
+        .seasonal-screenshot-section {
+          min-height: 480px !important;
+        }
+        .seasonal-screenshot-badge {
+          top: 18px !important;
+          right: 16px !important;
+        }
+        .seasonal-screenshot-frame {
+          left: 16px !important;
+          top: 76px !important;
+          width: calc(100% - 32px) !important;
+          border-width: 3px !important;
+          border-radius: 14px !important;
+        }
+        .seasonal-screenshot-caption {
+          left: 50% !important;
+          top: calc(43.54vw + 74px) !important;
+          transform: translateX(-50%) !important;
+          gap: 8px !important;
+          max-width: calc(100% - 32px) !important;
+        }
+        .seasonal-screenshot-caption p {
+          font-size: 13px !important;
+        }
         .seasonal-split-section {
           background: #0d1f1f !important;
         }
@@ -357,6 +417,25 @@ export default function CaseSeasonalPage() {
         }
         .seasonal-left-content > div p {
           color: rgba(255,255,255,0.65) !important;
+        }
+      }
+      @media (max-width: 480px) {
+        .seasonal-screenshot-section {
+          min-height: 360px !important;
+        }
+        .seasonal-screenshot-frame {
+          top: 68px !important;
+        }
+        .seasonal-screenshot-caption {
+          top: calc(43.54vw + 64px) !important;
+          gap: 6px !important;
+        }
+        .seasonal-screenshot-caption > div:first-child {
+          width: 24px !important;
+          height: 24px !important;
+        }
+        .seasonal-screenshot-caption p {
+          font-size: 12px !important;
         }
       }
     `}</style>

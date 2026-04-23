@@ -18,8 +18,8 @@ const deferredSectionStyle = {
   containIntrinsicSize: "1000px",
 };
 
-const CHAIRS_WB_SCREENSHOT_IMG = "/screenshots/chairs-wb.jpg";
-const CHAIRS_SCREENSHOT_IMG = "/screenshots/chairs-ozon.jpg";
+const CHAIRS_WB_SCREENSHOT_IMG = "/screenshots/chairs-wb.webp";
+const CHAIRS_SCREENSHOT_IMG = "/screenshots/chairs-ozon.webp";
 
 const metrics = [
   { value: "Топ-10", label: "позиция в категории" },
@@ -32,6 +32,7 @@ export default function CaseChairsPage() {
   return (
     <>
     <div
+      className="chairs-hero"
       style={{
         minHeight: "100vh",
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
@@ -42,6 +43,7 @@ export default function CaseChairsPage() {
     >
       {/* Header */}
       <header
+        className="chairs-hero-header"
         style={{
           position: "sticky",
           top: 0,
@@ -77,8 +79,9 @@ export default function CaseChairsPage() {
         <span style={{ color: "rgba(7,21,24,0.8)", fontSize: 14 }}>Кресла — Ozon</span>
       </header>
 
-      <main style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
+      <main className="chairs-hero-main" style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
         <p
+          className="chairs-hero-label"
           style={{
             fontSize: "clamp(10px, 0.9vw, 13px)",
             letterSpacing: "0.15em",
@@ -91,6 +94,7 @@ export default function CaseChairsPage() {
         </p>
 
         <h1
+          className="chairs-hero-title"
           style={{
             fontWeight: 400,
             fontSize: "clamp(40px, 6vw, 96px)",
@@ -107,6 +111,7 @@ export default function CaseChairsPage() {
         </h1>
 
         <p
+          className="chairs-hero-desc"
           style={{
             fontSize: "clamp(16px, 1.5vw, 20px)",
             color: "rgba(255,255,255,0.75)",
@@ -119,6 +124,7 @@ export default function CaseChairsPage() {
         </p>
 
         <div
+          className="chairs-hero-metrics"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -128,21 +134,21 @@ export default function CaseChairsPage() {
           }}
         >
           {metrics.map((m, i) => (
-            <GlowCard key={i} glowColor="blue" style={{ padding: "clamp(20px, 3vh, 32px) 16px", background: "rgba(245,158,11,0.05)", borderRadius: 16, textAlign: "center" as const }}>
-              <div className="card-num" style={{ fontSize: "clamp(24px, 3.5vw, 48px)", fontWeight: 700, color: "#f59e0b", letterSpacing: "-0.03em", lineHeight: 1, marginBottom: 8 }}>
+            <GlowCard key={i} className="chairs-metric-card" glowColor="blue" style={{ padding: "clamp(20px, 3vh, 32px) 16px", background: "rgba(245,158,11,0.05)", borderRadius: 16, textAlign: "center" as const }}>
+              <div className="chairs-metric-num" style={{ fontSize: "clamp(24px, 3.5vw, 48px)", fontWeight: 700, color: "#f59e0b", letterSpacing: "-0.03em", lineHeight: 1, marginBottom: 8 }}>
                 {m.value}
               </div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", letterSpacing: "0.05em" }}>{m.label}</div>
+              <div className="chairs-metric-label" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", letterSpacing: "0.05em" }}>{m.label}</div>
             </GlowCard>
           ))}
         </div>
 
       </main>
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,rgba(255,255,255,0.12) 68%,rgba(255,255,255,0.38) 80%,rgba(255,255,255,0.72) 92%,rgb(255,255,255) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="chairs-hero-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,rgba(255,255,255,0.12) 68%,rgba(255,255,255,0.38) 80%,rgba(255,255,255,0.72) 92%,rgb(255,255,255) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* CaseChairsWbSection */}
-    <section style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, calc(32.3vw + 260px))", backgroundColor: "#ffffff" }}>
+    <section className="chairs-wb-section" style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, calc(32.3vw + 260px))", backgroundColor: "#ffffff" }}>
       <div className="chairs-infinity" style={{ position: "absolute", left: "2.81vw", top: "5.09vh", width: "clamp(50px, 6.09vw, 117px)", height: "clamp(26px, 5.56vh, 60px)", pointerEvents: "none", overflow: "hidden" }}>
         <InfinityMark src="/figma-assets/infinity-light.png" mixBlendMode="normal" />
       </div>
@@ -165,6 +171,7 @@ export default function CaseChairsPage() {
         </p>
       </div>
       <div
+        className="chairs-wb-container"
         style={{
           position: "absolute",
           left: "50%",
@@ -182,6 +189,7 @@ export default function CaseChairsPage() {
         <img alt="" src={CHAIRS_WB_SCREENSHOT_IMG} loading="lazy" decoding="async" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
       </div>
       <div
+        className="chairs-wb-caption"
         style={{
           position: "absolute",
           left: "50%",
@@ -206,7 +214,7 @@ export default function CaseChairsPage() {
     </section>
 
     {/* CaseChairsScreenshotSection */}
-    <section style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, calc(37.41vw + 340px))", backgroundColor: "#ffffff" }}>
+    <section className="chairs-ozon-section" style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, calc(37.41vw + 340px))", backgroundColor: "#ffffff" }}>
       <div className="chairs-infinity" style={{ position: "absolute", left: "2.81vw", top: "5.09vh", width: "clamp(50px, 6.09vw, 117px)", height: "clamp(26px, 5.56vh, 60px)", pointerEvents: "none", overflow: "hidden" }}>
         <InfinityMark src="/figma-assets/infinity-light.png" mixBlendMode="normal" />
       </div>
@@ -230,6 +238,7 @@ export default function CaseChairsPage() {
         </p>
       </div>
       <div
+        className="chairs-ozon-container"
         style={{
           position: "absolute",
           left: "7.24vw",
@@ -246,6 +255,7 @@ export default function CaseChairsPage() {
         <img alt="" src={CHAIRS_SCREENSHOT_IMG} loading="lazy" decoding="async" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
       </div>
       <div
+        className="chairs-ozon-caption"
         style={{
           position: "absolute",
           left: "50%",
@@ -447,6 +457,93 @@ export default function CaseChairsPage() {
         transform: translateY(-2px);
       }
       @media (max-width: 768px) {
+        .chairs-hero {
+          min-height: auto !important;
+        }
+        .chairs-hero-header {
+          padding: 14px 16px !important;
+          gap: 10px !important;
+        }
+        .chairs-hero-header a,
+        .chairs-hero-header span {
+          font-size: 12px !important;
+        }
+        .chairs-hero-main {
+          padding: 28px 16px 72px !important;
+        }
+        .chairs-hero-label {
+          margin-bottom: 12px !important;
+        }
+        .chairs-hero-title {
+          font-size: clamp(34px, 11vw, 48px) !important;
+          margin: 0 0 18px !important;
+        }
+        .chairs-hero-desc {
+          font-size: 15px !important;
+          line-height: 1.55 !important;
+          max-width: none !important;
+          margin-bottom: 24px !important;
+        }
+        .chairs-hero-metrics {
+          gap: 8px !important;
+          margin-bottom: 16px !important;
+          max-width: none !important;
+        }
+        .chairs-metric-card {
+          padding: 16px 8px !important;
+          min-width: 0 !important;
+        }
+        .chairs-metric-num {
+          font-size: clamp(20px, 5.8vw, 28px) !important;
+          margin-bottom: 6px !important;
+        }
+        .chairs-metric-label {
+          font-size: 10px !important;
+          line-height: 1.2 !important;
+          letter-spacing: 0.02em !important;
+        }
+        .chairs-hero-fade {
+          height: 110px !important;
+        }
+        .chairs-wb-section {
+          min-height: max(44svh, 330px) !important;
+        }
+        .chairs-wb-container {
+          top: 82px !important;
+          width: 88vw !important;
+          transform: translateX(-50%) !important;
+        }
+        .chairs-wb-caption {
+          top: calc(82px + 32.4vw + 16px) !important;
+          gap: 10px !important;
+        }
+        .chairs-ozon-section {
+          min-height: max(48svh, 360px) !important;
+        }
+        .chairs-ozon-badge {
+          top: 16px !important;
+          left: auto !important;
+          right: 16px !important;
+          padding: 8px 12px !important;
+        }
+        .chairs-ozon-container {
+          left: 50% !important;
+          top: 76px !important;
+          width: 88vw !important;
+          transform: translateX(-50%) !important;
+        }
+        .chairs-ozon-caption {
+          top: calc(76px + 38.5vw + 14px) !important;
+          gap: 10px !important;
+        }
+        .chairs-wb-caption,
+        .chairs-ozon-caption {
+          white-space: nowrap !important;
+        }
+        .chairs-wb-caption p,
+        .chairs-ozon-caption p {
+          font-size: 12px !important;
+        }
         .chairs-margin-graph { display: none !important; }
         .chairs-margin-stat { display: none !important; }
         .chairs-right-stat { display: none !important; }
@@ -454,6 +551,51 @@ export default function CaseChairsPage() {
         .chairs-margin-line { display: none !important; }
         .chairs-margin-problems { display: none !important; }
         .chairs-mobile-stats { display: flex !important; }
+      }
+      @media (max-width: 480px) {
+        .chairs-hero-main {
+          padding: 24px 14px 64px !important;
+        }
+        .chairs-hero-title {
+          font-size: 32px !important;
+        }
+        .chairs-hero-desc {
+          font-size: 14px !important;
+          margin-bottom: 20px !important;
+        }
+        .chairs-metric-card {
+          padding: 14px 6px !important;
+        }
+        .chairs-metric-num {
+          font-size: 18px !important;
+        }
+        .chairs-metric-label {
+          font-size: 9px !important;
+        }
+        .chairs-wb-section {
+          min-height: 300px !important;
+        }
+        .chairs-ozon-section {
+          min-height: 330px !important;
+        }
+        .chairs-wb-container {
+          top: 74px !important;
+          width: 90vw !important;
+        }
+        .chairs-wb-caption {
+          top: calc(74px + 33vw + 12px) !important;
+        }
+        .chairs-ozon-container {
+          top: 68px !important;
+          width: 90vw !important;
+        }
+        .chairs-ozon-caption {
+          top: calc(68px + 39vw + 12px) !important;
+        }
+        .chairs-wb-caption p,
+        .chairs-ozon-caption p {
+          font-size: 11px !important;
+        }
       }
     `}</style>
     </>

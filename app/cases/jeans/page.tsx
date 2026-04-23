@@ -17,7 +17,7 @@ const deferredSectionStyle = {
   containIntrinsicSize: "1000px",
 };
 
-const OZON_SCREENSHOT_IMG = "/screenshots/jeans-ozon.jpg";
+const OZON_SCREENSHOT_IMG = "/screenshots/jeans-ozon.webp";
 
 const metrics = [
   { value: "+200%", label: "рост выручки" },
@@ -30,6 +30,7 @@ export default function CaseJeansPage() {
   return (
     <>
     <div
+      className="jeans-hero"
       style={{
         minHeight: "100vh",
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
@@ -40,6 +41,7 @@ export default function CaseJeansPage() {
     >
       {/* Header */}
       <header
+        className="jeans-hero-header"
         style={{
           position: "sticky",
           top: 0,
@@ -77,9 +79,10 @@ export default function CaseJeansPage() {
       </header>
 
       {/* Main content */}
-      <main style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
+      <main className="jeans-hero-main" style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
         {/* Label */}
         <p
+          className="jeans-hero-label"
           style={{
             fontSize: "clamp(10px, 0.9vw, 13px)",
             letterSpacing: "0.15em",
@@ -93,6 +96,7 @@ export default function CaseJeansPage() {
 
         {/* Title */}
         <h1
+          className="jeans-hero-title"
           style={{
             fontWeight: 400,
             fontSize: "clamp(40px, 6vw, 96px)",
@@ -110,6 +114,7 @@ export default function CaseJeansPage() {
 
         {/* Description */}
         <p
+          className="jeans-hero-desc"
           style={{
             fontSize: "clamp(16px, 1.5vw, 20px)",
             color: "rgba(255,255,255,0.75)",
@@ -123,6 +128,7 @@ export default function CaseJeansPage() {
 
         {/* Metrics */}
         <div
+          className="jeans-hero-metrics"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -132,17 +138,17 @@ export default function CaseJeansPage() {
           }}
         >
           {metrics.map((m, i) => (
-            <GlowCard key={i} glowColor="teal" style={{ padding: "clamp(20px, 3vh, 32px) 16px", background: "rgba(10,186,181,0.05)", borderRadius: 16, textAlign: "center" as const }}>
-              <div className="card-num" style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 700, color: "#0ABAB5", letterSpacing: "-0.03em", lineHeight: 1, marginBottom: 8 }}>
+            <GlowCard key={i} className="jeans-metric-card" glowColor="teal" style={{ padding: "clamp(20px, 3vh, 32px) 16px", background: "rgba(10,186,181,0.05)", borderRadius: 16, textAlign: "center" as const }}>
+              <div className="jeans-metric-num" style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 700, color: "#0ABAB5", letterSpacing: "-0.03em", lineHeight: 1, marginBottom: 8 }}>
                 {m.value}
               </div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", letterSpacing: "0.05em" }}>{m.label}</div>
+              <div className="jeans-metric-label" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", letterSpacing: "0.05em" }}>{m.label}</div>
             </GlowCard>
           ))}
         </div>
 
       </main>
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(240px,28vw,360px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="jeans-hero-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(240px,28vw,360px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* Revenue Section */}
@@ -423,6 +429,80 @@ export default function CaseJeansPage() {
       .case-cta-btn:hover {
         box-shadow: 0 0 0 2px rgba(10,186,181,0.4), 0 0 30px rgba(10,186,181,0.5), 0 10px 40px rgba(10,186,181,0.3);
         transform: translateY(-2px);
+      }
+      @media (max-width: 768px) {
+        .jeans-hero {
+          min-height: auto !important;
+        }
+        .jeans-hero-header {
+          padding: 14px 16px !important;
+          gap: 10px !important;
+        }
+        .jeans-hero-header a,
+        .jeans-hero-header span {
+          font-size: 12px !important;
+        }
+        .jeans-hero-main {
+          padding: 28px 16px 72px !important;
+        }
+        .jeans-hero-label {
+          margin-bottom: 12px !important;
+        }
+        .jeans-hero-title {
+          font-size: clamp(34px, 11vw, 50px) !important;
+          margin: 0 0 18px !important;
+        }
+        .jeans-hero-desc {
+          font-size: 15px !important;
+          line-height: 1.55 !important;
+          max-width: none !important;
+          margin-bottom: 26px !important;
+        }
+        .jeans-hero-metrics {
+          gap: 8px !important;
+          margin-bottom: 16px !important;
+          max-width: none !important;
+        }
+        .jeans-metric-card {
+          padding: 16px 8px !important;
+          min-width: 0 !important;
+        }
+        .jeans-metric-num {
+          font-size: clamp(22px, 6vw, 30px) !important;
+          margin-bottom: 6px !important;
+        }
+        .jeans-metric-label {
+          font-size: 10px !important;
+          line-height: 1.2 !important;
+          letter-spacing: 0.02em !important;
+        }
+        .jeans-hero-fade {
+          height: 120px !important;
+        }
+      }
+      @media (max-width: 480px) {
+        .jeans-hero-main {
+          padding: 24px 14px 64px !important;
+        }
+        .jeans-hero-title {
+          font-size: 32px !important;
+        }
+        .jeans-hero-desc {
+          font-size: 14px !important;
+          margin-bottom: 22px !important;
+        }
+        .jeans-metric-card {
+          padding: 14px 6px !important;
+        }
+        .jeans-metric-num {
+          font-size: 20px !important;
+        }
+        .jeans-metric-label {
+          font-size: 9px !important;
+        }
+        .jeans-hero-fade {
+          height: 100px !important;
+        }
       }
     `}</style>
     </>

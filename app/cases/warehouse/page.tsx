@@ -69,14 +69,16 @@ export default function CaseWarehousePage() {
 
       {/* Intro block */}
       <div
+        className="warehouse-case-hero"
         style={{
           background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
           fontFamily: FONT,
           color: "#fff",
         }}
       >
-        <main style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
+        <main className="warehouse-case-hero-main" style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
           <p
+            className="warehouse-case-hero-kicker"
             style={{
               fontSize: "clamp(10px, 0.9vw, 13px)",
               letterSpacing: "0.15em",
@@ -88,6 +90,7 @@ export default function CaseWarehousePage() {
             Фулфилмент · Строительство с нуля
           </p>
           <h1
+            className="warehouse-case-hero-title"
             style={{
               fontWeight: 400,
               fontSize: "clamp(40px, 6vw, 96px)",
@@ -103,6 +106,7 @@ export default function CaseWarehousePage() {
             Склад ФФ
           </h1>
           <p
+            className="warehouse-case-hero-desc"
             style={{
               fontSize: "clamp(16px, 1.5vw, 20px)",
               color: "rgba(255,255,255,0.75)",
@@ -114,6 +118,7 @@ export default function CaseWarehousePage() {
             Строительство и запуск фулфилмент-склада площадью 1 000 кв.м. для крупного бренда: 200 000+ единиц товара, профессиональное АВС-зонирование, WMS-система и обученная команда.
           </p>
           <div
+            className="warehouse-case-hero-metrics"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
@@ -148,7 +153,7 @@ export default function CaseWarehousePage() {
       >
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(54% 72% at 14% 86%, rgba(57, 198, 193, 0.34) 0%, rgba(57, 198, 193, 0.16) 38%, rgba(57, 198, 193, 0) 74%), radial-gradient(38% 52% at 84% 18%, rgba(9, 50, 51, 0.52) 0%, rgba(9, 50, 51, 0) 72%)", pointerEvents: "none" }} />
         <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgb(7,21,24) 0%,rgba(7,21,24,0.72) 8%,rgba(7,21,24,0.38) 20%,rgba(7,21,24,0.12) 32%,rgba(7,21,24,0) 45%,rgba(7,21,24,0) 100%)", pointerEvents: "none", zIndex: 5 }} />
-        <div style={{ position: "absolute", top: "clamp(30px, 5.56vh, 60px)", right: "3.125vw", display: "flex", alignItems: "center", padding: "clamp(8px, 1.11vh, 12px) clamp(10px, 0.83vw, 16px)", borderRadius: "300px", background: "rgba(255, 255, 255, 0.08)", border: "1px solid rgba(255, 255, 255, 0.12)", backdropFilter: "blur(15px)", WebkitBackdropFilter: "blur(15px)", zIndex: 2 }}>
+        <div style={{ position: "absolute", top: "clamp(18px, 4.17vh, 45px)", right: "3.125vw", display: "flex", alignItems: "center", padding: "clamp(8px, 1.11vh, 12px) clamp(10px, 0.83vw, 16px)", borderRadius: "300px", background: "rgba(255, 255, 255, 0.08)", border: "1px solid rgba(255, 255, 255, 0.12)", backdropFilter: "blur(15px)", WebkitBackdropFilter: "blur(15px)", zIndex: 2 }}>
           <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(10px, 1.302vw, 25px)", lineHeight: 1, letterSpacing: "-0.035em", color: "#ffffff", textTransform: "uppercase", whiteSpace: "nowrap", margin: 0 }}>
             {"кейсы  •  склад фф"}
           </p>
@@ -169,16 +174,16 @@ export default function CaseWarehousePage() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "100%" }}>
-            <div style={{ maxWidth: "min(58vw, 980px)" }}>
+            <div style={{ width: "100%", maxWidth: "100%" }}>
               <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(16px, 1.77vw, 34px)", lineHeight: 1, letterSpacing: "-0.035em", color: "rgba(255,255,255,0.58)", margin: "0 0 clamp(22px, 3.7vh, 40px) 0" }}>
                 Запуск складской инфраструктуры под fullfilment-модель
               </p>
               <h2 style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(44px, 5.2vw, 100px)", lineHeight: 0.92, letterSpacing: "-0.045em", color: "#ffffff", margin: 0, whiteSpace: "pre-line" }}>
                 {"Построили склад "}
                 <span style={{ color: "#6ef7ef" }}>ФФ</span>
-                {"\nдля крупного бренда"}
+                {" для крупного\nбренда"}
               </h2>
-              <p style={{ maxWidth: "min(51vw, 860px)", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(16px, 1.875vw, 36px)", lineHeight: 1.18, letterSpacing: "-0.035em", color: "#ffffff", opacity: 0.56, margin: "clamp(24px, 4.44vh, 48px) 0 0 0", whiteSpace: "pre-line" }}>
+              <p style={{ width: "100%", maxWidth: "100%", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(16px, 1.875vw, 36px)", lineHeight: 1.18, letterSpacing: "-0.035em", color: "#ffffff", opacity: 0.56, margin: "clamp(24px, 4.44vh, 48px) 0 0 0", whiteSpace: "pre-line" }}>
                 {"Сформировали полный цикл приёмки, хранения, упаковки и\nотгрузки товара на складе. Запустили операционную модель с нуля\nи вывели объект на самоокупаемость."}
               </p>
             </div>
@@ -228,7 +233,7 @@ export default function CaseWarehousePage() {
         }}
       >
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(48% 70% at 84% 76%, rgba(10, 186, 181, 0.14) 0%, rgba(10, 186, 181, 0) 72%)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", left: "2.81vw", top: "5.09vh", width: "clamp(50px, 6.09vw, 117px)", height: "clamp(26px, 5.56vh, 60px)", pointerEvents: "none" }}>
+        <div className="warehouse-plan-infinity" style={{ position: "absolute", left: "2.81vw", top: "5.09vh", width: "clamp(50px, 6.09vw, 117px)", height: "clamp(26px, 5.56vh, 60px)", pointerEvents: "none" }}>
           <InfinityMark />
         </div>
         <div style={{ position: "absolute", top: "clamp(30px, 5.56vh, 60px)", right: "3.125vw", display: "flex", alignItems: "center", padding: "clamp(8px, 1.11vh, 12px) clamp(10px, 0.83vw, 16px)", borderRadius: "300px", background: "rgba(255, 255, 255, 0.08)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(15px)", WebkitBackdropFilter: "blur(15px)", zIndex: 2 }}>
@@ -335,6 +340,42 @@ export default function CaseWarehousePage() {
       .case-cta-btn:hover {
         box-shadow: 0 0 0 2px rgba(10,186,181,0.4), 0 0 30px rgba(10,186,181,0.5), 0 10px 40px rgba(10,186,181,0.3);
         transform: translateY(-2px);
+      }
+
+      @media (max-width: 900px) {
+        .warehouse-case-hero-main {
+          padding: 32px 20px 40px !important;
+        }
+
+        .warehouse-case-hero-kicker {
+          margin-bottom: 12px !important;
+        }
+
+        .warehouse-case-hero-title {
+          margin-bottom: 20px !important;
+        }
+
+        .warehouse-case-hero-desc {
+          margin-bottom: 28px !important;
+        }
+
+        .warehouse-case-hero-metrics {
+          gap: 10px !important;
+        }
+
+        .warehouse-plan-infinity {
+          left: 16px !important;
+          top: 18px !important;
+          width: 46px !important;
+          height: 22px !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .warehouse-plan-infinity {
+          width: 40px !important;
+          height: 19px !important;
+        }
       }
     `}</style>
     </>

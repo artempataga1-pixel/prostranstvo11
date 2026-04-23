@@ -155,6 +155,29 @@ export default function FaqSectionClient({ items }: FaqSectionClientProps) {
           );
         })}
       </div>
+      <div
+        className="faq-transition-fade"
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "clamp(300px,34vw,420px)",
+          background:
+            "linear-gradient(to bottom,rgba(13,37,38,0) 0%,rgba(13,37,38,0) 45%,rgba(13,37,38,0.14) 60%,rgba(13,37,38,0.38) 74%,rgba(13,37,38,0.76) 90%,rgb(13,37,38) 100%)",
+          pointerEvents: "none",
+          zIndex: 5,
+        }}
+      />
+      <style>{`
+        @media (max-width: 768px) {
+          .faq-transition-fade {
+            height: 240px !important;
+            background: linear-gradient(to bottom, rgba(13,37,38,0) 0%, rgba(10,186,181,0.08) 22%, rgba(13,37,38,0.22) 46%, rgba(13,37,38,0.5) 68%, rgba(13,37,38,0.86) 90%, rgb(13,37,38) 100%) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -57,6 +57,16 @@ const PODBOR_LINE1_IMG = "";
 const PODBOR_LINE2_IMG = "";
 const PODBOR_PRO_IMG = "";
 
+const PODBOR_PRESENTATION_TEXT =
+  "Анализ ниши, конкурентов, юнит-экономики, рисков, потенциала прибыли и плана запуска.";
+
+const PODBOR_WORK_STEPS = [
+  "Оцениваем спрос и конкуренцию",
+  "Считаем экономику и риски",
+  "Определяем потенциал прибыли",
+  "Даем стратегию запуска",
+];
+
 function AiVerticalLine({
   direction,
   height,
@@ -87,11 +97,12 @@ function ServicesSection() {
   const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
   return (
     <section
-      className="split-section"
+      className="split-section services-intro-section"
       style={{
         ...deferredSectionStyle,
-        minHeight: "max(100svh, 760px)",
-        background: "linear-gradient(123.5deg, rgb(15, 5, 14) 0.89%, rgb(117, 39, 109) 128.63%)",
+        minHeight: "clamp(72px, 12svh, 140px)",
+        height: "clamp(72px, 12svh, 140px)",
+        background: "rgb(15, 5, 14)",
       }}
     >
       {/* Vector blob 1 — Figma: left:-999, top:-532, w:2349, h:1943 */}
@@ -117,8 +128,8 @@ function ServicesSection() {
         style={{
           position: "absolute",
           inset: 0,
-          backdropFilter: "blur(50px)",
-          WebkitBackdropFilter: "blur(50px)",
+          background:
+            "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(10,186,181,0.03) 24%, rgba(255,255,255,0.016) 52%, rgba(255,0,230,0.02) 80%, rgba(255,255,255,0) 100%)",
           pointerEvents: "none",
           zIndex: 1,
         }}
@@ -129,12 +140,14 @@ function ServicesSection() {
         className="svc-title-text"
         style={{
           position: "absolute",
-          left: "calc(50% - 45.36vw)",
-          top: "clamp(260px, 44.81vh, 484px)",
+          left: 0,
+          right: 0,
+          top: "50%",
+          transform: "translateY(-50%)",
           fontFamily: font,
           fontWeight: 400,
-          fontSize: "clamp(120px, 30.21vw, 580px)",
-          lineHeight: 0.8,
+          fontSize: "clamp(24px, 6vw, 92px)",
+          lineHeight: 0.86,
           letterSpacing: "-0.04em",
           background: "linear-gradient(179.1deg, rgba(255,0,230,0.25) 13.03%, rgb(255,255,255) 135.21%)",
           WebkitBackgroundClip: "text",
@@ -143,6 +156,10 @@ function ServicesSection() {
           color: "transparent",
           margin: 0,
           whiteSpace: "nowrap",
+          width: "100%",
+          padding: "0 clamp(48px, 10vw, 140px)",
+          boxSizing: "border-box",
+          textAlign: "center",
           zIndex: 2,
         }}
       >
@@ -150,11 +167,10 @@ function ServicesSection() {
       </p>
 
       {/* Infinity logo — animated */}
-      <div className="svc-infinity" style={{ position: "absolute", left: "86.72vw", top: "clamp(20px, 4.26vh, 46px)", width: "clamp(80px, 11.3vw, 217px)", height: "clamp(40px, 10.28vh, 111px)", pointerEvents: "none", zIndex: 2 }}>
+      <div className="svc-infinity" style={{ position: "absolute", right: "clamp(18px, 3.125vw, 60px)", top: "50%", transform: "translateY(-50%)", width: "clamp(38px, 6vw, 116px)", height: "clamp(20px, 3vw, 58px)", pointerEvents: "none", zIndex: 2 }}>
                   <InfinityMark />
       </div>
-      {/* Переход → ServicesPodborSection rgb(15,5,14) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(15,5,14,0) 0%,rgba(15,5,14,0) 55%,rgba(15,5,14,0.12) 68%,rgba(15,5,14,0.38) 80%,rgba(15,5,14,0.72) 92%,rgb(15,5,14) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      {/* Переход -> ServicesManagementSection #D400AA */}
     </section>
   );
 }
@@ -287,6 +303,7 @@ function ServicesAuditSection() {
             color: "#ffffff",
             margin: 0,
             whiteSpace: "nowrap",
+            transform: "translateY(-8px)",
           }}
         >
           Проверяем
@@ -334,6 +351,21 @@ function ServicesAuditSection() {
           </div>
         </div>
       </div>
+      {/* Переход -> ServicesExternalSection #0ABAB5 */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "clamp(220px,26vw,320px)",
+          background:
+            "linear-gradient(to bottom,rgba(212,0,170,0) 0%,rgba(212,0,170,0) 55%,rgba(212,0,170,0.12) 68%,rgba(212,0,170,0.38) 80%,rgba(212,0,170,0.72) 92%,rgb(212,0,170) 100%)",
+          pointerEvents: "none",
+          zIndex: 5,
+        }}
+      />
     </section>
   );
 }
@@ -477,7 +509,7 @@ function ServicesExternalSection() {
         Выход за пределы маркетплейсов
       </p>
       {/* Переход → TeamSection rgb(13,31,31) */}
-      <div className="ext-transition-fade" aria-hidden="true" style={{ display: "none", position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="ext-transition-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -494,7 +526,7 @@ function ServicesAiSection() {
     width: "clamp(120px, 19.9vw, 382px)",
   };
   return (
-    <section className="split-section" style={{ ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#0d1f1f" }}>
+    <section className="split-section ai-section" style={{ ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#0d1f1f" }}>
 
       {/* Infinity logo — animated */}
       <div className="ai-infinity-wrapper" style={{ position: "absolute", left: "2.76vw", top: "5vh", width: "clamp(50px, 6.094vw, 117px)", height: "clamp(26px, 5.56vh, 60px)", pointerEvents: "none" }}>
@@ -547,10 +579,25 @@ function ServicesAiSection() {
       </div>
 
       {/* Heading — left:60 top:859 font:100px w:1453 */}
-      <p style={{ position: "absolute", left: "3.125vw", top: "clamp(580px, 79.54vh, 859px)", width: "clamp(280px, 75.68vw, 1453px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(28px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-wrap" }}>
+      <p className="ai-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(580px, 79.54vh, 859px)", width: "clamp(280px, 75.68vw, 1453px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(28px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-wrap" }}>
         <span style={{ color: "#0bbab5" }}>Автоматизация</span>
         {" \nчерез искусственный интеллект"}
       </p>
+      {/* Переход -> ServicesAccountingSection #ffffff */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "clamp(220px,26vw,320px)",
+          background:
+            "linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,rgba(255,255,255,0.12) 68%,rgba(255,255,255,0.38) 80%,rgba(255,255,255,0.72) 92%,rgb(255,255,255) 100%)",
+          pointerEvents: "none",
+          zIndex: 5,
+        }}
+      />
     </section>
   );
 }
@@ -620,6 +667,21 @@ function ServicesAccountingSection() {
           </div>
         </div>
       </div>
+      {/* Переход -> ServicesExternalSection #0ABAB5 */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "clamp(220px,26vw,320px)",
+          background:
+            "linear-gradient(to bottom,rgba(10,186,181,0) 0%,rgba(10,186,181,0) 55%,rgba(10,186,181,0.12) 68%,rgba(10,186,181,0.38) 80%,rgba(10,186,181,0.72) 92%,rgb(10,186,181) 100%)",
+          pointerEvents: "none",
+          zIndex: 5,
+        }}
+      />
     </section>
   );
 }
@@ -858,7 +920,7 @@ function ServicesManagementSection() {
         </div>
       </div>
       {/* Переход → AiSection rgb(13,31,31) */}
-      <div className="sales-transition-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="sales-transition-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(240px,28vw,340px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 50%,rgba(13,31,31,0.12) 64%,rgba(13,31,31,0.32) 78%,rgba(13,31,31,0.68) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -868,10 +930,10 @@ function ServicesPodborSection() {
   const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
   return (
     <section
-      className="split-section"
+      className="split-section podbor-section"
       style={{
         ...deferredSectionStyle,
-        minHeight: "max(100svh, 760px)",
+        minHeight: "max(calc(100svh - 32px), 728px)",
         backgroundColor: "#0f050e",
       }}
     >
@@ -882,7 +944,7 @@ function ServicesPodborSection() {
         style={{
           position: "absolute",
           left: "calc(50% + 7.14vw)",
-          top: "21.3vh",
+          top: "calc(21.3vh - 32px)",
           width: "29.74vw",
           height: "104.63vh",
           background: "#454545",
@@ -897,7 +959,7 @@ function ServicesPodborSection() {
         style={{
           position: "absolute",
           left: "calc(50% + 5.16vw)",
-          top: "24.72vh",
+          top: "calc(24.72vh - 32px)",
           width: "33.9vw",
           height: "104.63vh",
           background: "#454545",
@@ -915,7 +977,7 @@ function ServicesPodborSection() {
         style={{
           position: "absolute",
           left: "calc(50% + 3.26vw)",
-          top: "29.07vh",
+          top: "calc(29.07vh - 32px)",
           width: "clamp(200px, 37.75vw, 725px)",
           height: "clamp(300px, 94.97vh, 1026px)",
           border: "clamp(5px, 0.716vw, 14px) solid rgba(254,254,254,0.1)",
@@ -935,12 +997,183 @@ function ServicesPodborSection() {
           {/* Strip 3 — top, 60%, 32px higher still */}
           <div className="podbor-step-3" style={{ position: "absolute", bottom: 64, left: "50%", transform: "translateX(-50%)", width: "60%", height: 56, background: "rgba(255,255,255,0.08)", borderRadius: 12 }} />
         </div>
-        {/* Subtitle inside card — shown on mobile only */}
-        <p className="podbor-subtitle-inside" style={{ display: "none", position: "absolute", top: 20, left: 24, right: 24, fontFamily: font, fontWeight: 400, fontSize: "clamp(12px, 3vw, 16px)", lineHeight: 1.3, letterSpacing: "-0.03em", color: "#ffffff", margin: 0 }}>
-          Получаете презентацию с 3 товарами: анализ ниши, конкуренты, расчет юнит-экономики, оценка рисков, пошаговый план запуска
-        </p>
+        <div
+          className="podbor-mobile-card-content"
+          style={{
+            display: "none",
+            position: "absolute",
+            inset: 16,
+            zIndex: 3,
+            flexDirection: "column",
+            gap: 12,
+          }}
+        >
+          <div
+            className="podbor-mobile-card-top"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 8,
+              flexWrap: "wrap",
+            }}
+          >
+            <div
+              className="podbor-mobile-brand"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 0,
+                padding: "8px 10px",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.08)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                backdropFilter: "blur(14px)",
+                WebkitBackdropFilter: "blur(14px)",
+              }}
+            >
+              <div className="podbor-mobile-brand-infinity" style={{ position: "relative", width: 32, height: 18, flexShrink: 0, pointerEvents: "none" }}>
+                <InfinityMark />
+              </div>
+            </div>
+            <div
+              className="podbor-mobile-count"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "8px 12px",
+                borderRadius: 999,
+                background: "rgba(255,0,230,0.12)",
+                border: "1px solid rgba(255,0,230,0.2)",
+                color: "#ffffff",
+                fontFamily: font,
+                fontSize: 11,
+                lineHeight: 1,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              3 товара
+            </div>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <p style={{ margin: 0, fontFamily: font, fontSize: 11, lineHeight: 1, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
+              Готовая презентация
+            </p>
+            <p
+              className="podbor-mobile-title"
+              style={{
+                margin: 0,
+                fontFamily: font,
+                fontWeight: 400,
+                fontSize: "clamp(22px, 6vw, 30px)",
+                lineHeight: 0.95,
+                letterSpacing: "-0.04em",
+                color: "#ffffff",
+              }}
+            >
+              3 товара
+              <br />
+              для запуска
+            </p>
+            <p
+              className="podbor-mobile-subtitle"
+              style={{
+                margin: 0,
+                fontFamily: font,
+                fontSize: 13,
+                lineHeight: 1.35,
+                letterSpacing: "-0.02em",
+                color: "rgba(255,255,255,0.72)",
+              }}
+            >
+              Получаете презентацию с анализом ниши, конкурентов, юнит-экономики, рисков и пошаговым планом запуска.
+            </p>
+          </div>
+
+          <div
+            className="podbor-mobile-features-block"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+            }}
+          >
+            <p style={{ margin: 0, fontFamily: font, fontSize: 11, lineHeight: 1, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
+              Что входит
+            </p>
+            <p
+              className="podbor-mobile-features"
+              style={{
+                margin: 0,
+                fontFamily: font,
+                fontSize: 13,
+                lineHeight: 1.45,
+                letterSpacing: "-0.02em",
+                color: "rgba(255,255,255,0.78)",
+              }}
+            >
+              {PODBOR_PRESENTATION_TEXT}
+            </p>
+          </div>
+
+          <div
+            className="podbor-mobile-steps"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+              marginTop: "auto",
+            }}
+          >
+            <p style={{ margin: 0, fontFamily: font, fontSize: 11, lineHeight: 1, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
+              Что делаем
+            </p>
+            {PODBOR_WORK_STEPS.map((item, index) => (
+              <div
+                key={item}
+                className="podbor-mobile-step"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "36px 1fr",
+                  alignItems: "center",
+                  gap: 10,
+                  padding: "10px 12px",
+                  borderRadius: 14,
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                <span
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 36,
+                    height: 36,
+                    borderRadius: 10,
+                    background: "rgba(255,0,230,0.12)",
+                    color: "#ffffff",
+                    fontFamily: font,
+                    fontSize: 12,
+                    lineHeight: 1,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span style={{ fontFamily: font, fontSize: 13, lineHeight: 1.25, letterSpacing: "-0.02em", color: "#ffffff" }}>
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
         {/* Brand logo area — Figma (in card): left:43.85 top:426.36 w:195.593 h:46.397 */}
         <div
+          className="podbor-legacy-brand"
           style={{
             position: "absolute",
             left: "6.05%",
@@ -1016,10 +1249,8 @@ function ServicesPodborSection() {
           </div>
         </div>
 
-        {/* "АНАЛИЗ САЛФЕТОК ДЛЯ УБОРКИ"
-            Figma: left:680.96 → translateX(-100%) → net left ~6%, top:472.65, w:637.104
-            font: Roboto Condensed Bold 63.345px → 3.3vw */}
         <p
+          className="podbor-legacy-headline"
           style={{
             position: "absolute",
             left: "6.07%",
@@ -1036,6 +1267,7 @@ function ServicesPodborSection() {
         >
           АНАЛИЗ САЛФЕТОК ДЛЯ УБОРКИ
         </p>
+
       </div>
 
       {/* Heading — Figma: left:60 top:60 font:100px tracking:-3.5px w:993 */}
@@ -1076,7 +1308,7 @@ function ServicesPodborSection() {
           margin: 0,
         }}
       >
-        Получаете презентацию с 3 товарами: анализ ниши, конкуренты, расчет юнит-экономики, оценка рисков, пошаговый план запуска
+        Получаете презентацию с 3 товарами: анализ ниши, конкурентов, юнит-экономики, рисков и пошаговый план запуска
       </p>
 
       {/* "Что делаем:" list — Figma: left:60 top:795 font:35px opacity:0.5 tracking:-1.225px */}
@@ -1262,56 +1494,120 @@ function ServicesTeamSection() {
             R4=1096: rx=57.08vw ry=101.48vh
       */}
       <style>{`
+        /*
+          --dot-cy = центр дуг сферы в координатах секции.
+          containerTop = clamp(320px, 53.06vh, 573px) — используем точный clamp, не 53.06vh,
+          чтобы формула оставалась верной при любой высоте viewport (1200px, 1440px, 1600px…).
+          containerH = 175.09vh; cy_svg = 945.5/1891 * containerH = 87.575vh.
+          После scaleY(-1): cy = containerTop + (containerH − cy_svg) = containerTop + 87.575vh.
+        */
+        .team-section {
+          --dot-cy: calc(clamp(320px, 53.06vh, 573px) + 87.575vh);
+        }
         @property --dot1-angle { syntax: "<angle>"; inherits: false; initial-value: 65deg; }
         @property --dot2-angle { syntax: "<angle>"; inherits: false; initial-value: 60deg; }
         @property --dot3-angle { syntax: "<angle>"; inherits: false; initial-value: 66deg; }
         @property --dot4-angle { syntax: "<angle>"; inherits: false; initial-value: 114deg; }
         @keyframes dot1-swing { from { --dot1-angle: 53deg; } to { --dot1-angle: 77deg; } }
         @keyframes dot2-swing { from { --dot2-angle: 48deg; } to { --dot2-angle: 72deg; } }
-        @keyframes dot3-swing { from { --dot3-angle: 54deg; } to { --dot3-angle: 76deg; } }
-        @keyframes dot4-swing { from { --dot4-angle: 104deg; } to { --dot4-angle: 126deg; } }
+        @keyframes dot3-swing { from { --dot3-angle: 62deg; } to { --dot3-angle: 78deg; } }
+        @keyframes dot4-swing { from { --dot4-angle: 102deg; } to { --dot4-angle: 118deg; } }
+        @keyframes team-dot-glow {
+          0%, 18%, 100% {
+            opacity: 0.6;
+            box-shadow: 0 0 7px 2px rgba(255,255,255,0.34);
+            transform: translate(-50%, -50%) scale(1);
+          }
+          8% {
+            opacity: 1;
+            box-shadow: 0 0 15px 5px rgba(255,255,255,0.84);
+            transform: translate(-50%, -50%) scale(1.2);
+          }
+        }
         .team-arc-dot-1 {
           position: absolute;
           width: 0; height: 0;
           left: calc(50vw + 34.27vw * cos(var(--dot1-angle)));
-          top:  calc(140.61vh - 60.93vh * sin(var(--dot1-angle)));
+          top:  calc(var(--dot-cy) - 60.93vh * sin(var(--dot1-angle)));
           z-index: 3;
           pointer-events: none;
+          will-change: left, top;
           animation: dot1-swing 5s ease-in-out alternate infinite 0s;
         }
         .team-arc-dot-2 {
           position: absolute;
           width: 0; height: 0;
           left: calc(50vw + 41.67vw * cos(var(--dot2-angle)));
-          top:  calc(140.61vh - 74.07vh * sin(var(--dot2-angle)));
+          top:  calc(var(--dot-cy) - 74.07vh * sin(var(--dot2-angle)));
           z-index: 3;
           pointer-events: none;
+          will-change: left, top;
           animation: dot2-swing 4.5s ease-in-out alternate infinite 1.5s;
         }
         .team-arc-dot-3 {
           position: absolute;
           width: 0; height: 0;
           left: calc(50vw + 49.38vw * cos(var(--dot3-angle)));
-          top:  calc(140.61vh - 87.78vh * sin(var(--dot3-angle)));
+          top:  calc(var(--dot-cy) - 87.78vh * sin(var(--dot3-angle)));
           z-index: 3;
           pointer-events: none;
+          will-change: left, top;
           animation: dot3-swing 6s ease-in-out alternate infinite 3s;
         }
         .team-arc-dot-4 {
           position: absolute;
           width: 0; height: 0;
           left: calc(50vw + 49.38vw * cos(var(--dot4-angle)));
-          top:  calc(140.61vh - 87.78vh * sin(var(--dot4-angle)));
+          top:  calc(var(--dot-cy) - 87.78vh * sin(var(--dot4-angle)));
           z-index: 3;
           pointer-events: none;
+          will-change: left, top;
           animation: dot4-swing 5.5s ease-in-out alternate infinite 4.5s;
+        }
+        .team-arc-dot-1 > div,
+        .team-arc-dot-2 > div,
+        .team-arc-dot-3 > div,
+        .team-arc-dot-4 > div {
+          transition: box-shadow 180ms ease, transform 180ms ease, opacity 180ms ease;
+          pointer-events: auto;
+          cursor: pointer;
+        }
+        .team-arc-dot-1 > span,
+        .team-arc-dot-2 > span,
+        .team-arc-dot-3 > span,
+        .team-arc-dot-4 > span {
+          pointer-events: none;
+        }
+        .team-arc-dot-1 > div:hover,
+        .team-arc-dot-2 > div:hover,
+        .team-arc-dot-3 > div:hover,
+        .team-arc-dot-4 > div:hover {
+          opacity: 1;
+          box-shadow: 0 0 16px 5px rgba(255,255,255,0.92);
+          transform: translate(-50%, -50%) scale(1.22);
+        }
+        /* На узких экранах dot3 (текст вправо) может выйти за край — переносим */
+        @media (max-width: 1500px) {
+          .team-arc-dot-3 > span {
+            white-space: normal !important;
+            max-width: 175px !important;
+            line-height: 1.25 !important;
+            text-align: left !important;
+          }
+          /* dot2 (текст влево) на узком экране тоже может быть тесно */
+          .team-arc-dot-2 > span {
+            white-space: normal !important;
+            max-width: 175px !important;
+            line-height: 1.25 !important;
+            text-align: right !important;
+          }
         }
       `}</style>
 
       {/* Arc dot 1 — R1 inner, θ=150° — text left */}
       <div className="team-arc-dot-1">
         <div style={{ position: "absolute", width: 10, height: 10, transform: "translate(-50%, -50%)", borderRadius: "50%", background: "white", boxShadow: "0 0 8px 3px rgba(255,255,255,0.6)" }} />
-        <span style={{ position: "absolute", right: 18, top: "50%", transform: "translateY(-50%)", fontSize: "clamp(16px, 1vw, 19px)", color: "rgba(255,255,255,0.75)", whiteSpace: "nowrap", fontFamily: font }}>
+        <span style={{ position: "absolute", right: 18, top: "50%", transform: "translateY(-50%)", fontSize: "clamp(18px, 1.18vw, 22px)", color: "rgba(255,255,255,0.9)", whiteSpace: "nowrap", fontFamily: font }}>
           Определяем, кто реально нужен
         </span>
       </div>
@@ -1319,7 +1615,7 @@ function ServicesTeamSection() {
       {/* Arc dot 2 — R2, θ=120° — text left-above */}
       <div className="team-arc-dot-2">
         <div style={{ position: "absolute", width: 10, height: 10, transform: "translate(-50%, -50%)", borderRadius: "50%", background: "white", boxShadow: "0 0 8px 3px rgba(255,255,255,0.6)" }} />
-        <span style={{ position: "absolute", right: 18, bottom: 14, fontSize: "clamp(16px, 1vw, 19px)", color: "rgba(255,255,255,0.75)", whiteSpace: "nowrap", fontFamily: font }}>
+        <span style={{ position: "absolute", right: 18, bottom: 14, fontSize: "clamp(18px, 1.18vw, 22px)", color: "rgba(255,255,255,0.9)", whiteSpace: "nowrap", fontFamily: font }}>
           Разрабатываем портреты должностей
         </span>
       </div>
@@ -1327,7 +1623,7 @@ function ServicesTeamSection() {
       {/* Arc dot 3 — R3, θ=60° — text right-above */}
       <div className="team-arc-dot-3">
         <div style={{ position: "absolute", width: 10, height: 10, transform: "translate(-50%, -50%)", borderRadius: "50%", background: "white", boxShadow: "0 0 8px 3px rgba(255,255,255,0.6)" }} />
-        <span style={{ position: "absolute", left: 18, bottom: 14, fontSize: "clamp(16px, 1vw, 19px)", color: "rgba(255,255,255,0.75)", whiteSpace: "nowrap", fontFamily: font }}>
+        <span style={{ position: "absolute", left: 18, bottom: 14, fontSize: "clamp(18px, 1.18vw, 22px)", color: "rgba(255,255,255,0.9)", whiteSpace: "nowrap", fontFamily: font }}>
           Подбираем и собеседуем кандидатов
         </span>
       </div>
@@ -1335,7 +1631,7 @@ function ServicesTeamSection() {
       {/* Arc dot 4 — mirrored on the same arc as dot 3, left side */}
       <div className="team-arc-dot-4">
         <div style={{ position: "absolute", width: 10, height: 10, transform: "translate(-50%, -50%)", borderRadius: "50%", background: "white", boxShadow: "0 0 8px 3px rgba(255,255,255,0.6)" }} />
-        <span style={{ position: "absolute", right: 18, bottom: 14, fontSize: "clamp(16px, 1vw, 19px)", color: "rgba(255,255,255,0.75)", whiteSpace: "nowrap", fontFamily: font }}>
+        <span style={{ position: "absolute", right: 18, bottom: 14, fontSize: "clamp(18px, 1.18vw, 22px)", color: "rgba(255,255,255,0.9)", whiteSpace: "nowrap", fontFamily: font }}>
           Выстраиваем систему адаптации
         </span>
       </div>
@@ -1654,10 +1950,90 @@ export default function HomeServicesSectionsClient() {
   return (
     <>
       <style>{`
+        .services-intro-section {
+          min-height: clamp(72px, 12svh, 140px);
+          height: clamp(72px, 12svh, 140px);
+        }
+        .services-intro-section .svc-title-text {
+          font-size: clamp(24px, 6vw, 92px);
+          padding: 0 clamp(48px, 10vw, 140px);
+        }
+        .services-intro-section .svc-infinity {
+          right: clamp(18px, 3.125vw, 60px);
+        }
+        @media (max-width: 1200px) {
+          .services-intro-section {
+            min-height: clamp(72px, 10svh, 116px) !important;
+            height: clamp(72px, 10svh, 116px) !important;
+          }
+          .services-intro-section .svc-title-text {
+            font-size: clamp(22px, 5.6vw, 64px) !important;
+            padding: 0 clamp(42px, 8vw, 112px) !important;
+          }
+          .services-intro-section .svc-infinity {
+            width: clamp(34px, 5vw, 86px) !important;
+            height: clamp(18px, 2.7vw, 44px) !important;
+            right: clamp(14px, 2.4vw, 28px) !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .services-intro-section {
+            min-height: clamp(68px, 10svh, 92px) !important;
+            height: clamp(68px, 10svh, 92px) !important;
+          }
+          .services-intro-section .svc-title-text {
+            font-size: clamp(20px, 7vw, 34px) !important;
+            line-height: 0.95 !important;
+            letter-spacing: -0.03em !important;
+            padding: 0 56px !important;
+          }
+          .services-intro-section .svc-infinity {
+            width: clamp(28px, 8vw, 42px) !important;
+            height: clamp(15px, 4.5vw, 22px) !important;
+            right: 14px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .services-intro-section {
+            min-height: 64px !important;
+            height: 64px !important;
+          }
+          .services-intro-section .svc-title-text {
+            font-size: clamp(18px, 6.6vw, 28px) !important;
+            padding: 0 48px !important;
+          }
+          .services-intro-section .svc-infinity {
+            width: 26px !important;
+            height: 14px !important;
+            right: 12px !important;
+          }
+        }
+        @media (max-height: 760px) {
+          .services-intro-section {
+            min-height: 68px !important;
+            height: 68px !important;
+          }
+          .services-intro-section .svc-title-text {
+            font-size: clamp(20px, 4vw, 42px) !important;
+          }
+        }
+        @media (min-width: 1700px) {
+          .services-intro-section {
+            min-height: 128px !important;
+            height: 128px !important;
+          }
+          .services-intro-section .svc-title-text {
+            font-size: clamp(40px, 4.4vw, 84px) !important;
+          }
+          .services-intro-section .svc-infinity {
+            width: clamp(58px, 5.4vw, 102px) !important;
+            height: clamp(30px, 2.8vw, 52px) !important;
+          }
+        }
         @media (max-width: 768px) {
           /* ── SALES: Отдел продаж под ключ ─────────────────── */
           .sales-section {
-            min-height: max(72svh, 520px) !important;
+            min-height: max(64svh, 500px) !important;
           }
           /* Heading row: absolute, full width, z-index > blur */
           .sales-heading-row {
@@ -1691,12 +2067,54 @@ export default function HomeServicesSectionsClient() {
           .sales-icons-col > div:first-child {
             display: flex !important;
           }
-          /* Белая карточка: прижать к низу секции */
+          /* Белая карточка: компактнее и выше, без лишней пустоты */
           .sales-white-card {
             position: absolute !important;
-            top: auto !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            top: 154px !important;
             bottom: 0 !important;
-            padding: 16px 20px !important;
+            height: auto !important;
+            border-radius: 22px 22px 0 0 !important;
+            padding: 18px 20px 20px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            gap: 14px !important;
+          }
+          .sales-card-left {
+            position: static !important;
+            left: auto !important;
+            right: auto !important;
+            top: auto !important;
+            width: auto !important;
+            font-size: 18px !important;
+            line-height: 1.08 !important;
+            overflow-wrap: anywhere !important;
+          }
+          .sales-card-right {
+            position: static !important;
+            left: auto !important;
+            right: auto !important;
+            top: auto !important;
+            width: auto !important;
+            font-size: 16px !important;
+            line-height: 1.24 !important;
+            white-space: normal !important;
+            overflow-wrap: anywhere !important;
+            flex: 1 1 auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            min-height: 0 !important;
+          }
+          .sales-card-right p {
+            margin: 0 !important;
+          }
+          .sales-transition-fade {
+            height: 260px !important;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.22) 16%, rgba(244,247,247,0.7) 38%, rgba(171,184,184,0.9) 60%, rgba(82,96,96,0.96) 80%, rgb(13,31,31) 100%) !important;
           }
           /* ── PODBOR: Подбираем новинки ────────────────────── */
           /* Серые прямоугольники — по центру, на высоту основной карточки */
@@ -1704,30 +2122,50 @@ export default function HomeServicesSectionsClient() {
             left: 50% !important;
             transform: translateX(-50%) !important;
             width: 88% !important;
-            top: 29.07vh !important;
+            top: calc(29.07vh - 32px) !important;
             height: clamp(300px, 94.97vh, 1026px) !important;
           }
           .podbor-rect-2 {
             left: 50% !important;
             transform: translateX(-50%) !important;
             width: 96% !important;
-            top: 29.07vh !important;
+            top: calc(29.07vh - 32px) !important;
             height: clamp(300px, 94.97vh, 1026px) !important;
           }
           .podbor-subtitle-outside {
             display: none !important;
           }
           .podbor-list {
-            font-size: 17px !important;
-            line-height: 1.4 !important;
-            left: 20px !important;
-            right: 8px !important;
-            max-width: none !important;
+            display: none !important;
           }
-          .podbor-subtitle-inside {
-            display: block !important;
-            font-size: 16px !important;
+          .podbor-mobile-card-content {
+            display: flex !important;
+            inset: 14px !important;
+            gap: 10px !important;
+          }
+          .podbor-mobile-title {
+            font-size: clamp(22px, 6vw, 30px) !important;
+          }
+          .podbor-mobile-subtitle {
+            font-size: 13px !important;
+            line-height: 1.4 !important;
+          }
+          .podbor-mobile-features {
+            font-size: 13px !important;
             line-height: 1.45 !important;
+          }
+          .podbor-mobile-steps {
+            margin-top: 4px !important;
+            gap: 6px !important;
+          }
+          .podbor-mobile-step {
+            padding: 9px 12px !important;
+          }
+          .podbor-legacy-brand {
+            display: none !important;
+          }
+          .podbor-legacy-headline {
+            display: none !important;
           }
           /* Враппер: высота 120px, bottom: 100% = прямо над верхним краем карточки */
           .podbor-strips-wrapper {
@@ -1754,18 +2192,45 @@ export default function HomeServicesSectionsClient() {
           }
           /* ── EXTERNAL: Внешние каналы продаж ─────────────── */
           .ext-section {
-            min-height: max(83svh, 620px) !important;
+            min-height: max(62svh, 500px) !important;
           }
           /* Убрать артефакт 68.98vh — растянуть blur на весь блок */
           .ext-blur-band {
             height: 100% !important;
           }
+          .ext-white-card {
+            right: 10px !important;
+            top: 42px !important;
+            bottom: 42px !important;
+            height: auto !important;
+            width: clamp(184px, 50vw, 220px) !important;
+            padding: 16px 14px !important;
+          }
           .ext-heading {
-            top: auto !important;
-            bottom: 24px !important;
+            top: 50% !important;
+            bottom: auto !important;
+            left: 16px !important;
+            right: calc(clamp(184px, 50vw, 220px) + 26px) !important;
+            width: auto !important;
+            transform: translateY(-50%) !important;
+            font-size: clamp(18px, 5.3vw, 25px) !important;
+            line-height: 0.94 !important;
+            overflow-wrap: normal !important;
+            word-break: normal !important;
+            hyphens: none !important;
             opacity: 0.95 !important;
           }
+          .ext-transition-fade {
+            display: block !important;
+            height: 90px !important;
+          }
           /* ── AI: infinity 2:1 ─────────────────────────────── */
+          .ai-section {
+            min-height: max(calc(100svh - 180px), 620px) !important;
+          }
+          .ai-heading {
+            top: calc(clamp(580px, 79.54vh, 859px) - 120px) !important;
+          }
           .ai-infinity-wrapper {
             width: 48px !important;
             height: 28px !important;
@@ -1782,18 +2247,26 @@ export default function HomeServicesSectionsClient() {
             top: auto !important;
           }
           .team-arc-dot-1 {
+            animation: none !important;
+            --dot1-angle: 54deg;
             left: calc(50vw + 34.7vw * cos(var(--dot1-angle))) !important;
             bottom: calc(34.8vw * sin(var(--dot1-angle))) !important;
           }
           .team-arc-dot-2 {
+            animation: none !important;
+            --dot2-angle: 82deg;
             left: calc(50vw + 42.2vw * cos(var(--dot2-angle))) !important;
             bottom: calc(42.3vw * sin(var(--dot2-angle))) !important;
           }
           .team-arc-dot-3 {
+            animation: none !important;
+            --dot3-angle: 104deg;
             left: calc(50vw + 50vw * cos(var(--dot3-angle))) !important;
             bottom: calc(50.13vw * sin(var(--dot3-angle))) !important;
           }
           .team-arc-dot-4 {
+            animation: none !important;
+            --dot4-angle: 140deg;
             left: calc(50vw + 50vw * cos(var(--dot4-angle))) !important;
             bottom: calc(50.13vw * sin(var(--dot4-angle))) !important;
           }
@@ -1805,37 +2278,70 @@ export default function HomeServicesSectionsClient() {
             height: 8px !important;
             box-shadow: 0 0 6px 2px rgba(255,255,255,0.45) !important;
           }
+          .team-arc-dot-1 > div {
+            animation: team-dot-glow 5.6s ease-in-out infinite 0s !important;
+          }
+          .team-arc-dot-2 > div {
+            animation: team-dot-glow 5.6s ease-in-out infinite 1.4s !important;
+          }
+          .team-arc-dot-3 > div {
+            animation: team-dot-glow 5.6s ease-in-out infinite 2.8s !important;
+          }
+          .team-arc-dot-4 > div {
+            animation: team-dot-glow 5.6s ease-in-out infinite 4.2s !important;
+          }
           .team-arc-dot-1 > span,
           .team-arc-dot-2 > span,
           .team-arc-dot-3 > span,
           .team-arc-dot-4 > span {
+            display: block !important;
+            position: absolute !important;
             font-size: 11px !important;
-            line-height: 1.15 !important;
+            line-height: 1.12 !important;
+            letter-spacing: -0.02em !important;
+            color: rgba(255,255,255,0.9) !important;
             white-space: normal !important;
-            max-width: 110px;
+            text-wrap: balance !important;
+            overflow-wrap: normal !important;
+            word-break: normal !important;
+            hyphens: none !important;
+            max-width: none !important;
           }
           .team-arc-dot-1 > span {
-            right: 10px !important;
-            max-width: 92px;
-            text-align: right;
+            left: 12px !important;
+            right: auto !important;
+            top: 12px !important;
+            bottom: auto !important;
+            transform: none !important;
+            width: 102px !important;
+            text-align: left !important;
           }
           .team-arc-dot-2 > span {
-            right: 10px !important;
-            bottom: 8px !important;
-            max-width: 98px;
-            text-align: right;
+            left: 12px !important;
+            right: auto !important;
+            top: 50% !important;
+            bottom: auto !important;
+            transform: translateY(-50%) !important;
+            width: 108px !important;
+            text-align: left !important;
           }
           .team-arc-dot-3 > span {
-            left: 10px !important;
-            bottom: 8px !important;
-            max-width: 118px;
-            text-align: left;
+            left: 50% !important;
+            right: auto !important;
+            top: auto !important;
+            bottom: 12px !important;
+            transform: translateX(-50%) !important;
+            width: 124px !important;
+            text-align: center !important;
           }
           .team-arc-dot-4 > span {
-            right: 10px !important;
-            bottom: 8px !important;
-            max-width: 108px;
-            text-align: right;
+            left: 12px !important;
+            right: auto !important;
+            top: auto !important;
+            bottom: 12px !important;
+            transform: none !important;
+            width: 108px !important;
+            text-align: left !important;
           }
           .team-radar {
             top: auto !important;

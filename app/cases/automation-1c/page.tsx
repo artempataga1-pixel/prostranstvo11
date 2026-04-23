@@ -28,6 +28,7 @@ export default function CaseAutomation1CPage() {
   return (
     <>
     <div
+      className="case1c-hero"
       style={{
         minHeight: "100vh",
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
@@ -72,8 +73,9 @@ export default function CaseAutomation1CPage() {
         <span style={{ color: "rgba(7,21,24,0.8)", fontSize: 14 }}>1С УНФ + ТСД</span>
       </header>
 
-      <main style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
+      <main className="case1c-hero-main" style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
         <p
+          className="case1c-hero-kicker"
           style={{
             fontSize: "clamp(10px, 0.9vw, 13px)",
             letterSpacing: "0.15em",
@@ -86,6 +88,7 @@ export default function CaseAutomation1CPage() {
         </p>
 
         <h1
+          className="case1c-hero-title"
           style={{
             fontWeight: 400,
             fontSize: "clamp(40px, 6vw, 96px)",
@@ -102,6 +105,7 @@ export default function CaseAutomation1CPage() {
         </h1>
 
         <p
+          className="case1c-hero-desc"
           style={{
             fontSize: "clamp(16px, 1.5vw, 20px)",
             color: "rgba(255,255,255,0.75)",
@@ -114,6 +118,7 @@ export default function CaseAutomation1CPage() {
         </p>
 
         <div
+          className="case1c-hero-metrics"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -133,7 +138,7 @@ export default function CaseAutomation1CPage() {
         </div>
 
       </main>
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      <div className="case1c-hero-fade" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </div>
 
     {/* Case1CIntroSection */}
@@ -271,6 +276,35 @@ export default function CaseAutomation1CPage() {
       }
 
       @media (max-width: 900px) {
+        .case1c-hero {
+          min-height: auto !important;
+        }
+
+        .case1c-hero-main {
+          padding: 32px 20px 56px !important;
+        }
+
+        .case1c-hero-kicker {
+          margin-bottom: 12px !important;
+        }
+
+        .case1c-hero-title {
+          margin-bottom: 20px !important;
+        }
+
+        .case1c-hero-desc {
+          margin-bottom: 28px !important;
+        }
+
+        .case1c-hero-metrics {
+          gap: 10px !important;
+          margin-bottom: 0 !important;
+        }
+
+        .case1c-hero-fade {
+          height: 160px !important;
+        }
+
         .case1c-steps-section {
           min-height: auto !important;
           padding: 24px 20px 40px;
