@@ -2354,6 +2354,10 @@ export default function HomeServicesSectionsClient() {
             height: 100vw !important;
             background-size: 100% 100% !important;
             background-position: center center !important;
+            overflow: hidden !important;
+          }
+          .team-gradient-overlay {
+            display: none !important;
           }
         }
       `}</style>
