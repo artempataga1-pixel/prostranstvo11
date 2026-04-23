@@ -1463,27 +1463,6 @@ function ServicesTeamSection() {
         <Img alt="" src={TEAM_RADAR_IMG} style={{ display: "block", width: "100%", height: "100%", maxWidth: "none" }} />
       </div>
 
-      {/* Gradient overlay — same container as radar, image in top half (bottom:50%) */}
-      <div className="team-gradient-overlay" style={{
-        position: "absolute",
-        left: "0.677vw",
-        top: "clamp(320px, 53.06vh, 573px)",
-        width: "98.75vw",
-        height: "175.09vh",
-        zIndex: 2,
-        pointerEvents: "none",
-        }}>
-          <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "50%" }}>
-            <Image
-              alt=""
-              src={TEAM_GRADIENT_IMG}
-              fill
-              sizes="(max-width: 768px) 100vw, 99vw"
-              decoding="async"
-              style={{ objectFit: "fill", maxWidth: "none" }}
-            />
-          </div>
-        </div>
 
       {/* Arc dots: @property + @keyframes + 4 animated dots on arcs
           cy = 140.61vh  (= radar top 53.06vh + radar_h/2 87.55vh, after scaleY(-1))
@@ -2355,9 +2334,6 @@ export default function HomeServicesSectionsClient() {
             background-size: 100% 100% !important;
             background-position: center center !important;
             overflow: hidden !important;
-          }
-          .team-gradient-overlay {
-            display: none !important;
           }
         }
       `}</style>
