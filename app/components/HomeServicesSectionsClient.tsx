@@ -2226,10 +2226,12 @@ export default function HomeServicesSectionsClient() {
           }
           /* ── AI: infinity 2:1 ─────────────────────────────── */
           .ai-section {
-            min-height: max(calc(100svh - 180px), 620px) !important;
+            min-height: max(calc(100svh - 100px), 680px) !important;
           }
           .ai-heading {
-            top: calc(clamp(580px, 79.54vh, 859px) - 120px) !important;
+            /* graph bottom = graph-top + graph-height = clamp(130px,19.91vh,215px) + clamp(260px,49.17vh,531px)
+               heading goes below graph with 32px gap */
+            top: calc(clamp(130px, 19.91vh, 215px) + clamp(260px, 49.17vh, 531px) + 32px) !important;
           }
           .ai-infinity-wrapper {
             width: 48px !important;
