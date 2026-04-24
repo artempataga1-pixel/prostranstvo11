@@ -31,6 +31,8 @@ export default function FaqSectionClient({ items }: FaqSectionClientProps) {
     >
       <div style={{ position: "absolute", right: "-5vw", top: "10vh", width: "50vw", height: "50vw", background: "radial-gradient(circle, rgba(10,186,181,0.07) 0%, transparent 65%)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "radial-gradient(circle, rgba(10,186,181,0.10) 1px, transparent 1px)", backgroundSize: "40px 40px", opacity: 0.3 }} />
+      {/* Top fade — мягкий вход из WorkWithUs */}
+      <div className="faq-top-fade" aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "100px", background: "linear-gradient(to bottom, rgb(7,15,12) 0%, rgba(7,15,12,0) 100%)", pointerEvents: "none", zIndex: 4 }} />
 
       <div style={{ position: "absolute", top: "clamp(30px, 5.56vh, 60px)", right: "3.125vw", display: "flex", alignItems: "center", padding: "clamp(8px, 1.11vh, 12px) clamp(10px, 0.83vw, 16px)", borderRadius: "300px", background: "rgba(10,186,181,0.10)", border: "1px solid rgba(10,186,181,0.3)", backdropFilter: "blur(15px)", WebkitBackdropFilter: "blur(15px)" }}>
         <p style={{ fontFamily: font, fontWeight: 400, fontSize: "clamp(10px, 1.302vw, 25px)", lineHeight: 1, letterSpacing: "-0.035em", color: ACCENT, textTransform: "uppercase", whiteSpace: "nowrap", margin: 0 }}>

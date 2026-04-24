@@ -203,6 +203,8 @@ export default function ContactsSection() {
       alignItems: "center",
       overflow: "hidden",
     }}>
+      {/* Top fade — мягкий вход из FAQ */}
+      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to bottom, rgb(7,21,24) 0%, rgba(7,21,24,0) 100%)", pointerEvents: "none", zIndex: 4 }} />
       {/* Ambient glow blobs */}
       <div style={{ position: "absolute", width: "65vw", height: "65vw", left: "-20vw", top: "-20vw", background: "radial-gradient(circle, rgba(10,186,181,0.09) 0%, transparent 65%)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", width: "50vw", height: "50vw", right: "-10vw", bottom: "-15vw", background: "radial-gradient(circle, rgba(10,186,181,0.06) 0%, transparent 65%)", pointerEvents: "none" }} />

@@ -2113,8 +2113,8 @@ export default function HomeServicesSectionsClient() {
             margin: 0 !important;
           }
           .sales-transition-fade {
-            height: 100px !important;
-            background: linear-gradient(to bottom, rgba(212,0,170,0) 0%, rgba(100,0,80,0.5) 40%, rgba(40,0,30,0.85) 75%, rgb(13,31,31) 100%) !important;
+            height: 60px !important;
+            background: linear-gradient(to bottom, rgba(13,31,31,0) 0%, rgba(13,31,31,0.25) 40%, rgba(13,31,31,0.75) 75%, rgb(13,31,31) 100%) !important;
           }
           /* ── PODBOR: Подбираем новинки ────────────────────── */
           /* Серые прямоугольники — по центру, на высоту основной карточки */
