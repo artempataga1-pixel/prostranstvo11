@@ -4645,8 +4645,8 @@ function WorkWithUsSection() {
         }
         @media (max-width: 768px) {
           .work-with-us-transition-fade {
-            height: 240px !important;
-            background: linear-gradient(to bottom, rgba(7,21,24,0) 0%, rgba(10,186,181,0.08) 22%, rgba(7,21,24,0.22) 46%, rgba(7,21,24,0.5) 68%, rgba(7,21,24,0.86) 90%, rgb(7,21,24) 100%) !important;
+            height: 200px !important;
+            background: linear-gradient(to bottom, rgba(7,21,24,0) 0%, rgba(7,21,24,0.4) 30%, rgba(7,21,24,0.75) 60%, rgba(7,21,24,0.95) 85%, rgb(7,21,24) 100%) !important;
           }
         }
       `}</style>

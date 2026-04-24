@@ -1224,7 +1224,7 @@ section {
     line-height: 1.4 !important;
   }
   .sales-transition-fade {
-    display: none !important;
+    display: block !important;
   }
 
   /* ══════════════════════════════════════════════════════
