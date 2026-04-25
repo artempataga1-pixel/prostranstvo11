@@ -218,6 +218,21 @@ section {
 }
 
 /* ════════════════════════════════════════════════════════════════
+   CASE PAGES — центрирование hero-блока (все кейсы)
+   ════════════════════════════════════════════════════════════════ */
+[class$="-hero-main"] {
+  text-align: center;
+}
+[class$="-hero-desc"] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+[class$="-hero-metrics"] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ════════════════════════════════════════════════════════════════
    MOBILE FIXES — предотвращаем чёрный экран и GPU overflow
    ════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
