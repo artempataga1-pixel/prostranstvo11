@@ -353,6 +353,14 @@ section {
     flex-wrap: wrap !important;
     gap: 10px !important;
   }
+  /* Убиваем фейд-оверлей; двойная специфичность перебивает компонентный <style> */
+  .section-cta .work-with-us-transition-fade,
+  .section-cta > .work-with-us-transition-fade {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
 
   /* ── FAQ Section ─────────────────────────────────────────── */
   .section-faq {
