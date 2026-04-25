@@ -199,10 +199,10 @@ export default function CaseCrmPage() {
           { num: "06", title: "Поддержка", desc: "Месяц сопровождения по всем вопросам и проблемам после запуска", color: "#60a5fa" },
         ].map(({ num, title, desc, color }) => (
           <GlowCard key={num} glowColor="cyan" className="crm-step-card" style={{ background: "rgba(255,255,255,0.025)", borderRadius: "clamp(10px, 1.04vw, 20px)", padding: "clamp(12px, 1.67vh, 22px) clamp(12px, 1.04vw, 20px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
-            <span style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(22px, 2.5vw, 48px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
+            <span style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(24px, 3vw, 56px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
             <div>
-              <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 0.938vw, 18px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(3px,0.42vh,6px)" }}>{title}</p>
-              <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(9px, 0.677vw, 13px)", lineHeight: 1.35, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.4)", margin: 0 }}>{desc}</p>
+              <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(14px, 1.4vw, 26px)", lineHeight: 1.15, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.5vh,8px)" }}>{title}</p>
+              <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.0vw, 18px)", lineHeight: 1.4, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.4)", margin: 0 }}>{desc}</p>
             </div>
           </GlowCard>
         ))}

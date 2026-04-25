@@ -22,7 +22,7 @@ export default function CRM3D() {
       // Scene
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-      camera.position.set(0, 0, 6.5);
+      camera.position.set(0, 0, 8.5);
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
       renderer.setSize(w, h);
