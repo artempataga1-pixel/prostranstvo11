@@ -292,7 +292,7 @@ export default function CaseWarehousePage() {
       </section>
 
       {/* CTA Section with Result Metrics */}
-      <section style={{ background: "#071518", padding: "clamp(60px, 10vh, 120px) clamp(20px, 5vw, 80px)", fontFamily: FONT }}>
+      <section className="case-result-section" style={{ background: "#071518", padding: "clamp(60px, 10vh, 120px) clamp(20px, 5vw, 80px)", fontFamily: FONT }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {/* Result metrics */}
           <div style={{ textAlign: "center", marginBottom: "clamp(40px, 7vh, 80px)" }}>

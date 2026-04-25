@@ -218,7 +218,7 @@ section {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   CASE PAGES — центрирование hero-блока (все кейсы)
+   CASE PAGES — центрирование hero-блока и блока Результат
    ════════════════════════════════════════════════════════════════ */
 [class$="-hero-main"] {
   text-align: center;
@@ -230,6 +230,17 @@ section {
 [class$="-hero-metrics"] {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+/* Блок «Результат» внизу каждого кейса */
+.case-result-section {
+  text-align: center !important;
+}
+.case-result-section p {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.case-result-section div {
+  text-align: center !important;
 }
 
 /* ════════════════════════════════════════════════════════════════

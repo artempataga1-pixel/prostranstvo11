@@ -402,7 +402,7 @@ export default function CaseJeansPage() {
     </section>
 
     {/* CTA Section */}
-    <section style={{ background: "#071518", padding: "clamp(60px, 10vh, 120px) clamp(20px, 5vw, 80px)", fontFamily: FONT }}>
+    <section className="case-result-section" style={{ background: "#071518", padding: "clamp(60px, 10vh, 120px) clamp(20px, 5vw, 80px)", fontFamily: FONT }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ marginBottom: "clamp(40px, 7vh, 80px)" }}>
           <p style={{ fontSize: "clamp(10px, 0.9vw, 13px)", letterSpacing: "0.15em", textTransform: "uppercase" as const, color: "#0ABAB5", marginBottom: 16 }}>
