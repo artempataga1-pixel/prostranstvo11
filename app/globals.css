@@ -313,6 +313,8 @@ section {
     flex-direction: column !important;
     padding: 32px 16px 36px !important;
     gap: 0 !important;
+    position: relative !important;
+    overflow: visible !important;
   }
   .section-cta > * {
     position: relative !important;
@@ -360,6 +362,19 @@ section {
     height: 0 !important;
     min-height: 0 !important;
     overflow: hidden !important;
+  }
+
+  /* Плавный градиентный переход снизу section-cta → section-faq */
+  .section-cta::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(7,21,24,0) 0%, rgb(7,21,24) 100%);
+    pointer-events: none;
+    z-index: 10;
   }
 
   /* ── FAQ Section ─────────────────────────────────────────── */
