@@ -292,8 +292,8 @@ export default function CaseJeansPage() {
           position: "absolute",
           left: "3.75vw",
           top: "clamp(330px, 47vh, 532px)",
-          width: "min(20.83vw, 400px)",
-          height: "clamp(200px, 29.54vh, 319px)",
+          width: "min(22vw, 420px)",
+          minHeight: "clamp(200px, 29.54vh, 319px)",
           background: "rgba(88, 88, 88, 0.2)",
           borderRadius: "clamp(14px, 1.5625vw, 30px)",
           padding: "clamp(20px, 4.44vh, 48px)",
@@ -309,7 +309,7 @@ export default function CaseJeansPage() {
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: "clamp(8px, 2.22vh, 24px)" }}>
           {["Нестабильные продажи", "Низкая конверсия каточки", "Нет работы с гипотезами"].map((line) => (
-            <p key={line} style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.667vw, 32px)", lineHeight: 1, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "nowrap" }}>
+            <p key={line} style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.3vw, 24px)", lineHeight: 1.2, letterSpacing: "-0.035em", color: "#ffffff", margin: 0 }}>
               {line}
             </p>
           ))}
