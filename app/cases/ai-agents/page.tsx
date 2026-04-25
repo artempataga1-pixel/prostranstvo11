@@ -240,8 +240,8 @@ export default function CaseAiAgentsPage() {
           <GlowCard className="ai-case-step-card" key={num} glowColor="purple" style={{ background: "rgba(255,255,255,0.03)", borderRadius: "clamp(12px, 1.25vw, 24px)", padding: "clamp(16px, 2.22vh, 28px) clamp(16px, 1.46vw, 28px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
             <span className="ai-case-step-num" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 3.125vw, 60px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
             <div>
-              <p className="ai-case-step-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(13px, 1.146vw, 22px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.56vh,8px)" }}>{title}</p>
-              <p className="ai-case-step-desc" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(10px, 0.833vw, 16px)", lineHeight: 1.35, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
+              <p className="ai-case-step-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(14px, 1.4vw, 26px)", lineHeight: 1.15, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.5vh,8px)" }}>{title}</p>
+              <p className="ai-case-step-desc" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.0vw, 18px)", lineHeight: 1.4, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
             </div>
           </GlowCard>
         ))}
