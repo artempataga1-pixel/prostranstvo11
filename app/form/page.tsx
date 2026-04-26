@@ -232,7 +232,7 @@ export default function FormPage() {
             marginTop: 0,
           }}>
             Разберём<br />
-            <span style={{ color: "rgba(255,255,255,0.45)" }}>ваш кабинет</span><br />
+            <span style={{ color: "#ffffff" }}>ваш кабинет</span><br />
             и найдём<br />
             точки роста
           </h1>

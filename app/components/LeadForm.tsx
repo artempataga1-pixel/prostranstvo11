@@ -59,7 +59,7 @@ const labelStyle: React.CSSProperties = {
   display: "block",
   fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
   fontSize: "clamp(11px, 0.78vw, 15px)",
-  color: "rgba(255,255,255,0.45)",
+  color: "rgba(255,255,255,0.9)",
   marginBottom: "8px",
   letterSpacing: "-0.02em",
 };
