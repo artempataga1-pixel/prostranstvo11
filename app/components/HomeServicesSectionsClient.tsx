@@ -1302,7 +1302,7 @@ function ServicesPodborSection() {
             style={{
               width: "100%",
               height: "100%",
-              objectFit: "contain",
+              objectFit: "cover",
               objectPosition: "center top",
               display: "block",
               pointerEvents: "none",
