@@ -1296,9 +1296,11 @@ function ServicesPodborSection() {
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt=""
             src="/podbor-analysis.jpg"
+            loading="eager"
             style={{
               width: "100%",
               height: "100%",
