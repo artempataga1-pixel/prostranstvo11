@@ -123,7 +123,7 @@ export default function CaseJeansPage() {
             marginBottom: "clamp(40px, 6vh, 80px)",
           }}
         >
-          Выручка выросла с 800 тыс. до 2.4 млн ₽/мес за 1.5 месяца после комплексной оптимизации карточек товаров и рекламных кампаний на Ozon.
+          {"Выручка выросла с\u00A0800\u00A0тыс. до\u00A02.4\u00A0млн\u00A0₽/мес за\u00A01.5\u00A0месяца после комплексной оптимизации карточек товаров и\u00A0рекламных кампаний на\u00A0Ozon."}
         </p>
 
         {/* Metrics */}
@@ -197,7 +197,7 @@ export default function CaseJeansPage() {
           margin: 0,
         }}
       >
-        <CountUp prefix="+" value={200} suffix="%" duration={2200} /> выручки{"\n"}за полтора месяца
+        <CountUp prefix="+" value={200} suffix="%" duration={2200} />{" выручки"}<br />{"за\u00A0полтора месяца"}
       </h2>
 
       <p

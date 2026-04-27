@@ -154,7 +154,7 @@ export default function CaseCrmPage() {
         {"Внедрение\nCRM Системы"}
       </h2>
       <p className="crm-intro-desc" style={{ position: "absolute", left: "3.125vw", top: "clamp(200px, 29vh, 315px)", width: "min(44vw, 840px)", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.563vw, 30px)", lineHeight: 1.35, letterSpacing: "-0.025em", color: "rgba(255,255,255,0.45)", margin: 0 }}>
-        Полный цикл: от аудита бизнес-модели и подбора оптимального CRM-инструмента до обучения персонала и месяца технической поддержки
+        {"Полный цикл: от\u00A0аудита бизнес-модели и\u00A0подбора оптимального CRM-инструмента до\u00A0обучения персонала и\u00A0месяца технической поддержки"}
       </p>
       <div className="crm-intro-3d" style={{ position: "absolute", right: "clamp(20px, 3vw, 60px)", top: "50%", transform: "translateY(-50%)", width: "clamp(280px, 43vw, 820px)", height: "clamp(280px, 43vw, 820px)", pointerEvents: "none" }}>
         <DeferredCRM3D />

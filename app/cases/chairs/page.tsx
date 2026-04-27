@@ -315,7 +315,7 @@ export default function CaseChairsPage() {
       >
         <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(20px, 3.385vw, 65px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#0d1f1f", margin: 0 }}>
           {"Увеличили маржинальность "}
-          <span style={{ color: "#ff00e6" }}>в два раза</span>
+          <span style={{ color: "#ff00e6" }}>{"в\u00A0два раза"}</span>
         </p>
         <div style={{ opacity: 0.5 }}>
           {[
