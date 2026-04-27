@@ -233,9 +233,9 @@ export default function CaseAiAgentsPage() {
       <div className="ai-case-steps-grid" style={{ position: "absolute", left: "3.125vw", top: "clamp(100px, 14.7vh, 155px)", bottom: "clamp(20px, 3vh, 36px)", width: "48%", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "clamp(8px, 1.04vw, 18px)" }}>
         {[
           { num: "01", title: "Аудит", desc: "Анализ узких мест и оценка бизнес-процессов", color: "#0ABAB5" },
-          { num: "02", title: "Проектирование", desc: "Формирование ТЗ и согласование с заказчиком", color: "#38bdf8" },
-          { num: "03", title: "Разработка", desc: "Тестовое внедрение, постоянная доработка (2–14 дней)", color: "#8b5cf6" },
-          { num: "04", title: "Тестирование", desc: "Финальный тест 3–7 дней и запуск в работу", color: "#34d399" },
+          { num: "02", title: "Проектирование", desc: "Формирование ТЗ и\u00A0согласование с\u00A0заказчиком", color: "#38bdf8" },
+          { num: "03", title: "Разработка", desc: "Тестовое внедрение, постоянная доработка (2–14\u00A0дней)", color: "#8b5cf6" },
+          { num: "04", title: "Тестирование", desc: "Финальный тест 3–7\u00A0дней и\u00A0запуск в\u00A0работу", color: "#34d399" },
         ].map(({ num, title, desc, color }) => (
           <GlowCard className="ai-case-step-card" key={num} glowColor="purple" style={{ background: "rgba(255,255,255,0.03)", borderRadius: "clamp(12px, 1.25vw, 24px)", padding: "clamp(16px, 2.22vh, 28px) clamp(16px, 1.46vw, 28px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
             <span className="ai-case-step-num" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 3.125vw, 60px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
