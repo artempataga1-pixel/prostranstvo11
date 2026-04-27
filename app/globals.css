@@ -488,6 +488,9 @@ section {
   .podbor-analysis-img {
     display: none !important;
   }
+  .podbor-card-header {
+    display: none !important;
+  }
   .podbor-mobile-screenshot-block {
     display: block !important;
   }
