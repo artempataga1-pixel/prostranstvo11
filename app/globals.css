@@ -485,6 +485,9 @@ section {
   /* ══════════════════════════════════════════════════════
      ISSUE 4 — ServicesPodborSection: phone card
      ══════════════════════════════════════════════════════ */
+  .podbor-analysis-img {
+    display: none !important;
+  }
   .podbor-phone-card {
     left: 8px !important;
     right: 8px !important;

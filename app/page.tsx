@@ -3830,103 +3830,43 @@ function ServicesPodborSection() {
           boxShadow: "inset 0 0 clamp(30px, 5.07vw, 97px) clamp(5px, 0.76vw, 15px) rgba(255,0,230,0.4)",
         }}
       >
-        {/* Brand logo area — Figma (in card): left:43.85 top:426.36 w:195.593 h:46.397 */}
-        <div
-          style={{
-            position: "absolute",
-            left: "6.05%",
-            top: "41.57%",
-            width: "26.99%",
-            height: "4.52%",
-          }}
-        >
-          {/* Ellipse glow */}
-          <div
-            style={{
-              position: "absolute",
-              width: "100%",
-              top: "12.46%",
-              left: 0,
-              height: "24.74%",
-              transform: "translateY(-50%)",
-              overflow: "visible",
-            }}
-          >
-                        <Img
-              alt=""
-              src={PODBOR_ELLIPSE_IMG}
-              style={{ position: "absolute", inset: "-96.15% -5.64%", width: "111.28%", height: "296.3%", maxWidth: "none", pointerEvents: "none" }}
-            />
-          </div>
-
-          {/* Thin line — Figma: Rectangle4, centered, top:2.91px, h:4.415 w:185.218 */}
-          <div
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "6.27%",
-              width: "94.7%",
-              height: "9.52%",
-              transform: "translateX(-50%)",
-              overflow: "hidden",
-            }}
-          >
-                        <Img
-              alt=""
-              src={PODBOR_LINE1_IMG}
-              style={{ position: "absolute", top: "50%", left: 0, width: "100%", height: "30%", transform: "translateY(-50%)", maxWidth: "none", pointerEvents: "none" }}
-            />
-                        <Img
-              alt=""
-              src={PODBOR_LINE2_IMG}
-              style={{ position: "absolute", top: "50%", left: 0, width: "100%", height: "30%", transform: "translateY(-50%)", maxWidth: "none", pointerEvents: "none", mixBlendMode: "plus-lighter" }}
-            />
-          </div>
-
-          {/* PRO text logo — Figma: centered x, top: calc(50%-17.43px) → 12.47% */}
-          <div
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "0%",
-              width: "94.7%",
-              height: "24.9%",
-              transform: "translateX(-50%) translateY(-50%)",
-            }}
-          >
-                        <Img
-              alt=""
-              src={PODBOR_PRO_IMG}
-              style={{ position: "absolute", inset: "-95.61% -5.96%", width: "111.92%", height: "291.22%", maxWidth: "none", pointerEvents: "none" }}
-            />
-          </div>
-
-          {/* Infinity/logo mark — animated */}
-          <div style={{ position: "absolute", left: 0, top: "20.07%", width: "28.21%", height: "79.95%", pointerEvents: "none" }}>
-              <InfinityMark />
-          </div>
-        </div>
-
-        {/* "АНАЛИЗ САЛФЕТОК ДЛЯ УБОРКИ"
-            Figma: left:680.96 → translateX(-100%) → net left ~6%, top:472.65, w:637.104
-            font: Roboto Condensed Bold 63.345px → 3.3vw */}
+        {/* "АНАЛИЗ САЛФЕТОК ДЛЯ УБОРКИ" — moved to top of card */}
         <p
           style={{
             position: "absolute",
-            left: "6.07%",
-            top: "46.08%",
-            width: "87.9%",
+            left: "6%",
+            top: "4%",
+            width: "88%",
             fontFamily: "Roboto Condensed, Arial Narrow, Arial, sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(14px, 3.3vw, 63px)",
+            fontSize: "clamp(12px, 2.2vw, 42px)",
             lineHeight: 1,
             color: "#ffffff",
             textAlign: "right",
             margin: 0,
+            zIndex: 2,
           }}
         >
           АНАЛИЗ САЛФЕТОК ДЛЯ УБОРКИ
         </p>
+
+        {/* Analysis screenshot — fills the card, desktop only */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className="podbor-analysis-img"
+          alt=""
+          src="/podbor-analysis.jpg"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "top",
+            pointerEvents: "none",
+            borderRadius: "inherit",
+          }}
+        />
       </div>
 
       {/* Heading — Figma: left:60 top:60 font:100px tracking:-3.5px w:993 */}
