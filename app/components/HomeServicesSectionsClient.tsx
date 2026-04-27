@@ -1403,8 +1403,8 @@ function ServicesPodborSection() {
     </section>
     {/* Mobile screenshot block — shown on mobile only (hidden on desktop via CSS) */}
     <div className="podbor-mobile-screenshot-block" style={{ display: "none", backgroundColor: "#0f050e", padding: "16px 16px 32px", position: "relative" }}>
-      {/* Gradient — top: purple fade so image emerges smoothly */}
-      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, #0f050e 0%, rgba(15,5,14,0.6) 50%, rgba(15,5,14,0) 100%)", zIndex: 2, pointerEvents: "none" }} />
+      {/* Gradient — top: subtle purple fade */}
+      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 40, background: "linear-gradient(to bottom, rgba(15,5,14,0.85) 0%, rgba(15,5,14,0) 100%)", zIndex: 2, pointerEvents: "none" }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/podbor-analysis.jpg"
