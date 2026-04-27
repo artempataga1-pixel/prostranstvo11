@@ -3939,7 +3939,7 @@ function ServicesPodborSection() {
           fontFamily: font,
           fontWeight: 400,
           fontSize: "clamp(32px, 5.208vw, 100px)",
-          lineHeight: 0.9,
+          lineHeight: 1.05,
           letterSpacing: "-0.035em",
           color: "#ffffff",
           margin: 0,

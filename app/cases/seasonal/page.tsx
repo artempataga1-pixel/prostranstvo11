@@ -185,7 +185,7 @@ export default function CaseSeasonalPage() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img alt="" src={SEASONAL_SCREENSHOT_IMG} loading="lazy" decoding="async" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+        <img alt="" src={SEASONAL_SCREENSHOT_IMG} loading="eager" decoding="async" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
       </div>
       <div
         className="seasonal-screenshot-caption"
