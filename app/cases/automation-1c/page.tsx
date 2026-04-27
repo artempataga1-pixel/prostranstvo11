@@ -153,7 +153,7 @@ export default function CaseAutomation1CPage() {
       <h2 style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.65vh, 61px)", width: "min(50vw, 960px)", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.688vw, 90px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-line" }}>
         {"Внедрение\n1С УНФ + ТСД\nдля фулфилмента"}
       </h2>
-      <p style={{ position: "absolute", left: "3.125vw", top: "clamp(230px, 34vh, 370px)", width: "min(44vw, 840px)", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.563vw, 30px)", lineHeight: 1.35, letterSpacing: "-0.025em", color: "rgba(255,255,255,0.45)", margin: 0 }}>
+      <p style={{ position: "absolute", left: "3.125vw", top: "clamp(270px, 38vh, 420px)", width: "min(44vw, 840px)", fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.563vw, 30px)", lineHeight: 1.35, letterSpacing: "-0.025em", color: "rgba(255,255,255,0.45)", margin: 0 }}>
         Полный цикл внедрения операционной системы управления складом: от аудита бизнес‑процессов до обучения персонала и месячного сопровождения
       </p>
       <div style={{ position: "absolute", right: "clamp(20px, 3vw, 60px)", top: "50%", transform: "translateY(-50%)", width: "clamp(280px, 43vw, 820px)", height: "clamp(280px, 43vw, 820px)", pointerEvents: "none" }}>
@@ -200,8 +200,8 @@ export default function CaseAutomation1CPage() {
           <GlowCard className="case1c-step-card" key={num} glowColor="teal" style={{ background: "rgba(255,255,255,0.03)", borderRadius: "clamp(12px, 1.25vw, 24px)", padding: "clamp(16px, 2.22vh, 28px) clamp(16px, 1.46vw, 28px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
             <span className="case1c-step-num" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 3.125vw, 60px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
             <div>
-              <p className="case1c-step-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(13px, 1.146vw, 22px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.56vh,8px)" }}>{title}</p>
-              <p className="case1c-step-desc" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(10px, 0.833vw, 16px)", lineHeight: 1.35, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
+              <p className="case1c-step-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(15px, 1.35vw, 26px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.56vh,8px)" }}>{title}</p>
+              <p className="case1c-step-desc" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.0vw, 19px)", lineHeight: 1.35, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
             </div>
           </GlowCard>
         ))}
