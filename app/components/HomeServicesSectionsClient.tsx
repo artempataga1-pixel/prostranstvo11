@@ -1248,25 +1248,37 @@ function ServicesPodborSection() {
           </div>
         </div>
 
-        <p
-          className="podbor-legacy-headline"
+        {/* Top row: infinity icon + headline */}
+        <div
+          className="podbor-card-header"
           style={{
             position: "absolute",
-            left: 0,
             top: "4%",
-            width: "100%",
-            fontFamily: "Roboto Condensed, Arial Narrow, Arial, sans-serif",
-            fontWeight: 700,
-            fontSize: "clamp(10px, 1.6vw, 30px)",
-            lineHeight: 1,
-            color: "#ffffff",
-            textAlign: "center",
-            margin: 0,
-            zIndex: 2,
+            left: "5%",
+            right: "5%",
+            zIndex: 3,
+            display: "flex",
+            alignItems: "center",
+            gap: "clamp(6px, 0.8vw, 16px)",
           }}
         >
-          АНАЛИЗ САЛФЕТОК ДЛЯ УБОРКИ
-        </p>
+          <div style={{ width: "clamp(28px, 3vw, 56px)", height: "clamp(16px, 1.7vw, 32px)", flexShrink: 0, pointerEvents: "none" }}>
+            <InfinityMark />
+          </div>
+          <p
+            className="podbor-legacy-headline"
+            style={{
+              margin: 0,
+              fontFamily: "Roboto Condensed, Arial Narrow, Arial, sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(14px, 2.2vw, 42px)",
+              lineHeight: 1,
+              color: "#ffffff",
+            }}
+          >
+            АНАЛИЗ САЛФЕТОК ДЛЯ УБОРКИ
+          </p>
+        </div>
 
         {/* Analysis screenshot — desktop only (mobile: display:none via CSS) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1276,9 +1288,10 @@ function ServicesPodborSection() {
           src="/podbor-analysis.jpg"
           style={{
             position: "absolute",
-            inset: "8%",
-            width: "84%",
-            height: "84%",
+            top: "15%",
+            left: "3%",
+            right: "3%",
+            bottom: "2%",
             objectFit: "contain",
             objectPosition: "center top",
             pointerEvents: "none",
