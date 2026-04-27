@@ -1296,6 +1296,7 @@ function ServicesPodborSection() {
             objectPosition: "center top",
             pointerEvents: "none",
             zIndex: 1,
+            borderRadius: "clamp(6px, 0.8vw, 16px)",
           }}
         />
       </div>
