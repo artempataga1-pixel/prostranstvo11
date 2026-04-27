@@ -927,6 +927,7 @@ function ServicesManagementSection() {
 function ServicesPodborSection() {
   const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
   return (
+    <>
     <section
       className="split-section podbor-section"
       style={{
@@ -1251,21 +1252,40 @@ function ServicesPodborSection() {
           className="podbor-legacy-headline"
           style={{
             position: "absolute",
-            left: "6.07%",
-            top: "46.08%",
-            width: "87.9%",
+            left: 0,
+            top: "4%",
+            width: "100%",
             fontFamily: "Roboto Condensed, Arial Narrow, Arial, sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(14px, 3.3vw, 63px)",
+            fontSize: "clamp(10px, 1.6vw, 30px)",
             lineHeight: 1,
             color: "#ffffff",
-            textAlign: "right",
+            textAlign: "center",
             margin: 0,
+            zIndex: 2,
           }}
         >
           АНАЛИЗ САЛФЕТОК ДЛЯ УБОРКИ
         </p>
 
+        {/* Analysis screenshot — desktop only (mobile: display:none via CSS) */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className="podbor-analysis-img"
+          alt=""
+          src="/podbor-analysis.jpg"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "top",
+            pointerEvents: "none",
+            borderRadius: "inherit",
+            zIndex: 1,
+          }}
+        />
       </div>
 
       {/* Heading — Figma: left:60 top:60 font:100px tracking:-3.5px w:993 */}
@@ -1368,6 +1388,16 @@ function ServicesPodborSection() {
       {/* Переход → ServicesAuditSection rgb(13,31,31) */}
       <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
+    {/* Mobile screenshot block — shown on mobile only (hidden on desktop via CSS) */}
+    <div className="podbor-mobile-screenshot-block" style={{ display: "none", backgroundColor: "#0f050e", padding: "0 16px 24px" }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/podbor-analysis.jpg"
+        alt="Анализ салфеток для уборки"
+        style={{ width: "100%", borderRadius: 16, display: "block" }}
+      />
+    </div>
+  </>
   );
 }
 

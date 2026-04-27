@@ -488,6 +488,9 @@ section {
   .podbor-analysis-img {
     display: none !important;
   }
+  .podbor-mobile-screenshot-block {
+    display: block !important;
+  }
   .podbor-phone-card {
     left: 8px !important;
     right: 8px !important;
