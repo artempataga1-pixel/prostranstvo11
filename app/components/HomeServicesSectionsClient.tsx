@@ -1402,14 +1402,18 @@ function ServicesPodborSection() {
       <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
     {/* Mobile screenshot block — shown on mobile only (hidden on desktop via CSS) */}
-    <div className="podbor-mobile-screenshot-block" style={{ display: "none", backgroundColor: "#0f050e", padding: "16px 16px 32px" }}>
+    <div className="podbor-mobile-screenshot-block" style={{ display: "none", backgroundColor: "#0f050e", padding: "16px 16px 32px", position: "relative" }}>
+      {/* Gradient — top: fade from section bg */}
+      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 60, background: "linear-gradient(to bottom, #0f050e 0%, rgba(15,5,14,0) 100%)", zIndex: 2, pointerEvents: "none" }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/podbor-analysis.jpg"
         alt="Анализ салфеток для уборки"
         loading="eager"
-        style={{ width: "100%", height: "auto", borderRadius: 16, display: "block" }}
+        style={{ width: "100%", height: "auto", borderRadius: 16, display: "block", position: "relative", zIndex: 1 }}
       />
+      {/* Gradient — bottom: fade to ServicesAuditSection bg */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, rgba(13,31,31,0) 0%, rgb(13,31,31) 100%)", zIndex: 2, pointerEvents: "none" }} />
     </div>
   </>
   );
