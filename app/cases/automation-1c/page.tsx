@@ -23,6 +23,22 @@ const metrics = [
   { value: "1 нед", label: "обучение команды" },
 ];
 
+const steps1c = [
+  { num: "01", title: "Аудит бизнес-модели", desc: "Оценка бизнес-модели и всех бизнес-процессов компании", color: "#0ABAB5" },
+  { num: "02", title: "Регламентирование", desc: "Регламентирование бизнес-процессов", color: "#0ABAB5" },
+  { num: "03", title: "Схема документооборота", desc: "Формирование оптимальной схемы движения документов в 1С для корректной отчётности и минимальных трудозатрат", color: "#0ABAB5" },
+  { num: "04", title: "Подбор версии 1С", desc: "Подбор оптимальной версии 1С УНФ под задачи бизнеса", color: "#38bdf8" },
+  { num: "05", title: "База данных", desc: "Создание базы данных и резервной копии", color: "#38bdf8" },
+  { num: "06", title: "Серверное размещение", desc: "Размещение 1С на собственных серверах", color: "#38bdf8" },
+  { num: "07", title: "Номенклатура", desc: "Заведение всей товарной номенклатуры и спецификаций", color: "#38bdf8" },
+  { num: "08", title: "Настройка документов", desc: "Настройка документов для корректного учёта данных", color: "#a78bfa" },
+  { num: "09", title: "Отчётность", desc: "Введение отчётности для оцифровки бизнес-процессов", color: "#a78bfa" },
+  { num: "10", title: "Обучение персонала", desc: "Обучение персонала циклу ведения 1С", color: "#a78bfa" },
+  { num: "11", title: "Работа с ошибками", desc: "Обучение возможным ошибкам в отчётах: отрицательные остатки, спецификации", color: "#a78bfa" },
+  { num: "12", title: "Регламенты ролей", desc: "Предоставление персонализированных регламентов по ведению каждого документа в 1С", color: "#a78bfa" },
+  { num: "13", title: "Поддержка месяц", desc: "Сопровождение в течение месяца по всем возникшим вопросам и проблемам", color: "#4ade80" },
+];
+
 
 export default function CaseAutomation1CPage() {
   return (
@@ -179,69 +195,29 @@ export default function CaseAutomation1CPage() {
     </section>
 
     {/* Case1CStepsSection */}
-    <section className="case1c-steps-section" style={{ ...sectionStyle, ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#071518" }}>
+    <section className="case1c-steps-section" style={{ ...deferredSectionStyle, position: "relative", width: "100%", backgroundColor: "#071518", padding: "clamp(50px, 7vh, 80px) clamp(20px, 5vw, 80px) clamp(60px, 8vh, 100px)" }}>
       <div style={{ position: "absolute", right: "-6vw", top: "5vh", width: "55vw", height: "55vw", background: "radial-gradient(circle, rgba(10,186,181,0.09) 0%, transparent 65%)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", left: "-5vw", bottom: "0", width: "35vw", height: "35vw", background: "radial-gradient(circle, rgba(10,186,181,0.05) 0%, transparent 65%)", pointerEvents: "none" }} />
-      <div className="case1c-steps-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.56vh, 60px)", display: "flex", alignItems: "baseline", gap: "clamp(12px, 1.5vw, 28px)" }}>
-        <h2 className="case1c-steps-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.167vw, 80px)", lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", margin: 0, whiteSpace: "nowrap" }}>
-          Как это работает
-        </h2>
-        <p className="case1c-steps-kicker" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 1.25vw, 24px)", letterSpacing: "-0.02em", color: "rgba(255,255,255,0.3)", margin: 0 }}>
-          1С УНФ + ТСД · 4 этапа
-        </p>
-      </div>
-      <div className="case1c-steps-grid" style={{ position: "absolute", left: "3.125vw", top: "clamp(100px, 14.7vh, 155px)", bottom: "clamp(20px, 3vh, 36px)", width: "48%", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "clamp(8px, 1.04vw, 18px)" }}>
-        {[
-          { num: "01", title: "Аудит и регламент", desc: "Анализ бизнес-модели, схема движения документов в 1С", color: "#0ABAB5" },
-          { num: "02", title: "Развёртывание системы", desc: "База данных, серверы, вся товарная номенклатура", color: "#38bdf8" },
-          { num: "03", title: "Настройка и учёт", desc: "ТСД, документооборот, полная оцифровка склада", color: "#38bdf8" },
-          { num: "04", title: "Обучение и поддержка", desc: "Регламенты для ролей, месяц технической поддержки", color: "#a78bfa" },
-        ].map(({ num, title, desc, color }) => (
-          <GlowCard className="case1c-step-card" key={num} glowColor="teal" style={{ background: "rgba(255,255,255,0.03)", borderRadius: "clamp(12px, 1.25vw, 24px)", padding: "clamp(16px, 2.22vh, 28px) clamp(16px, 1.46vw, 28px)", display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box" }}>
-            <span className="case1c-step-num" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 3.125vw, 60px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.5 }}>{num}</span>
-            <div>
-              <p className="case1c-step-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(18px, 1.8vw, 34px)", lineHeight: 1.1, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.56vh,8px)" }}>{title}</p>
-              <p className="case1c-step-desc" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(14px, 1.3vw, 25px)", lineHeight: 1.35, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
-            </div>
-          </GlowCard>
-        ))}
-      </div>
-      <div className="case1c-steps-visual" style={{ position: "absolute", right: "3.125vw", top: "50%", transform: "translateY(-50%)", width: "clamp(260px, 44vw, 820px)", height: "clamp(260px, 44vw, 820px)" }}>
-        <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }}>
-          <defs>
-            <filter id="layGlow2"><feGaussianBlur stdDeviation="5" result="blur" /><feComposite in="SourceGraphic" in2="blur" operator="over" /></filter>
-            <linearGradient id="layTopFace2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#0ABAB5" stopOpacity="0.55" /><stop offset="100%" stopColor="#38bdf8" stopOpacity="0.3" /></linearGradient>
-            <linearGradient id="layLeftFace2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#0ABAB5" stopOpacity="0.18" /><stop offset="100%" stopColor="#071518" stopOpacity="0.8" /></linearGradient>
-            <linearGradient id="layRightFace2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#38bdf8" stopOpacity="0.22" /><stop offset="100%" stopColor="#071518" stopOpacity="0.9" /></linearGradient>
-            <style>{`
-              @keyframes layFloat0b{0%,100%{transform:translateY(0px)}50%{transform:translateY(-14px)}}
-              @keyframes layFloat2b{0%,100%{transform:translateY(0px)}50%{transform:translateY(-7px)}}
-              @keyframes layDashb{from{stroke-dashoffset:0}to{stroke-dashoffset:-60}}
-              @keyframes layRiseb{0%{opacity:0;transform:translateY(20px)}30%{opacity:.7}100%{opacity:0;transform:translateY(-40px)}}
-            `}</style>
-          </defs>
-          <g opacity="0.45">
-            <polygon points="250,305 340,255 250,205 160,255" fill="url(#layTopFace2)" stroke="rgba(10,186,181,0.3)" strokeWidth="1" />
-            <polygon points="160,255 160,295 250,345 250,305" fill="url(#layLeftFace2)" stroke="rgba(10,186,181,0.2)" strokeWidth="1" />
-            <polygon points="340,255 340,295 250,345 250,305" fill="url(#layRightFace2)" stroke="rgba(56,189,248,0.2)" strokeWidth="1" />
-          </g>
-          <g style={{ animation: "layFloat2b 5s ease-in-out infinite 0.8s" }} opacity="0.65">
-            <polygon points="250,245 340,195 250,145 160,195" fill="url(#layTopFace2)" stroke="rgba(10,186,181,0.45)" strokeWidth="1.2" filter="url(#layGlow2)" />
-            <polygon points="160,195 160,235 250,285 250,245" fill="url(#layLeftFace2)" stroke="rgba(10,186,181,0.25)" strokeWidth="1" />
-            <polygon points="340,195 340,235 250,285 250,245" fill="url(#layRightFace2)" stroke="rgba(56,189,248,0.25)" strokeWidth="1" />
-          </g>
-          <g style={{ animation: "layFloat0b 4s ease-in-out infinite" }}>
-            <polygon points="250,175 350,118 250,61 150,118" fill="url(#layTopFace2)" stroke="rgba(10,186,181,0.7)" strokeWidth="1.5" filter="url(#layGlow2)" />
-            <polygon points="150,118 150,165 250,222 250,175" fill="url(#layLeftFace2)" stroke="rgba(10,186,181,0.35)" strokeWidth="1.2" />
-            <polygon points="350,118 350,165 250,222 250,175" fill="url(#layRightFace2)" stroke="rgba(56,189,248,0.35)" strokeWidth="1.2" />
-            <circle cx="250" cy="61" r="4" fill="#0ABAB5" opacity="0.9" filter="url(#layGlow2)" />
-            <circle cx="350" cy="118" r="3" fill="#38bdf8" opacity="0.7" />
-            <circle cx="150" cy="118" r="3" fill="#0ABAB5" opacity="0.7" />
-          </g>
-          <line x1="160" y1="195" x2="160" y2="255" stroke="rgba(10,186,181,0.2)" strokeWidth="1" strokeDasharray="4 4" style={{ animation: "layDashb 2s linear infinite" }} />
-          <line x1="340" y1="195" x2="340" y2="255" stroke="rgba(56,189,248,0.2)" strokeWidth="1" strokeDasharray="4 4" style={{ animation: "layDashb 2s linear infinite reverse" }} />
-          <text x="250" y="460" textAnchor="middle" fill="rgba(10,186,181,0.45)" fontSize="12" fontFamily="Helvetica Neue, sans-serif" letterSpacing="-0.02em">1С · УНФ · ТСД · ФУЛФИЛМЕНТ</text>
-        </svg>
+      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div className="case1c-steps-heading" style={{ display: "flex", alignItems: "baseline", gap: "clamp(12px, 1.5vw, 28px)", marginBottom: "clamp(32px, 4vh, 52px)" }}>
+          <h2 className="case1c-steps-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(28px, 4.167vw, 80px)", lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", margin: 0, whiteSpace: "nowrap" }}>
+            Как это работает
+          </h2>
+          <p className="case1c-steps-kicker" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(11px, 1.25vw, 24px)", letterSpacing: "-0.02em", color: "rgba(255,255,255,0.3)", margin: 0 }}>
+            1С УНФ + ТСД · 13 этапов
+          </p>
+        </div>
+        <div className="case1c-steps-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(8px, 1.04vw, 16px)" }}>
+          {steps1c.map(({ num, title, desc, color }) => (
+            <GlowCard className="case1c-step-card" key={num} glowColor="teal" style={{ background: "rgba(255,255,255,0.03)", borderRadius: "clamp(12px, 1.25vw, 24px)", padding: "clamp(16px, 2.22vh, 28px) clamp(16px, 1.46vw, 28px)", display: "flex", flexDirection: "column" as const, gap: "clamp(10px, 1.5vh, 16px)", boxSizing: "border-box" as const }}>
+              <span className="case1c-step-num" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(22px, 2.5vw, 48px)", lineHeight: 1, letterSpacing: "-0.05em", color, opacity: 0.6 }}>{num}</span>
+              <div>
+                <p className="case1c-step-title" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(15px, 1.4vw, 26px)", lineHeight: 1.15, letterSpacing: "-0.03em", color: "#fff", margin: "0 0 clamp(4px,0.56vh,8px)" }}>{title}</p>
+                <p className="case1c-step-desc" style={{ fontFamily: FONT, fontWeight: 400, fontSize: "clamp(12px, 1.0vw, 18px)", lineHeight: 1.45, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.45)", margin: 0 }}>{desc}</p>
+              </div>
+            </GlowCard>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -306,69 +282,42 @@ export default function CaseAutomation1CPage() {
         }
 
         .case1c-steps-section {
-          min-height: auto !important;
-          padding: 24px 20px 40px;
+          padding: 32px 20px 48px !important;
         }
 
         .case1c-steps-heading {
-          position: relative !important;
-          left: auto !important;
-          top: auto !important;
           flex-direction: column;
           align-items: flex-start !important;
-          gap: 8px !important;
-          margin-bottom: 18px;
+          gap: 6px !important;
+          margin-bottom: 20px !important;
         }
 
         .case1c-steps-title {
           white-space: normal !important;
         }
 
-        .case1c-steps-kicker {
-          max-width: 100%;
-          line-height: 1.3;
-        }
-
         .case1c-steps-grid {
-          position: relative !important;
-          left: auto !important;
-          top: auto !important;
-          bottom: auto !important;
-          width: 100% !important;
           grid-template-columns: 1fr !important;
-          grid-template-rows: none !important;
-          gap: 12px !important;
+          gap: 10px !important;
         }
 
         .case1c-step-card {
-          justify-content: flex-start !important;
-          gap: 14px;
-          padding: 18px !important;
+          padding: 16px !important;
+          gap: 10px !important;
         }
 
         .case1c-step-num {
-          font-size: 34px !important;
+          font-size: 28px !important;
         }
 
         .case1c-step-title {
-          font-size: 18px !important;
-          line-height: 1.15 !important;
-          margin-bottom: 8px !important;
+          font-size: 16px !important;
+          line-height: 1.2 !important;
         }
 
         .case1c-step-desc {
           font-size: 13px !important;
           line-height: 1.45 !important;
-        }
-
-        .case1c-steps-visual {
-          position: relative !important;
-          right: auto !important;
-          top: auto !important;
-          transform: none !important;
-          width: min(100%, 320px) !important;
-          height: clamp(220px, 72vw, 320px) !important;
-          margin: 20px auto 0;
         }
       }
     `}</style>
