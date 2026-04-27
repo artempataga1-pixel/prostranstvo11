@@ -1276,13 +1276,12 @@ function ServicesPodborSection() {
           src="/podbor-analysis.jpg"
           style={{
             position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "top",
+            inset: "8%",
+            width: "84%",
+            height: "84%",
+            objectFit: "contain",
+            objectPosition: "center top",
             pointerEvents: "none",
-            borderRadius: "inherit",
             zIndex: 1,
           }}
         />
