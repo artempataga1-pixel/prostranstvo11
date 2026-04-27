@@ -1282,23 +1282,33 @@ function ServicesPodborSection() {
 
         {/* Analysis screenshot — desktop only (mobile: display:none via CSS) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <div
           className="podbor-analysis-img"
-          alt=""
-          src="/podbor-analysis.jpg"
           style={{
             position: "absolute",
             top: "15%",
             left: "3%",
             right: "3%",
             bottom: "2%",
-            objectFit: "contain",
-            objectPosition: "center top",
-            pointerEvents: "none",
             zIndex: 1,
             borderRadius: "clamp(6px, 0.8vw, 16px)",
+            overflow: "hidden",
           }}
-        />
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt=""
+            src="/podbor-analysis.jpg"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              objectPosition: "center top",
+              display: "block",
+              pointerEvents: "none",
+            }}
+          />
+        </div>
       </div>
 
       {/* Heading — Figma: left:60 top:60 font:100px tracking:-3.5px w:993 */}
