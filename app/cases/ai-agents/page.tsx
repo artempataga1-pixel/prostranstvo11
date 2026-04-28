@@ -30,7 +30,6 @@ export default function CaseAiAgentsPage() {
     <div
       className="ai-case-hero"
       style={{
-        minHeight: "100vh",
         background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
         fontFamily: FONT,
         color: "#fff",
@@ -73,7 +72,7 @@ export default function CaseAiAgentsPage() {
         <span style={{ color: "rgba(7,21,24,0.8)", fontSize: 14 }}>ИИ Агенты</span>
       </header>
 
-      <main className="ai-case-hero-main" style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px)", maxWidth: 1100, margin: "0 auto" }}>
+      <main className="ai-case-hero-main" style={{ padding: "clamp(40px, 8vh, 100px) clamp(20px, 5vw, 80px) clamp(20px, 4vh, 50px)", maxWidth: 1100, margin: "0 auto" }}>
         <p
           className="ai-case-hero-kicker"
           style={{
