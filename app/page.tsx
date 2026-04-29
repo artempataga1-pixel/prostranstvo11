@@ -3155,7 +3155,7 @@ function ServicesAuditSection() {
         style={{
           position: "absolute",
           left: "3.125vw",
-          top: "clamp(340px, 55vh, 620px)",
+          top: "clamp(280px, 46vh, 520px)",
           width: "clamp(200px, 38.02vw, 730px)",
           fontFamily: font,
           fontWeight: 400,
