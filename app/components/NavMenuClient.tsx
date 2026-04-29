@@ -19,11 +19,11 @@ type LenisInstance = {
 };
 
 const SECTION_OFFSETS: Record<string, number> = {
-  "#about":    60,
-  "#services": 60,
-  "#cases":    60,
-  "#faq":      60,
-  "#contacts": 60,
+  "#about":    0,
+  "#services": 0,
+  "#cases":    0,
+  "#faq":      0,
+  "#contacts": 0,
 };
 
 function scrollToSection(hash: string) {
