@@ -4663,18 +4663,67 @@ void [
   CaseSeasonalSection,
 ];
 
+const NAV_ITEMS = [
+  { label: "О нас",           href: "#about"    },
+  { label: "Услуги",          href: "#services"  },
+  { label: "Кейсы",           href: "#cases"     },
+  { label: "Частые вопросы",  href: "#faq"       },
+  { label: "Контакты",        href: "#contacts"  },
+];
+
 export default function Page() {
   return (
     <main style={{ position: "relative", width: "100%", backgroundColor: "#071518" }}>
+
+      {/* ── Fixed nav ── */}
+      <style>{`
+        .site-nav { display: flex; }
+        .site-nav-link { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+        .site-nav-link:hover { color: #ffffff; }
+        @media (max-width: 768px) { .site-nav { display: none; } }
+      `}</style>
+      <nav className="site-nav" style={{
+        position: "fixed",
+        top: "clamp(20px, 3vh, 36px)",
+        left: "clamp(20px, 2.5vw, 48px)",
+        zIndex: 1000,
+        flexDirection: "column",
+        gap: "clamp(8px, 1vh, 14px)",
+        background: "rgba(7,21,24,0.72)",
+        backdropFilter: "blur(18px)",
+        WebkitBackdropFilter: "blur(18px)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        borderRadius: "14px",
+        padding: "clamp(14px, 1.8vh, 22px) clamp(18px, 1.6vw, 28px)",
+      }}>
+        {NAV_ITEMS.map(({ label, href }) => (
+          <a
+            key={href}
+            href={href}
+            className="site-nav-link"
+            style={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontSize: "clamp(12px, 0.85vw, 15px)",
+              fontWeight: 400,
+              letterSpacing: "-0.01em",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+
       {/* Hero — без анимации, сразу виден */}
       <HeroSection />
       <FadeIn><GrowthModelSection /></FadeIn>
-      <FadeIn><WhyChooseUsSection /></FadeIn>
-      <DeferredServicesSections />
+      <div id="about"><FadeIn><WhyChooseUsSection /></FadeIn></div>
+      <div id="services"><DeferredServicesSections /></div>
       <FadeIn><OrbitalSection /></FadeIn>
       <FadeIn><WorkWithUsSection /></FadeIn>
-      <FadeIn><FaqSection /></FadeIn>
-      <FadeIn><DeferredContactsSection /></FadeIn>
+      <div id="faq"><FadeIn><FaqSection /></FadeIn></div>
+      <div id="contacts"><FadeIn><DeferredContactsSection /></FadeIn></div>
     </main>
   );
 }
