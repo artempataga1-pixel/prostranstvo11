@@ -1484,7 +1484,7 @@ function ServicesTeamSection() {
         width: "clamp(200px, 40.1vw, 770px)",
         fontFamily: font,
         fontWeight: 400,
-        fontSize: "clamp(13px, 1.5vw, 28px)",
+        fontSize: "clamp(12px, 1.25vw, 24px)",
         lineHeight: 1.4,
         letterSpacing: "-0.02em",
         color: "#ffffff",
