@@ -40,8 +40,7 @@ function scrollToSection(hash: string) {
       offset,
     });
   } else {
-    const y = Math.max(0, target.getBoundingClientRect().top + window.scrollY + offset);
-    window.scrollTo({ top: y, behavior: "smooth" });
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
 
