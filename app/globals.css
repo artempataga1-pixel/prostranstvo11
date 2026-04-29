@@ -17,6 +17,11 @@ html {
   /* scroll-behavior управляется через Lenis — нативный smooth scroll отключён чтобы не конфликтовать */
 }
 
+/* Отступ для fixed nav при anchor-скролле */
+#about, #services, #cases, #faq, #contacts {
+  scroll-margin-top: 80px;
+}
+
 body {
   background: #071518;
   color: #ffffff;
