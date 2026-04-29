@@ -41,6 +41,9 @@ export default function NavMenuClient() {
           box-shadow: 0 0 14px rgba(10,186,181,0.15);
         }
         @media (max-width: 768px) {
+          .site-nav {
+            position: absolute !important;
+          }
           .site-nav-btn {
             font-size: 12px;
             padding: 6px 11px;
