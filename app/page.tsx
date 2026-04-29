@@ -4677,7 +4677,7 @@ export default function Page() {
 
       {/* ── Fixed nav ── */}
       <style>{`
-        .site-nav { display: flex; }
+        .site-nav { display: flex; flex-direction: column; }
         @media (max-width: 768px) { .site-nav { display: none; } }
 
         .site-nav-btn {
