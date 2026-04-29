@@ -263,13 +263,6 @@ function HeroSection() {
           alignItems: "center",
         }}
       >
-        <a
-          href="#cases"
-          className="hero-btn-cases"
-          style={{ fontSize: "clamp(14px, 1.04vw, 20px)", padding: "clamp(13px, 1.4vh, 20px) clamp(28px, 2.3vw, 44px)" }}
-        >
-          Смотреть кейсы ↓
-        </a>
         <Link
           href="/form"
           prefetch
