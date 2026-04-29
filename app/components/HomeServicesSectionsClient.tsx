@@ -98,8 +98,8 @@ function ServicesSection() {
       className="split-section services-intro-section"
       style={{
         ...deferredSectionStyle,
-        minHeight: "clamp(72px, 12svh, 140px)",
-        height: "clamp(72px, 12svh, 140px)",
+        minHeight: "clamp(140px, 26svh, 280px)",
+        height: "clamp(140px, 26svh, 280px)",
         background: "rgb(15, 5, 14)",
       }}
     >
@@ -144,10 +144,10 @@ function ServicesSection() {
           transform: "translateY(-50%)",
           fontFamily: font,
           fontWeight: 400,
-          fontSize: "clamp(24px, 6vw, 92px)",
+          fontSize: "clamp(36px, 8vw, 130px)",
           lineHeight: 0.86,
           letterSpacing: "-0.04em",
-          background: "linear-gradient(179.1deg, rgba(255,0,230,0.25) 13.03%, rgb(255,255,255) 135.21%)",
+          background: "linear-gradient(179.1deg, rgba(255,0,230,0.75) 13.03%, rgb(255,255,255) 135.21%)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
@@ -1311,7 +1311,7 @@ function ServicesPodborSection() {
           fontFamily: font,
           fontWeight: 400,
           fontSize: "clamp(32px, 5.208vw, 100px)",
-          lineHeight: 0.9,
+          lineHeight: 1.05,
           letterSpacing: "-0.035em",
           color: "#ffffff",
           margin: 0,
@@ -1328,7 +1328,7 @@ function ServicesPodborSection() {
         style={{
           position: "absolute",
           left: "3.125vw",
-          top: "clamp(110px, 26.11vh, 282px)",
+          top: "clamp(165px, 31vh, 320px)",
           width: "clamp(200px, 40.1vw, 770px)",
           fontFamily: font,
           fontWeight: 400,
@@ -1999,11 +1999,11 @@ export default function HomeServicesSectionsClient() {
     <>
       <style>{`
         .services-intro-section {
-          min-height: clamp(72px, 12svh, 140px);
-          height: clamp(72px, 12svh, 140px);
+          min-height: clamp(140px, 26svh, 280px);
+          height: clamp(140px, 26svh, 280px);
         }
         .services-intro-section .svc-title-text {
-          font-size: clamp(24px, 6vw, 92px);
+          font-size: clamp(36px, 8vw, 130px);
           padding: 0 clamp(48px, 10vw, 140px);
         }
         .services-intro-section .svc-infinity {
@@ -2011,11 +2011,11 @@ export default function HomeServicesSectionsClient() {
         }
         @media (max-width: 1200px) {
           .services-intro-section {
-            min-height: clamp(72px, 10svh, 116px) !important;
-            height: clamp(72px, 10svh, 116px) !important;
+            min-height: clamp(120px, 22svh, 240px) !important;
+            height: clamp(120px, 22svh, 240px) !important;
           }
           .services-intro-section .svc-title-text {
-            font-size: clamp(22px, 5.6vw, 64px) !important;
+            font-size: clamp(30px, 7vw, 100px) !important;
             padding: 0 clamp(42px, 8vw, 112px) !important;
           }
           .services-intro-section .svc-infinity {
@@ -2026,11 +2026,11 @@ export default function HomeServicesSectionsClient() {
         }
         @media (max-width: 768px) {
           .services-intro-section {
-            min-height: clamp(68px, 10svh, 92px) !important;
-            height: clamp(68px, 10svh, 92px) !important;
+            min-height: clamp(110px, 18svh, 160px) !important;
+            height: clamp(110px, 18svh, 160px) !important;
           }
           .services-intro-section .svc-title-text {
-            font-size: clamp(20px, 7vw, 34px) !important;
+            font-size: clamp(28px, 10vw, 54px) !important;
             line-height: 0.95 !important;
             letter-spacing: -0.03em !important;
             padding: 0 56px !important;
@@ -2043,11 +2043,11 @@ export default function HomeServicesSectionsClient() {
         }
         @media (max-width: 480px) {
           .services-intro-section {
-            min-height: 64px !important;
-            height: 64px !important;
+            min-height: 108px !important;
+            height: 108px !important;
           }
           .services-intro-section .svc-title-text {
-            font-size: clamp(18px, 6.6vw, 28px) !important;
+            font-size: clamp(26px, 9vw, 38px) !important;
             padding: 0 48px !important;
           }
           .services-intro-section .svc-infinity {
@@ -2058,20 +2058,20 @@ export default function HomeServicesSectionsClient() {
         }
         @media (max-height: 760px) {
           .services-intro-section {
-            min-height: 68px !important;
-            height: 68px !important;
+            min-height: 110px !important;
+            height: 110px !important;
           }
           .services-intro-section .svc-title-text {
-            font-size: clamp(20px, 4vw, 42px) !important;
+            font-size: clamp(28px, 5vw, 60px) !important;
           }
         }
         @media (min-width: 1700px) {
           .services-intro-section {
-            min-height: 128px !important;
-            height: 128px !important;
+            min-height: 260px !important;
+            height: 260px !important;
           }
           .services-intro-section .svc-title-text {
-            font-size: clamp(40px, 4.4vw, 84px) !important;
+            font-size: clamp(60px, 7vw, 140px) !important;
           }
           .services-intro-section .svc-infinity {
             width: clamp(58px, 5.4vw, 102px) !important;
