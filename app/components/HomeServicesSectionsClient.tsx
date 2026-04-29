@@ -372,7 +372,7 @@ function ServicesAuditSection() {
 function ServicesExternalSection() {
   const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
   const bullets = [
-    "Настраиваем магазины\nв Яндекс Кит и Авито",
+    "Настраиваем собственные\nинтернет магазины\nв Яндекс Кит и Авито",
     "Разрабатываем собственный сайт",
     "Развиваем социальные сети",
     "Настраиваем воронки продаж",
