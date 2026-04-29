@@ -1,5 +1,7 @@
 "use client";
 
+import { useCallback } from "react";
+
 const NAV_ITEMS = [
   { label: "О нас",          href: "#about"    },
   { label: "Услуги",         href: "#services"  },
@@ -8,7 +10,47 @@ const NAV_ITEMS = [
   { label: "Контакты",       href: "#contacts"  },
 ];
 
+type LenisInstance = {
+  scrollTo: (target: string | number | HTMLElement, options?: {
+    duration?: number;
+    easing?: (t: number) => number;
+    offset?: number;
+  }) => void;
+};
+
+const SECTION_OFFSETS: Record<string, number> = {
+  "#about":    60,
+  "#services": 60,
+  "#cases":    60,
+  "#faq":      60,
+  "#contacts": 60,
+};
+
+function scrollToSection(hash: string) {
+  const lenis = (window as Window & { __lenis?: LenisInstance }).__lenis;
+  const target = document.querySelector<HTMLElement>(hash);
+  if (!target) return;
+
+  const offset = -(SECTION_OFFSETS[hash] ?? 130);
+
+  if (lenis) {
+    lenis.scrollTo(target, {
+      duration: 1.6,
+      easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+      offset,
+    });
+  } else {
+    const y = Math.max(0, target.getBoundingClientRect().top + window.scrollY + offset);
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+}
+
 export default function NavMenuClient() {
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    scrollToSection(href);
+  }, []);
+
   return (
     <>
       <style>{`
@@ -79,7 +121,12 @@ export default function NavMenuClient() {
         }}
       >
         {NAV_ITEMS.map(({ label, href }) => (
-          <a key={href} href={href} className="site-nav-btn">
+          <a
+            key={href}
+            href={href}
+            className="site-nav-btn"
+            onClick={(e) => handleNavClick(e, href)}
+          >
             {label}
           </a>
         ))}
