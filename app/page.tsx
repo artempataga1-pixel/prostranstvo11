@@ -4620,8 +4620,8 @@ function OrbitalSection() {
         </h2>
       </div>
       <DeferredOrbitalCasesTimeline />
-      {/* Переход Orbital → Services rgb(15,5,14) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(15,5,14,0) 0%,rgba(15,5,14,0) 55%,rgba(15,5,14,0.12) 68%,rgba(15,5,14,0.38) 80%,rgba(15,5,14,0.72) 92%,rgb(15,5,14) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      {/* Переход Orbital → WorkWithUs rgb(7,15,12) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(7,15,12,0) 0%,rgba(7,15,12,0) 55%,rgba(7,15,12,0.12) 68%,rgba(7,15,12,0.38) 80%,rgba(7,15,12,0.72) 92%,rgb(7,15,12) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
@@ -4670,8 +4670,8 @@ export default function Page() {
       <HeroSection />
       <FadeIn><GrowthModelSection /></FadeIn>
       <FadeIn><WhyChooseUsSection /></FadeIn>
-      <FadeIn><OrbitalSection /></FadeIn>
       <DeferredServicesSections />
+      <FadeIn><OrbitalSection /></FadeIn>
       <FadeIn><WorkWithUsSection /></FadeIn>
       <FadeIn><FaqSection /></FadeIn>
       <FadeIn><DeferredContactsSection /></FadeIn>

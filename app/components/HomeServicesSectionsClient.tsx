@@ -1989,8 +1989,8 @@ function ServicesHrTeamSection() {
       >
         Развиваем действующую команду
       </p>
-      {/* Переход → WorkWithUs rgb(7,15,12) */}
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(7,15,12,0) 0%,rgba(7,15,12,0) 55%,rgba(7,15,12,0.12) 68%,rgba(7,15,12,0.38) 80%,rgba(7,15,12,0.72) 92%,rgb(7,15,12) 100%)", pointerEvents: "none", zIndex: 5 }} />
+      {/* Переход → OrbitalSection rgb(7,21,24) */}
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(280px,32vw,420px)", background: "linear-gradient(to bottom,rgba(7,21,24,0) 0%,rgba(7,21,24,0) 55%,rgba(7,21,24,0.12) 68%,rgba(7,21,24,0.38) 80%,rgba(7,21,24,0.72) 92%,rgb(7,21,24) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
   );
 }
