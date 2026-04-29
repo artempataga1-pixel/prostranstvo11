@@ -290,7 +290,7 @@ export default function CaseJeansPage() {
         className="case-revenue-card-a"
         style={{
           position: "absolute",
-          left: "1.5vw",
+          left: "2.8vw",
           top: "clamp(330px, 47vh, 532px)",
           width: "min(22vw, 420px)",
           minHeight: "clamp(200px, 29.54vh, 319px)",
