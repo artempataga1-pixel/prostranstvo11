@@ -3900,7 +3900,7 @@ function ServicesPodborSection() {
           margin: 0,
         }}
       >
-        {"Подбираем для вас три перспективных товара для запуска на маркетплейсах и\u00A0разбираем каждый вариант по ключевым параметрам: спрос, конкуренция, риски, экономическая модель и\u00A0потенциальная прибыль. В\u00A0результате вы получаете не абстрактные идеи, а конкретные варианты, с которыми можно выходить в закупку и\u00A0запуск."}
+        {"Подбираем для\u00A0вас три перспективных товара для\u00A0запуска на маркетплейсах и\u00A0разбираем каждый вариант по ключевым параметрам: спрос, конкуренция, риски, экономическая модель и\u00A0потенциальная прибыль. В\u00A0результате вы получаете не абстрактные идеи, а конкретные варианты, с\u00A0которыми можно выходить в закупку и\u00A0запуск."}
       </p>
 
       {/* "Что делаем:" list — Figma: left:60 top:795 font:35px opacity:0.5 tracking:-1.225px */}
@@ -4592,7 +4592,7 @@ function WorkWithUsSection() {
 
 function OrbitalSection() {
   return (
-    <section id="cases" style={{
+    <section style={{
       position: "relative",
       background: "linear-gradient(180deg, #071518 0%, #0a1f22 50%, #071518 100%)",
       padding: "clamp(60px, 10vh, 120px) clamp(20px, 4vw, 60px)",
@@ -4665,10 +4665,10 @@ export default function Page() {
 
       {/* Hero — без анимации, сразу виден */}
       <HeroSection />
-      <FadeIn><GrowthModelSection /></FadeIn>
-      <div id="about"><FadeIn><WhyChooseUsSection /></FadeIn></div>
+      <div id="about"><FadeIn><GrowthModelSection /></FadeIn></div>
+      <FadeIn><WhyChooseUsSection /></FadeIn>
       <div id="services"><DeferredServicesSections /></div>
-      <FadeIn><OrbitalSection /></FadeIn>
+      <div id="cases"><FadeIn><OrbitalSection /></FadeIn></div>
       <FadeIn><WorkWithUsSection /></FadeIn>
       <div id="faq"><FadeIn><FaqSection /></FadeIn></div>
       <div id="contacts"><FadeIn><DeferredContactsSection /></FadeIn></div>
