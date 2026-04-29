@@ -257,11 +257,11 @@ function ServicesAuditSection() {
         style={{
           position: "absolute",
           left: "3.125vw",
-          top: "clamp(480px, 74.81vh, 808px)",
+          top: "clamp(340px, 55vh, 620px)",
           width: "clamp(200px, 38.02vw, 730px)",
           fontFamily: font,
           fontWeight: 400,
-          fontSize: "clamp(13px, 1.6vw, 30px)",
+          fontSize: "clamp(14px, 1.9vw, 36px)",
           lineHeight: 1.45,
           letterSpacing: "-0.02em",
           color: "#ffffff",
