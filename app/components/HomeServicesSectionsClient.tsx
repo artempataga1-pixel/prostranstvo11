@@ -882,14 +882,14 @@ function ServicesManagementSection() {
             width: "clamp(180px, 38.02vw, 730px)",
             fontFamily: font,
             fontWeight: 400,
-            fontSize: "clamp(14px, 2.34vw, 45px)",
-            lineHeight: 1,
-            letterSpacing: "-0.035em",
+            fontSize: "clamp(13px, 1.6vw, 30px)",
+            lineHeight: 1.45,
+            letterSpacing: "-0.02em",
             color: "#0d1f1f",
             margin: 0,
           }}
         >
-          Получаете отдел продаж, который работает на рост прибыли, отчитывается в цифрах, масштабирует успешные решения
+          {"Берём на себя системное управление продажами на маркетплейсах: аналитику, рекламу, ассортимент, контент, поставки и\u00A0ежедневную операционную работу. Для клиента это формат, в котором кабинет развивается под контролем команды и\u00A0приносит не просто оборот, а управляемую прибыль."}
         </p>
 
         {/* Right list — Figma: left:910 top:57 font:35px opacity:0.5 color:#0d1f1f */}
