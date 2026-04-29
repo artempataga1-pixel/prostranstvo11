@@ -4678,38 +4678,79 @@ export default function Page() {
       {/* ── Fixed nav ── */}
       <style>{`
         .site-nav { display: flex; }
-        .site-nav-link { color: rgba(255,255,255,0.6); transition: color 0.2s; }
-        .site-nav-link:hover { color: #ffffff; }
         @media (max-width: 768px) { .site-nav { display: none; } }
+
+        .site-nav-btn {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          text-decoration: none;
+          padding: 8px 14px;
+          border-radius: 10px;
+          border: 1px solid rgba(255,255,255,0.07);
+          background: rgba(255,255,255,0.03);
+          color: rgba(255,255,255,0.5);
+          font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+          font-size: clamp(11px, 0.78vw, 14px);
+          font-weight: 400;
+          letter-spacing: 0.01em;
+          white-space: nowrap;
+          cursor: pointer;
+          transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .site-nav-btn::before {
+          content: '';
+          position: absolute;
+          left: 0; top: 0; bottom: 0;
+          width: 2px;
+          background: linear-gradient(180deg, #0ABAB5, rgba(10,186,181,0));
+          opacity: 0;
+          transition: opacity 0.22s ease;
+          border-radius: 2px 0 0 2px;
+        }
+        .site-nav-btn:hover {
+          background: rgba(10,186,181,0.08);
+          border-color: rgba(10,186,181,0.3);
+          color: #ffffff;
+          box-shadow: 0 0 18px rgba(10,186,181,0.12), inset 0 0 12px rgba(10,186,181,0.04);
+          transform: translateX(3px);
+        }
+        .site-nav-btn:hover::before {
+          opacity: 1;
+        }
+        .site-nav-dot {
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: rgba(10,186,181,0.5);
+          flex-shrink: 0;
+          transition: background 0.22s ease, transform 0.22s ease;
+        }
+        .site-nav-btn:hover .site-nav-dot {
+          background: #0ABAB5;
+          transform: scale(1.4);
+        }
       `}</style>
       <nav className="site-nav" style={{
         position: "fixed",
-        top: "clamp(20px, 3vh, 36px)",
-        left: "clamp(20px, 2.5vw, 48px)",
+        top: "clamp(24px, 3.5vh, 48px)",
+        left: "clamp(20px, 2vw, 40px)",
         zIndex: 1000,
         flexDirection: "column",
-        gap: "clamp(8px, 1vh, 14px)",
-        background: "rgba(7,21,24,0.72)",
-        backdropFilter: "blur(18px)",
-        WebkitBackdropFilter: "blur(18px)",
-        border: "1px solid rgba(255,255,255,0.1)",
-        borderRadius: "14px",
-        padding: "clamp(14px, 1.8vh, 22px) clamp(18px, 1.6vw, 28px)",
+        gap: "5px",
+        background: "rgba(5,16,18,0.82)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: "16px",
+        padding: "12px 10px",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(10,186,181,0.06)",
       }}>
         {NAV_ITEMS.map(({ label, href }) => (
-          <a
-            key={href}
-            href={href}
-            className="site-nav-link"
-            style={{
-              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-              fontSize: "clamp(12px, 0.85vw, 15px)",
-              fontWeight: 400,
-              letterSpacing: "-0.01em",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-            }}
-          >
+          <a key={href} href={href} className="site-nav-btn">
+            <span className="site-nav-dot" />
             {label}
           </a>
         ))}
