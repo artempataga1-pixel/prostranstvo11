@@ -19,11 +19,11 @@ type LenisInstance = {
 };
 
 const SECTION_OFFSETS: Record<string, number> = {
-  "#about":    0,
-  "#services": 0,
-  "#cases":    0,
-  "#faq":      0,
-  "#contacts": 0,
+  "#about":    80,
+  "#services": 80,
+  "#cases":    80,
+  "#faq":      80,
+  "#contacts": 80,
 };
 
 function scrollToSection(hash: string) {
@@ -31,7 +31,7 @@ function scrollToSection(hash: string) {
   const target = document.querySelector<HTMLElement>(hash);
   if (!target) return;
 
-  const offset = -(SECTION_OFFSETS[hash] ?? 130);
+  const offset = (SECTION_OFFSETS[hash] ?? 0);
 
   if (lenis) {
     lenis.scrollTo(target, {
