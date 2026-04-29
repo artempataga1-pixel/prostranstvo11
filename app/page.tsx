@@ -538,7 +538,7 @@ function GrowthModelSection() {
           margin: 0,
         }}
       >
-        Мы помогаем выстроить управляемый рост на\u00A0маркетплейсах и\u00A0за их пределами
+        {"Мы помогаем выстроить управляемый рост на\u00A0маркетплейсах и\u00A0за их пределами"}
       </p>
 
       {/* Right body — Figma: top:434 left:calc(50%+15px), 45px, width:825 */}
@@ -558,7 +558,7 @@ function GrowthModelSection() {
           margin: 0,
         }}
       >
-        Наша задача — не просто дать рекомендации, а\u00A0сформировать модель роста, где\u00A0каждое действие основано на\u00A0данных и\u00A0тестировании
+        {"Наша задача — не просто дать рекомендации, а\u00A0сформировать модель роста, где\u00A0каждое действие основано на\u00A0данных и\u00A0тестировании"}
       </p>
 
       {/* Timeline card — Figma: top:736 left:60, 1800×284, borderRadius:30 */}
@@ -1370,7 +1370,7 @@ function CaseAIIntroSection() {
 
       {/* Description */}
       <p style={{ position: "absolute", left: "3.125vw", top: "clamp(190px, 28vh, 300px)", width: "min(44vw, 840px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(12px, 1.563vw, 30px)", lineHeight: 1.35, letterSpacing: "-0.025em", color: "rgba(255,255,255,0.45)", margin: 0 }}>
-        Автоматизируем рутинные бизнес-процессы с\u00A0помощью ИИ-агентов. От аудита до\u00A0полноценного внедрения — ваш бизнес работает эффективнее без\u00A0лишних затрат.
+        {"Автоматизируем рутинные бизнес-процессы с\u00A0помощью ИИ-агентов. От аудита до\u00A0полноценного внедрения — ваш бизнес работает эффективнее без\u00A0лишних затрат."}
       </p>
 
       {/* Stats row */}
@@ -3492,7 +3492,7 @@ function ServicesAccountingSection() {
 
       {/* Description — Figma: bottom:227px → top:853px left:60px font:45px w:811 */}
       <p className="accounting-description" style={{ position: "absolute", left: "3.125vw", top: "clamp(580px, 79.0vh, 853px)", width: "clamp(200px, 42.24vw, 811px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(14px, 2.34vw, 45px)", lineHeight: 1, letterSpacing: "-0.035em", color: "#0d1f1f", margin: 0 }}>
-        Полная картина бизнеса в\u00A0одном месте: продажи, остатки, финансы, план-факт в\u00A0реальном времени, автоматические отчёты
+        {"Полная картина бизнеса в\u00A0одном месте: продажи, остатки, финансы, план-факт в\u00A0реальном времени, автоматические отчёты"}
       </p>
 
       {/* Right teal panel — Figma: left:50% top:0 w:960px h:full, gradient #0d1f1f→#388585 */}
@@ -4512,7 +4512,7 @@ function WorkWithUsSection() {
 
       {/* Subline */}
       <p style={{ position: "absolute", left: "3.125vw", top: "clamp(200px, 30vh, 325px)", width: "min(42vw, 800px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(12px, 1.25vw, 24px)", lineHeight: 1.45, letterSpacing: "-0.025em", color: "rgba(255,255,255,0.42)", margin: 0 }}>
-        Оставьте заявку — проведём разбор кабинета бесплатно, покажем где\u00A0теряется прибыль и\u00A0что с\u00A0этим делать
+        {"Оставьте заявку — проведём разбор кабинета бесплатно, покажем где\u00A0теряется прибыль и\u00A0что с\u00A0этим делать"}
       </p>
 
       {/* Perks list */}

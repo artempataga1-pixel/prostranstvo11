@@ -497,7 +497,7 @@ function ServicesExternalSection() {
             Результат
           </p>
           <p style={{ fontFamily: font, fontWeight: 400, fontSize: "clamp(16px, 2.34vw, 45px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#0d1f1f", margin: 0 }}>
-            Снижение зависимости от\u00A0маркетплейсов и\u00A0рост продаж
+            {"Снижение зависимости от\u00A0маркетплейсов и\u00A0рост продаж"}
           </p>
         </div>
       </div>
@@ -633,7 +633,7 @@ function ServicesAccountingSection() {
 
       {/* Description — Figma: bottom:227px → top:853px left:60px font:45px w:811 */}
       <p className="accounting-description" style={{ position: "absolute", left: "3.125vw", top: "clamp(580px, 79.0vh, 853px)", width: "clamp(200px, 42.24vw, 811px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(14px, 2.34vw, 45px)", lineHeight: 1, letterSpacing: "-0.035em", color: "#0d1f1f", margin: 0 }}>
-        Полная картина бизнеса в\u00A0одном месте: продажи, остатки, финансы, план-факт в\u00A0реальном времени, автоматические отчёты
+        {"Полная картина бизнеса в\u00A0одном месте: продажи, остатки, финансы, план-факт в\u00A0реальном времени, автоматические отчёты"}
       </p>
 
       {/* Right teal panel — Figma: left:50% top:0 w:960px h:full, gradient #0d1f1f→#388585 */}
