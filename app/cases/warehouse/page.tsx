@@ -169,7 +169,7 @@ export default function CaseWarehousePage() {
             display: "grid",
             gridTemplateColumns: "minmax(0, 1.08fr) minmax(360px, 0.92fr)",
             gap: "clamp(24px, 2.5vw, 48px)",
-            paddingTop: "clamp(80px, 14vh, 160px)",
+            paddingTop: "clamp(60px, 10vh, 120px)",
             paddingBottom: "clamp(34px, 5.2vh, 56px)",
           }}
         >
