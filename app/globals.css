@@ -356,6 +356,8 @@ section {
     height: auto !important;
     min-height: 110px !important;
     min-width: 0 !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
   }
   .why-cards-row > [data-glow] > p:first-child {
     font-size: clamp(10px, 2.8vw, 13px) !important;
