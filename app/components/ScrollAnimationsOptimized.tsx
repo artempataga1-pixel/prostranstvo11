@@ -31,34 +31,6 @@ export function ScrollAnimationsOptimized() {
       if (started || disposed) return;
       started = true;
 
-      // Используем кэшированные модули, если уже загружены
-      if (!_gsap || !_ScrollTrigger) {
-        const [gsapModule, stModule] = await Promise.all([
-          import("gsap"),
-          import("gsap/ScrollTrigger"),
-        ]);
-        _gsap = gsapModule.gsap;
-        _ScrollTrigger = stModule.ScrollTrigger;
-      }
-
-      if (!_lenisLoaded) {
-        _lenisLoaded = true;
-        if (!prefersTouchScroll) {
-          const lenisModule = await import("lenis");
-          _Lenis = lenisModule.default;
-        }
-      }
-
-      if (disposed) return;
-
-      const gsap = _gsap!;
-      const ScrollTrigger = _ScrollTrigger!;
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      const listenerCleanup: Array<() => void> = [];
-      const runtimeCleanup: Array<() => void> = [];
-
       const bar = document.createElement("div");
       Object.assign(bar.style, {
         position: "fixed",
@@ -78,6 +50,57 @@ export function ScrollAnimationsOptimized() {
       const setBarProgress = (progress: number) => {
         bar.style.width = `${Math.max(0, Math.min(1, progress)) * 100}%`;
       };
+
+      // На мобиле (touch) — GSAP не нужен: нет smooth-scroll, нет parallax, нет h2-анимаций.
+      // Используем нативный scroll для прогресс-бара и выходим.
+      if (prefersTouchScroll) {
+        let scrollFrame = 0;
+        const syncScrollState = () => {
+          scrollFrame = 0;
+          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+          setBarProgress(maxScroll > 0 ? window.scrollY / maxScroll : 0);
+        };
+        const onScroll = () => {
+          if (scrollFrame !== 0) return;
+          scrollFrame = window.requestAnimationFrame(syncScrollState);
+        };
+        syncScrollState();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", syncScrollState);
+        cleanup = () => {
+          if (scrollFrame !== 0) window.cancelAnimationFrame(scrollFrame);
+          window.removeEventListener("scroll", onScroll);
+          window.removeEventListener("resize", syncScrollState);
+          bar.remove();
+        };
+        return;
+      }
+
+      // Используем кэшированные модули, если уже загружены
+      if (!_gsap || !_ScrollTrigger) {
+        const [gsapModule, stModule] = await Promise.all([
+          import("gsap"),
+          import("gsap/ScrollTrigger"),
+        ]);
+        _gsap = gsapModule.gsap;
+        _ScrollTrigger = stModule.ScrollTrigger;
+      }
+
+      if (!_lenisLoaded) {
+        _lenisLoaded = true;
+        const lenisModule = await import("lenis");
+        _Lenis = lenisModule.default;
+      }
+
+      if (disposed) return;
+
+      const gsap = _gsap!;
+      const ScrollTrigger = _ScrollTrigger!;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const listenerCleanup: Array<() => void> = [];
+      const runtimeCleanup: Array<() => void> = [];
 
       if (_Lenis) {
         const Lenis = _Lenis;
@@ -316,19 +339,12 @@ export function ScrollAnimationsOptimized() {
           });
         }
 
-        // Откладываем refresh() на следующий idle-фрейм — не блокируем текущий
-        // scroll-event, который мог инициировать загрузку GSAP
-        if (prefersTouchScroll) {
-          // На мобиле: полностью избегаем синхронного refresh — позиции
-          // рассчитываются лениво при первом срабатывании каждого тригера
-          ScrollTrigger.config({ limitCallbacks: true });
-        } else {
+        // Откладываем refresh() на два rAF-а — не блокируем текущий event
+        window.requestAnimationFrame(() => {
           window.requestAnimationFrame(() => {
-            window.requestAnimationFrame(() => {
-              ScrollTrigger.refresh();
-            });
+            ScrollTrigger.refresh();
           });
-        }
+        });
       });
 
       cleanup = () => {
