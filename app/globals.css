@@ -354,11 +354,12 @@ section {
     flex: 1 1 calc(33% - 6px) !important;
     max-width: calc(33% - 6px) !important;
     height: auto !important;
-    min-height: 110px !important;
+    min-height: 0 !important;
     min-width: 0 !important;
     justify-content: flex-start !important;
     gap: 6px !important;
-    overflow: hidden !important;
+    overflow: visible !important;
+    contain: none !important;
   }
   .why-cards-row > [data-glow] p:first-child {
     font-size: clamp(10px, 2.8vw, 13px) !important;
@@ -366,11 +367,9 @@ section {
   }
   .why-cards-row > [data-glow] p:last-child {
     font-size: 9px !important;
-    line-height: 1.3 !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 4 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
+    line-height: 1.35 !important;
+    display: block !important;
+    overflow: visible !important;
   }
   /* Gradient transition overlay stays absolutely positioned */
   .section-why > [aria-hidden="true"] {
