@@ -351,25 +351,19 @@ section {
     margin-bottom: 8px !important;
   }
   .why-cards-row > [data-glow] {
-    flex: 1 1 calc(50% - 4px) !important;
-    max-width: calc(50% - 4px) !important;
+    flex: 1 1 calc(33% - 6px) !important;
+    max-width: calc(33% - 6px) !important;
     height: auto !important;
-    min-height: 130px !important;
+    min-height: 110px !important;
     min-width: 0 !important;
   }
-  /* 3-я карточка в ряду одна — делаем полную ширину */
-  .why-cards-row > [data-glow]:nth-child(3) {
-    flex: 1 1 100% !important;
-    max-width: 100% !important;
-    min-height: 100px !important;
-  }
   .why-cards-row > [data-glow] > p:first-child {
-    font-size: clamp(13px, 3.5vw, 16px) !important;
-    line-height: 1.3 !important;
+    font-size: clamp(10px, 2.8vw, 13px) !important;
+    line-height: 1.25 !important;
   }
   .why-cards-row > [data-glow] > p:last-child {
-    font-size: clamp(11px, 2.8vw, 13px) !important;
-    line-height: 1.4 !important;
+    font-size: clamp(9px, 2.2vw, 11px) !important;
+    line-height: 1.35 !important;
   }
   /* Gradient transition overlay stays absolutely positioned */
   .section-why > [aria-hidden="true"] {
