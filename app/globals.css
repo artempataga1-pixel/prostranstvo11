@@ -34,6 +34,17 @@ body {
 }
 
 
+/* ── Focus-visible: единый outline в цвете акцента для клавиатурной навигации ── */
+:focus-visible {
+  outline: 2px solid rgba(10,186,181,0.8);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* Поля формы имеют собственный glow-эффект — не дублируем outline */
+.lead-input:focus-visible {
+  outline: none;
+}
+
 /* Кнопка */
 button {
   transition: opacity 0.18s ease, transform 0.18s ease;
@@ -307,18 +318,58 @@ section {
     overflow: clip !important;
   }
 
-  /* ── WhyChooseUs — keep desktop absolute layout, just scale ─ */
-  /* Cards font scale at narrow viewport */
-  .why-cards-row > * > p:first-child {
-    font-size: clamp(13px, 3.5vw, 16px) !important;
+  /* ── WhyChooseUs — reflow to flow layout on mobile ─────── */
+  .section-why {
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 36px 16px 48px !important;
+    overflow: clip !important;
   }
-  .why-cards-row > * > p:last-child {
-    font-size: clamp(11px, 2.8vw, 13px) !important;
+  .section-why > h2 {
+    position: relative !important;
+    top: auto !important; left: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    font-size: clamp(28px, 8vw, 40px) !important;
+    line-height: 1.0 !important;
+    margin: 0 0 20px !important;
+  }
+  .section-why > .why-infinity {
+    position: relative !important;
+    top: auto !important; right: auto !important;
+    align-self: flex-start !important;
+    margin: 0 0 20px !important;
+  }
+  .why-cards-row {
+    position: relative !important;
+    top: auto !important; left: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin-bottom: 8px !important;
+  }
+  .why-cards-row > [data-glow] {
+    flex: 1 1 calc(50% - 4px) !important;
+    height: auto !important;
+    min-height: 130px !important;
+    min-width: 0 !important;
+  }
+  .why-cards-row > [data-glow] > p:first-child {
+    font-size: clamp(13px, 3.5vw, 16px) !important;
     line-height: 1.3 !important;
   }
+  .why-cards-row > [data-glow] > p:last-child {
+    font-size: clamp(11px, 2.8vw, 13px) !important;
+    line-height: 1.4 !important;
+  }
+  /* Gradient transition overlay stays absolutely positioned */
+  .section-why > [aria-hidden="true"] {
+    position: absolute !important;
+  }
 
-  /* ── GrowthModel — keep desktop layout ──────────────────── */
-  /* Timeline inner text scale */
+  /* ── GrowthModel — stack body-r under body-l on mobile ──── */
   .growth-label {
     font-size: clamp(13px, 3.5vw, 15px) !important;
   }
@@ -326,9 +377,20 @@ section {
     font-size: clamp(20px, 5.5vw, 26px) !important;
     line-height: 1.05 !important;
   }
-  .growth-body-l, .growth-body-r {
+  .growth-body-l {
     font-size: clamp(13px, 3.4vw, 16px) !important;
     line-height: 1.4 !important;
+    width: calc(100% - 6.25vw) !important;
+  }
+  .growth-body-r {
+    font-size: clamp(13px, 3.4vw, 16px) !important;
+    line-height: 1.4 !important;
+    left: 3.125vw !important;
+    top: clamp(380px, 55svh, 560px) !important;
+    width: calc(100% - 6.25vw) !important;
+  }
+  .growth-timeline {
+    top: clamp(540px, 70svh, 736px) !important;
   }
 
   /* ── CTA Section ("Готовы увеличить выручку?") ───────────── */
@@ -1304,5 +1366,194 @@ section {
   }
   .podbor-phone-card {
     padding: 20px !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BREAKPOINT BRIDGE — 641px–900px
+   Секции с абсолютным desktop-layout масштабируются корректно
+   через clamp(), но ряд UI-элементов нуждается в доп. правках
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 900px) {
+
+  /* ── Contacts: 4-колонный grid слишком плотный на планшете ── */
+  .contacts-card-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: clamp(10px, 1.5vw, 16px) !important;
+  }
+
+  /* ── Contacts: heading row — single column на узких планшетах ── */
+  .contacts-heading-row {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* ── Form page: switch to single column between 641–760px ── */
+@media (min-width: 641px) and (max-width: 760px) {
+  .form-page-layout {
+    grid-template-columns: 1fr !important;
+    column-gap: 0 !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TOUCH-TARGET SAFETY — минимум 44px для интерактивных элементов
+   ════════════════════════════════════════════════════════════════ */
+@media (hover: none) and (pointer: coarse) {
+  /* FAQ кнопки раскрытия */
+  .section-faq button {
+    min-height: 44px;
+  }
+
+  /* Lead form revenue кнопки */
+  .lead-rev-btn {
+    min-height: 44px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* Кнопки CTA на кейс-страницах */
+  .case-cta-btn {
+    min-height: 44px;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CASE PAGES — Breadcrumb headers (все кейс-страницы)
+   gap: 24 (fixed px) с 5 элементами → ~310px, не влезает в 280px
+   Общий паттерн: sticky header с flex + gap: 24
+   ════════════════════════════════════════════════════════════════ */
+.chairs-hero-header,
+.jeans-hero-header,
+.seasonal-case-hero > header,
+.crm-case-hero > header,
+.case1c-hero > header,
+.warehouse-case-hero > header {
+  flex-wrap: wrap;
+  gap: clamp(6px, 1.5vw, 24px) !important;
+  padding-top: clamp(10px, 2vh, 20px) !important;
+  padding-bottom: clamp(10px, 2vh, 20px) !important;
+}
+
+/* ai-agents тоже (класс hero может называться по-другому) */
+[class*="-hero"] > header {
+  flex-wrap: wrap;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CASE PAGES — Hero metric cards (3-col → 2-col на узких экранах)
+   Все кейс-страницы используют repeat(3,1fr) с font-size clamp(28px…)
+   На 320px каждая карточка ~85px, а текст типа "200к+" = ~65px при 24px шрифте
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  /* Переключаем на 2 колонки — третья карточка переносится отдельной строкой */
+  .chairs-hero-metrics,
+  .jeans-hero-metrics,
+  .seasonal-case-hero-metrics,
+  .crm-case-hero-metrics,
+  .case1c-hero-metrics,
+  .warehouse-case-hero-metrics {
+    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 100% !important;
+  }
+
+  /* Уменьшаем padding карточки чтобы цифры дышали */
+  .chairs-metric-card,
+  .jeans-hero-metrics > *,
+  .seasonal-case-hero-metrics > *,
+  .crm-case-hero-metrics > *,
+  .case1c-hero-metrics > *,
+  .warehouse-case-hero-metrics > * {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+
+  /* Числа в карточках — чуть меньше на совсем узких */
+  .chairs-metric-num,
+  .card-num {
+    font-size: clamp(20px, 5.5vw, 36px) !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CASE PAGES — Warehouse: 4-col result grid → 2-col на мобильном
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .warehouse-result-metrics {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* ── Screenshot captions: убираем nowrap на узких экранах ── */
+  .chairs-wb-caption,
+  .chairs-ozon-caption,
+  .jeans-screenshot-caption,
+  .seasonal-screenshot-caption {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    max-width: calc(100vw - 32px) !important;
+    white-space: normal !important;
+  }
+  .chairs-wb-caption p,
+  .chairs-ozon-caption p,
+  .jeans-screenshot-caption p,
+  .seasonal-screenshot-caption p {
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  /* ── CRM intro stats: wrap на мобиле ── */
+  .crm-intro-stats {
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+  }
+
+  /* ── Warehouse stats inner: убираем minmax(240px) ── */
+  .warehouse-stats-inner {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ── Case result section: CTA кнопка на всю ширину ── */
+  .case-result-section .case-cta-btn {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TOUCH TARGETS — nav кнопки: мин. 44px tap area на touch-устройствах
+   ════════════════════════════════════════════════════════════════ */
+@media (hover: none) and (pointer: coarse) {
+  .site-nav-btn {
+    min-height: 44px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* ContactsSection CTA — достаточный touch target */
+  .section-contacts a[style*="border-radius: 100px"],
+  .section-contacts a[style*="borderRadius"] {
+    min-height: 44px !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BRIDGE 641–900px — WhyChooseUs: wrap cards to 2 cols on tablet
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 900px) {
+  .why-cards-row {
+    flex-wrap: wrap !important;
+  }
+  .why-cards-row > [data-glow] {
+    flex: 1 1 calc(33% - 8px) !important;
+    min-width: 200px !important;
   }
 }

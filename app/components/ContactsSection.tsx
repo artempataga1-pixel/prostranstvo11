@@ -112,8 +112,8 @@ function QrCard({ src, label, href }: { src: string; label: string; href: string
     >
       {/* QR image */}
       <div style={{
-        width: "clamp(100px, 10vw, 148px)",
-        height: "clamp(100px, 10vw, 148px)",
+        width: "clamp(72px, 10vw, 148px)",
+        height: "clamp(72px, 10vw, 148px)",
         borderRadius: "10px",
         overflow: "hidden",
         background: "#ffffff",
@@ -217,7 +217,7 @@ export default function ContactsSection() {
 
       <div style={{
         position: "relative", zIndex: 1,
-        width: "min(1400px, calc(100vw - 80px))",
+        width: "min(1400px, calc(100vw - clamp(32px, 8.33vw, 80px)))",
         margin: "0 auto",
         paddingTop: "clamp(60px, 9vh, 110px)",
         paddingBottom: "clamp(60px, 9vh, 110px)",

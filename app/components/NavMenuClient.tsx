@@ -83,7 +83,7 @@ export default function NavMenuClient() {
         }
         @media (max-width: 768px) {
           .site-nav {
-            position: absolute !important;
+            position: fixed !important;
           }
           .site-nav-btn {
             font-size: 12px;

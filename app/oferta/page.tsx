@@ -274,6 +274,9 @@ export default function OfertaPage() {
                       fontSize: "clamp(12px, 0.8vw, 14px)",
                       letterSpacing: "-0.01em",
                       fontStyle: value.startsWith("[") ? "italic" : "normal",
+                      overflowWrap: "break-word",
+                      wordBreak: "break-word",
+                      minWidth: 0,
                     }}>{value}</span>
                   </div>
                 ))}

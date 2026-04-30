@@ -89,6 +89,9 @@ export function ScrollAnimationsOptimized() {
           touchMultiplier: 1.0,
         });
 
+        // Expose globally so NavMenuClient can call lenis.scrollTo()
+        (window as Window & { __lenis?: typeof lenis }).__lenis = lenis;
+
         lenis.on("scroll", ScrollTrigger.update);
 
         const ticker = (time: number) => lenis.raf(time * 1000);
@@ -102,6 +105,7 @@ export function ScrollAnimationsOptimized() {
         runtimeCleanup.push(() => {
           gsap.ticker.remove(ticker);
           lenis.destroy();
+          delete (window as Window & { __lenis?: typeof lenis }).__lenis;
         });
       } else {
         let scrollFrame = 0;
@@ -285,29 +289,46 @@ export function ScrollAnimationsOptimized() {
             });
         }
 
-        document.querySelectorAll<HTMLElement>("h2").forEach((heading) => {
-          gsap.fromTo(
-            heading,
-            { opacity: 0, y: 20, clipPath: "inset(0 0 100% 0)" },
-            {
-              opacity: 1,
-              y: 0,
-              clipPath: "inset(0 0 0% 0)",
-              duration: 0.9,
-              ease: "power3.out",
-              onStart() { heading.style.willChange = "clip-path, transform, opacity"; },
-              onComplete() { heading.style.willChange = ""; },
-              scrollTrigger: {
-                trigger: heading,
-                start: "top 88%",
-                toggleActions: "play none none none",
-                once: true,
+        // h2-анимации только на desktop — на тач-устройствах они создают
+        // 15-20 ScrollTrigger-инстансов, а последующий refresh() вызывает
+        // синхронный reflow всей страницы, блокируя scroll на 100-400мс
+        if (!prefersTouchScroll) {
+          document.querySelectorAll<HTMLElement>("h2").forEach((heading) => {
+            gsap.fromTo(
+              heading,
+              { opacity: 0, y: 20, clipPath: "inset(0 0 100% 0)" },
+              {
+                opacity: 1,
+                y: 0,
+                clipPath: "inset(0 0 0% 0)",
+                duration: 0.9,
+                ease: "power3.out",
+                onStart() { heading.style.willChange = "clip-path, transform, opacity"; },
+                onComplete() { heading.style.willChange = ""; },
+                scrollTrigger: {
+                  trigger: heading,
+                  start: "top 88%",
+                  toggleActions: "play none none none",
+                  once: true,
+                },
               },
-            },
-          );
-        });
+            );
+          });
+        }
 
-        ScrollTrigger.refresh();
+        // Откладываем refresh() на следующий idle-фрейм — не блокируем текущий
+        // scroll-event, который мог инициировать загрузку GSAP
+        if (prefersTouchScroll) {
+          // На мобиле: полностью избегаем синхронного refresh — позиции
+          // рассчитываются лениво при первом срабатывании каждого тригера
+          ScrollTrigger.config({ limitCallbacks: true });
+        } else {
+          window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+              ScrollTrigger.refresh();
+            });
+          });
+        }
       });
 
       cleanup = () => {

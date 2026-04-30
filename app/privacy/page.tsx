@@ -245,6 +245,9 @@ export default function PrivacyPage() {
                       color: value.startsWith("[") ? "rgba(10,186,181,0.7)" : "rgba(255,255,255,0.8)",
                       fontSize: "clamp(12px, 0.8vw, 14px)",
                       fontStyle: value.startsWith("[") ? "italic" : "normal",
+                      overflowWrap: "break-word",
+                      wordBreak: "break-word",
+                      minWidth: 0,
                     }}>{value}</span>
                   </div>
                 ))}
