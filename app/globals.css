@@ -352,6 +352,7 @@ section {
   }
   .why-cards-row > [data-glow] {
     flex: 1 1 calc(50% - 4px) !important;
+    max-width: calc(50% - 4px) !important;
     height: auto !important;
     min-height: 130px !important;
     min-width: 0 !important;
