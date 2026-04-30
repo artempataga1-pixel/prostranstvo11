@@ -2081,7 +2081,7 @@ export default function HomeServicesSectionsClient() {
         @media (max-width: 768px) {
           /* ── SALES: Отдел продаж под ключ ─────────────────── */
           .sales-section {
-            min-height: max(64svh, 500px) !important;
+            min-height: max(80svh, 580px) !important;
           }
           /* Heading row: absolute, full width, z-index > blur */
           .sales-heading-row {
@@ -2154,7 +2154,8 @@ export default function HomeServicesSectionsClient() {
             flex: 1 1 auto !important;
             display: flex !important;
             flex-direction: column !important;
-            justify-content: space-between !important;
+            justify-content: flex-start !important;
+            gap: 20px !important;
             min-height: 0 !important;
           }
           .sales-card-right p {
@@ -2294,7 +2295,7 @@ export default function HomeServicesSectionsClient() {
           /* ── TEAM: radar идеальный полукруг ──────────────── */
           .team-section {
             min-height: 0 !important;
-            padding-bottom: 280px !important;
+            padding-bottom: 360px !important;
             overflow: hidden !important;
             isolation: isolate;
             -webkit-transform: translateZ(0);
