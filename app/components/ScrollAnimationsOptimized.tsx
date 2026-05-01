@@ -383,13 +383,13 @@ export function ScrollAnimationsOptimized() {
       if (browserWindow.requestIdleCallback) {
         idleHandle = browserWindow.requestIdleCallback(() => {
           startFromInteraction();
-        }, { timeout: prefersTouchScroll ? 2200 : 900 });
+        }, { timeout: prefersTouchScroll ? 800 : 900 });
         return;
       }
 
       timeoutHandle = window.setTimeout(() => {
         startFromInteraction();
-      }, prefersTouchScroll ? 1200 : 400);
+      }, prefersTouchScroll ? 400 : 400);
     };
 
     scheduleStart();

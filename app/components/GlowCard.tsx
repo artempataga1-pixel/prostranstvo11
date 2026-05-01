@@ -199,8 +199,6 @@ export function GlowCard({ children, style, className, white = false, glowColor 
   const { hue, stroke, dimStroke, shadowGlow, shadowGlowFar } = COLOR_MAP[colorKey] ?? COLOR_MAP.blue;
   const shouldAnimate = canHover && isNearViewport && isDocumentVisible;
 
-  // Merge 3 one-time setup effects into 1 to reduce post-hydration scheduler work
-  // ResizeObserver создаётся здесь один раз — при монтировании, а не при каждом viewport-входе
   useEffect(() => {
     ensureGlobalCSS();
     const el = ref.current;
@@ -225,14 +223,19 @@ export function GlowCard({ children, style, className, white = false, glowColor 
             return () => mediaQuery.removeListener(syncCanHover);
           })();
 
+    // На мобиле (нет hover) SVG-луч, spotlight и tilt не нужны —
+    // пропускаем IntersectionObserver, ResizeObserver и reflow (offsetWidth/Height).
+    // Это устраняет 15-20 синхронных reflow при гидрации страницы.
+    if (!canHoverRef.current) {
+      return () => unsubscribeHover();
+    }
+
     const unsubVp = observeViewport(el, (intersecting) => {
       isNearViewportRef.current = intersecting;
       setIsNearViewport(intersecting);
     });
     const unsubVis = subscribeToVisibility(setIsDocumentVisible);
 
-    // ResizeObserver создаётся один раз при монтировании.
-    // Обновляет dims только когда карточка находится в viewport (isNearViewportRef).
     const ro = new ResizeObserver(() => {
       if (!isNearViewportRef.current || !canHoverRef.current) return;
       const nextDims = { w: el.offsetWidth, h: el.offsetHeight };
@@ -240,7 +243,7 @@ export function GlowCard({ children, style, className, white = false, glowColor 
     });
     ro.observe(el);
 
-    // Начальный замер размеров
+    // Начальный замер размеров (только desktop — вызывает reflow)
     const nextDims = { w: el.offsetWidth, h: el.offsetHeight };
     setDims(nextDims);
 
