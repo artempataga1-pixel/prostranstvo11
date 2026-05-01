@@ -11,12 +11,9 @@ function Img({ src, alt = "", loading, decoding = "async", fetchPriority, ...pro
   return <img src={src} alt={alt} loading={loading ?? (fetchPriority === "high" ? "eager" : "lazy")} decoding={decoding} fetchPriority={fetchPriority} {...props} />;
 }
 import InfinityMark from "./components/InfinityMark";
-import FloatingShapesOptimized from "./components/FloatingShapesOptimized";
-import ShaderBackgroundOptimized from "./components/ShaderBackgroundOptimized";
 import { FadeIn } from "./components/FadeIn";
 import CountUp from "./components/CountUp";
 import { GlowCard } from "./components/GlowCard";
-import FaqSectionClient from "./components/FaqSectionClient";
 import {
   DeferredContactsSection,
   DeferredOrbitalCasesTimeline,
@@ -29,6 +26,11 @@ import {
   DeferredNeuralNet3D,
   DeferredWarehouse3D,
 } from "./components/DeferredSceneMounts";
+import {
+  LazyShaderBackground as ShaderBackgroundOptimized,
+  LazyFloatingShapes as FloatingShapesOptimized,
+  LazyFaqSectionClient as FaqSectionClient,
+} from "./components/LazyHeroEffects";
 
 const BG = "/bg.png";
 const WAREHOUSE_PLAN_IMG = "/warehouse-plan.jpg";
