@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 const NAV_ITEMS = [
   { label: "О нас",          href: "#about"    },
@@ -48,6 +48,25 @@ export default function NavMenuClient() {
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     scrollToSection(href);
+  }, []);
+
+  // При возврате назад через браузер на /#hash — прокручиваем к нужному разделу.
+  // Next.js не всегда обрабатывает hash при popstate/back navigation.
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    // Два rAF: первый — после paint, второй — даём время секциям смонтироваться
+    let raf1 = 0, raf2 = 0;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        scrollToSection(hash);
+      });
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
