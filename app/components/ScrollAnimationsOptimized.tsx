@@ -139,7 +139,6 @@ export function ScrollAnimationsOptimized() {
           smoothWheel: true,
           wheelMultiplier: 0.85,
           // Touch scroll всегда нативный — Lenis не должен перехватывать touch
-          smoothTouch: false,
           touchMultiplier: 0,
         });
 
