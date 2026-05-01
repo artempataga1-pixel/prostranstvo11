@@ -27,6 +27,20 @@ export function ScrollAnimationsOptimized() {
     let interactionCleanup: (() => void) | undefined;
     let started = false;
 
+    // Немедленная прокрутка к хэшу — до любой отложенной инициализации.
+    // Один rAF даёт React время завершить рендер секций.
+    const immediateHash = window.location.hash;
+    let hashRaf = 0;
+    if (immediateHash) {
+      hashRaf = requestAnimationFrame(() => {
+        hashRaf = 0;
+        const target = document.querySelector<HTMLElement>(immediateHash);
+        if (target && !disposed) {
+          target.scrollIntoView({ block: "start", behavior: "instant" });
+        }
+      });
+    }
+
     const startAnimations = async () => {
       if (started || disposed) return;
       started = true;
@@ -419,6 +433,7 @@ export function ScrollAnimationsOptimized() {
 
     return () => {
       disposed = true;
+      if (hashRaf !== 0) cancelAnimationFrame(hashRaf);
       interactionCleanup?.();
       if (idleHandle !== undefined && browserWindow.cancelIdleCallback) {
         browserWindow.cancelIdleCallback(idleHandle);
