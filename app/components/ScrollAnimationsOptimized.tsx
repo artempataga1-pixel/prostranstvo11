@@ -14,7 +14,10 @@ export function ScrollAnimationsOptimized() {
 
   useEffect(() => {
     const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const prefersTouchScroll = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    // (pointer: coarse) надёжнее чем (hover: none) and (pointer: coarse):
+    // некоторые Android / hybrid устройства могут репортить hover но всё равно
+    // являются тач-устройствами. Coarse pointer = палец = нативный скролл.
+    const prefersTouchScroll = window.matchMedia("(pointer: coarse)").matches;
     const browserWindow = window as Window & {
       requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
       cancelIdleCallback?: (handle: number) => void;
@@ -135,7 +138,9 @@ export function ScrollAnimationsOptimized() {
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           smoothWheel: true,
           wheelMultiplier: 0.85,
-          touchMultiplier: 1.0,
+          // Touch scroll всегда нативный — Lenis не должен перехватывать touch
+          smoothTouch: false,
+          touchMultiplier: 0,
         });
 
         // Expose globally so NavMenuClient can call lenis.scrollTo()
@@ -429,6 +434,23 @@ export function ScrollAnimationsOptimized() {
       }, prefersTouchScroll ? 400 : 400);
     };
 
+    // На мобиле (touch) путь в startAnimations лёгкий — не нужен GSAP/Lenis.
+    // НЕ используем requestIdleCallback: rIC срабатывает когда браузер idle
+    // (т.е. когда юзер останавливает скролл), JS-спайк блокирует следующий
+    // touch → ощущение заморозки. Запускаем сразу в следующем rAF.
+    if (prefersTouchScroll) {
+      const mobileRaf = requestAnimationFrame(() => {
+        void startAnimations().catch(console.error);
+      });
+      return () => {
+        disposed = true;
+        if (hashRaf !== 0) cancelAnimationFrame(hashRaf);
+        cancelAnimationFrame(mobileRaf);
+        cleanup?.();
+      };
+    }
+
+    // Desktop: откладываем тяжёлую GSAP/Lenis инициализацию до idle/первого взаимодействия
     scheduleStart();
 
     return () => {

@@ -35,12 +35,15 @@ function scrollToSection(hash: string) {
 
   if (lenis) {
     lenis.scrollTo(target, {
-      duration: 1.6,
+      duration: 1.2,
       easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
       offset,
     });
   } else {
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    // На мобиле: мгновенный переход — scrollIntoView({ behavior: "smooth" })
+    // блокирует touch-события во время анимации, вызывая freeze.
+    const top = window.scrollY + target.getBoundingClientRect().top - offset;
+    window.scrollTo({ top, behavior: "instant" });
   }
 }
 
