@@ -1564,3 +1564,223 @@ section {
     min-width: 200px !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   MOBILE SPACING BOOST — больше пространства на всех блоках
+   Переопределяет правила выше за счёт позиции в каскаде
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  /* ── Главные секции: вертикальные отступы ─────────────────── */
+  .section-why {
+    padding: 56px 20px 72px !important;
+  }
+  .section-cta {
+    padding: 52px 20px 60px !important;
+  }
+  .section-faq {
+    padding: 52px 20px 60px !important;
+  }
+  .section-contacts {
+    padding: 60px 0 !important;
+  }
+  .contacts-heading-row {
+    gap: 28px !important;
+  }
+
+  /* ── WhyChooseUs: карточки ────────────────────────────────── */
+  .why-cards-row {
+    gap: 10px !important;
+  }
+  .why-cards-row > [data-glow] {
+    padding: 10px 8px !important;
+    gap: 8px !important;
+  }
+
+  /* ── Audit section ────────────────────────────────────────── */
+  .audit-section {
+    padding-bottom: 80px !important;
+  }
+  .audit-badge {
+    margin: 40px 20px 0 !important;
+  }
+  .audit-heading {
+    width: calc(100% - 40px) !important;
+    margin: 28px 20px 0 !important;
+  }
+  .audit-right-card {
+    width: calc(100% - 40px) !important;
+    margin: 48px 20px 0 !important;
+  }
+  .audit-description {
+    width: calc(100% - 40px) !important;
+    margin: 48px 20px 0 !important;
+  }
+
+  /* ── Accounting section ───────────────────────────────────── */
+  .accounting-section {
+    padding-bottom: 48px !important;
+  }
+  .accounting-heading {
+    width: calc(100% - 40px) !important;
+    margin: 28px 20px 0 !important;
+  }
+  .accounting-subtext {
+    margin: 12px 20px 0 !important;
+  }
+  .accounting-cards-grid {
+    width: calc(100% - 40px) !important;
+  }
+  .accounting-description {
+    width: calc(100% - 40px) !important;
+    margin: 24px 20px 0 !important;
+  }
+
+  /* ── HrTeam section ───────────────────────────────────────── */
+  .hrteam-section {
+    padding-bottom: 72px !important;
+  }
+  .hrteam-heading {
+    width: calc(100% - 40px) !important;
+    margin: 44px 20px 0 !important;
+  }
+  .hrteam-badge {
+    margin: 28px 20px 0 !important;
+  }
+  .hrteam-label {
+    width: calc(100% - 56px) !important;
+    margin: 0 20px !important;
+  }
+  .hrteam-label:first-of-type { margin-top: 20px !important; }
+
+  /* ── Team section ─────────────────────────────────────────── */
+  .team-heading {
+    width: calc(100% - 40px) !important;
+    margin: 44px 20px 0 !important;
+  }
+  .team-badge {
+    margin: 28px 20px 0 !important;
+  }
+  .team-description {
+    width: calc(100% - 40px) !important;
+    margin: 36px 20px 0 !important;
+  }
+  .team-bullets {
+    width: calc(100% - 40px) !important;
+    margin: 40px 20px 0 !important;
+  }
+
+  /* ── Sales / Management section ───────────────────────────── */
+  .sales-icons-col {
+    right: 20px !important;
+  }
+  .sales-white-card {
+    padding: 20px !important;
+  }
+
+  /* ── Podbor phone card ────────────────────────────────────── */
+  .podbor-phone-card {
+    left: 20px !important;
+    right: 20px !important;
+  }
+
+  /* ── Hero CTA row ─────────────────────────────────────────── */
+  .hero-cta-row {
+    left: 20px !important;
+    right: 20px !important;
+  }
+
+  /* ── Case revenue cards ───────────────────────────────────── */
+  .case-revenue-card-a,
+  .case-revenue-card-b {
+    width: calc(100% - 40px) !important;
+  }
+  .case-revenue-card-b {
+    margin-top: 280px !important;
+  }
+
+  /* ── Orbital cases section ────────────────────────────────── */
+  .orbital-section { min-height: 540px !important; }
+
+  /* ── CRM cards grid ───────────────────────────────────────── */
+  .crm-cards-grid {
+    padding: 0 20px !important;
+  }
+
+  /* ── Warehouse grids ──────────────────────────────────────── */
+  .warehouse-grid,
+  .warehouse-plan-grid {
+    width: calc(100vw - 40px) !important;
+  }
+  .warehouse-section-grid,
+  .warehouse-plan-section-grid {
+    width: calc(100vw - 40px) !important;
+  }
+
+  /* ── Jeans case ───────────────────────────────────────────── */
+  .jeans-revenue-section {
+    padding: 28px 0 48px !important;
+  }
+  .jeans-revenue-badge {
+    margin: 20px 20px 0 !important;
+  }
+  .jeans-revenue-heading {
+    width: calc(100% - 40px) !important;
+    margin: 20px 20px 0 !important;
+  }
+  .jeans-revenue-desc {
+    width: calc(100% - 40px) !important;
+    margin: 14px 20px 0 !important;
+  }
+  .jeans-revenue-section .case-revenue-card-a,
+  .jeans-revenue-section .case-revenue-card-b {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+    width: calc(100% - 40px) !important;
+  }
+  .jeans-screenshot-section {
+    padding: 72px 0 56px !important;
+  }
+  .jeans-screenshot-container {
+    width: calc(100% - 40px) !important;
+    margin: 0 20px !important;
+  }
+  .jeans-screenshot-caption {
+    margin: 20px 20px 0 !important;
+  }
+
+  /* ── Chairs case ──────────────────────────────────────────── */
+  .chairs-margin-section {
+    padding: 28px 0 56px !important;
+  }
+  .chairs-margin-badge {
+    margin: 20px 20px 0 !important;
+  }
+  .chairs-margin-left {
+    width: calc(100% - 40px) !important;
+    margin: 24px 20px 0 !important;
+  }
+
+  /* ── Seasonal case ────────────────────────────────────────── */
+  .seasonal-left-content {
+    width: calc(100% - 40px) !important;
+    left: 20px !important;
+    margin: 28px 20px 0 !important;
+  }
+  .seasonal-right-panel {
+    padding: 28px 20px 0 !important;
+  }
+  .seasonal-split-section {
+    padding: 0 0 320px !important;
+  }
+
+  /* ── Screenshot captions ──────────────────────────────────── */
+  .chairs-wb-caption,
+  .chairs-ozon-caption,
+  .jeans-screenshot-caption,
+  .seasonal-screenshot-caption {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    max-width: calc(100vw - 40px) !important;
+  }
+}
