@@ -86,10 +86,6 @@ export default function FloatingShapesOptimized() {
   }, []);
 
   useEffect(() => {
-    const browserWindow = window as Window & {
-      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
-      cancelIdleCallback?: (handle: number) => void;
-    };
     let frameHandle: number | undefined;
 
     // На всех устройствах запускаем в следующем rAF — не через rIC.

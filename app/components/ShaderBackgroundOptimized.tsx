@@ -116,7 +116,7 @@ export default function ShaderBackgroundOptimized() {
     let disposed = false;
 
     const isMobileViewport = () => window.innerWidth < 768;
-    const getFrameInterval = () => (isMobileViewport() ? 1000 / 30 : 1000 / 45);
+    const getFrameInterval = () => 1000 / 30; // 30fps везде — фоновый шейдер неотличим визуально, экономит GPU
     const browserWindow = window as Window & {
       requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
       cancelIdleCallback?: (handle: number) => void;

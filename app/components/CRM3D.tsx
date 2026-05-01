@@ -183,7 +183,7 @@ export default function CRM3D() {
 
       // ── Animation ─────────────────────────────────────────────────────────────
       const isMobileScene = window.innerWidth < 768;
-      const frameInterval = isMobileScene ? 1000 / 24 : 0;
+      const frameInterval = isMobileScene ? 1000 / 24 : 1000 / 30;
       let lastFrameTime = 0;
       let t = 0;
       const animate = (now: number) => {

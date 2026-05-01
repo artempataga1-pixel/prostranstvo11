@@ -138,7 +138,7 @@ export default function NeuralNet3D() {
       ));
 
       const isMobileScene = window.innerWidth < 768;
-      const frameInterval = isMobileScene ? 1000 / 24 : 0;
+      const frameInterval = isMobileScene ? 1000 / 24 : 1000 / 30;
       let lastFrameTime = 0;
 
       const animate = (now: number) => {

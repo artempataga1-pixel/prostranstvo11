@@ -96,7 +96,9 @@ export default function Cube3D() {
       ));
 
       const isMobileScene = window.innerWidth < 768;
-      const frameInterval = isMobileScene ? 1000 / 24 : 0;
+      // 30fps на десктопе (было 60fps) — медленно вращающийся 3D объект
+      // неотличим визуально, зато вдвое меньше WebGL draw calls.
+      const frameInterval = isMobileScene ? 1000 / 24 : 1000 / 30;
       let lastFrameTime = 0;
 
       const animate = (now: number) => {
