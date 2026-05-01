@@ -92,31 +92,16 @@ export default function FloatingShapesOptimized() {
     };
     let frameHandle: number | undefined;
 
-    if (window.innerWidth >= 768) {
-      frameHandle = window.requestAnimationFrame(() => {
-        setAllowMotion(true);
-      });
-      return;
-    }
-
-    let handle: number | undefined;
-    const enableMotion = () => setAllowMotion(true);
-
-    if (browserWindow.requestIdleCallback) {
-      handle = browserWindow.requestIdleCallback(enableMotion, { timeout: 1200 });
-    } else {
-      handle = window.setTimeout(enableMotion, 700);
-    }
+    // На всех устройствах запускаем в следующем rAF — не через rIC.
+    // rIC(1200ms) срабатывает когда браузер idle (= когда юзер остановил скролл),
+    // вызывает React re-render прямо во время паузы → при следующем touch freeze.
+    frameHandle = window.requestAnimationFrame(() => {
+      setAllowMotion(true);
+    });
 
     return () => {
       if (frameHandle !== undefined) {
         window.cancelAnimationFrame(frameHandle);
-      }
-      if (handle === undefined) return;
-      if (browserWindow.cancelIdleCallback) {
-        browserWindow.cancelIdleCallback(handle);
-      } else {
-        window.clearTimeout(handle);
       }
     };
   }, []);

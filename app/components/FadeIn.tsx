@@ -61,6 +61,14 @@ export function FadeIn({ children, delay = 0, style, className, as = "div" }: Fa
 
     let frameId = 0;
 
+    // На мобиле (touch) анимация FadeIn не нужна и вредит производительности:
+    // IntersectionObserver callbacks + React setState при каждом прокрутке
+    // создают лишние re-renders. Показываем контент сразу.
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      setMode("instant");
+      return;
+    }
+
     if (prefersReducedMotion()) {
       frameId = window.requestAnimationFrame(() => {
         setMode("instant");
