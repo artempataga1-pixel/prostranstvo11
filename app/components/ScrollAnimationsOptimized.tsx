@@ -67,6 +67,18 @@ export function ScrollAnimationsOptimized() {
         syncScrollState();
         window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", syncScrollState);
+
+        // Handle hash navigation on mobile (e.g., back button from case page → /#cases)
+        const mobileHash = window.location.hash;
+        if (mobileHash) {
+          const mobileTarget = document.querySelector<HTMLElement>(mobileHash);
+          if (mobileTarget) {
+            setTimeout(() => {
+              if (!disposed) mobileTarget.scrollIntoView({ block: "start" });
+            }, 200);
+          }
+        }
+
         cleanup = () => {
           if (scrollFrame !== 0) window.cancelAnimationFrame(scrollFrame);
           window.removeEventListener("scroll", onScroll);
@@ -114,6 +126,17 @@ export function ScrollAnimationsOptimized() {
 
         // Expose globally so NavMenuClient can call lenis.scrollTo()
         (window as Window & { __lenis?: typeof lenis }).__lenis = lenis;
+
+        // Handle hash navigation (e.g., back button from case page → /#cases)
+        const desktopHash = window.location.hash;
+        if (desktopHash) {
+          const desktopTarget = document.querySelector<HTMLElement>(desktopHash);
+          if (desktopTarget) {
+            setTimeout(() => {
+              if (!disposed) lenis.scrollTo(desktopTarget, { immediate: true, offset: 80 });
+            }, 50);
+          }
+        }
 
         lenis.on("scroll", ScrollTrigger.update);
 
