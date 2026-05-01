@@ -158,7 +158,8 @@ export default function OrbitalCasesTimeline() {
   // Синхронизируем selectedIdRef с selectedId (нужен в RAF для zIndex)
   useEffect(() => { selectedIdRef.current = selectedId; }, [selectedId]);
 
-  // Прямое обновление позиций нод в DOM — без React setState
+  // Прямое обновление позиций нод в DOM — без React setState.
+  // Используем transform вместо left/top: compositor-only, без layout reflow.
   const flushNodePositions = useCallback(() => {
     const angle = rotationRef.current;
     const r = radiusRef.current;
@@ -168,8 +169,9 @@ export default function OrbitalCasesTimeline() {
       const { x, y, zIndex, opacity } = calculateNodePosition(i, CASES.length, angle, r);
       const isHov = hoveredIdRef.current === CASES[i].id;
       const isSel = selectedIdRef.current === CASES[i].id;
-      el.style.left    = `calc(50% + ${x.toFixed(1)}px)`;
-      el.style.top     = `calc(50% + ${y.toFixed(1)}px)`;
+      const scale = isSel ? 1.25 : isHov ? 1.2 : 1;
+      // translate не вызывает layout reflow (в отличие от left/top)
+      el.style.transform = `translate(calc(-50% + ${x.toFixed(1)}px), calc(-50% + ${y.toFixed(1)}px)) scale(${scale})`;
       el.style.opacity = opacity.toFixed(3);
       el.style.zIndex  = String((isHov || isSel) ? 100 : zIndex + 10);
     }
@@ -427,12 +429,13 @@ export default function OrbitalCasesTimeline() {
                 ref={(el) => { nodeRefs.current[index] = el; }}
                 style={{
                   position: "absolute",
-                  left: `calc(50% + ${x}px)`,
-                  top: `calc(50% + ${y}px)`,
-                  transform: `translate(-50%, -50%) scale(${isActive ? 1.25 : 1})`,
+                  left: "50%",
+                  top: "50%",
+                  // Позиция и scale управляются через flushNodePositions (transform)
+                  // — статичные left/top не вызывают layout reflow
+                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
                   zIndex: isActive ? 100 : zIndex + 10,
                   opacity,
-                  transition: "transform 0.25s ease",
                   pointerEvents: "none",
                 }}
               >
@@ -549,12 +552,12 @@ export default function OrbitalCasesTimeline() {
               ref={(el) => { nodeRefs.current[index] = el; }}
               style={{
                 position: "absolute",
-                left: `calc(50% + ${x}px)`,
-                top: `calc(50% + ${y}px)`,
-                transform: `translate(-50%, -50%) scale(${isHovered ? 1.2 : 1})`,
+                left: "50%",
+                top: "50%",
+                // Позиция и scale управляются через flushNodePositions (transform)
+                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
                 zIndex: isHovered ? 100 : zIndex + 10,
                 opacity,
-                transition: "transform 0.25s ease",
                 pointerEvents: "none",
               }}
             >
