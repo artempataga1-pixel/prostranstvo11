@@ -108,7 +108,6 @@ export function FadeIn({ children, delay = 0, style, className, as = "div" }: Fa
         opacity: mode === "revealed" ? 1 : 0,
         transform: mode === "revealed" ? "translate3d(0, 0, 0)" : "translate3d(0, 28px, 0)",
         transition: `opacity ${ENTER_DURATION_MS}ms ${ENTER_EASING} ${delay}s, transform ${ENTER_DURATION_MS}ms ${ENTER_EASING} ${delay}s`,
-        willChange: mode === "revealed" ? undefined : "opacity, transform",
       };
 
   return (
