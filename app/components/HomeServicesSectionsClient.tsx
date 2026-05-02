@@ -2088,6 +2088,15 @@ export default function HomeServicesSectionsClient() {
           .podbor-section {
             min-height: 960px !important;
           }
+          /* Карточка: чуть ниже и заканчивается до нижней границы секции */
+          .podbor-phone-card {
+            top: 200px !important;
+            bottom: 20px !important;
+            height: auto !important;
+            left: 20px !important;
+            right: 20px !important;
+            width: auto !important;
+          }
           /* Heading row: absolute, full width, z-index > blur */
           .sales-heading-row {
             position: absolute !important;
