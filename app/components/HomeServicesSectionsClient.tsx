@@ -2086,7 +2086,7 @@ export default function HomeServicesSectionsClient() {
           }
           /* ── PODBOR: Подбираем новинки — высота для 4 шагов ── */
           .podbor-section {
-            min-height: max(calc(100svh + 220px), 1060px) !important;
+            min-height: max(calc(100svh + 120px), 960px) !important;
           }
           /* Heading row: absolute, full width, z-index > blur */
           .sales-heading-row {
