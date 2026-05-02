@@ -2082,7 +2082,7 @@ export default function HomeServicesSectionsClient() {
         @media (max-width: 768px) {
           /* ── SALES: Отдел продаж под ключ ─────────────────── */
           .sales-section {
-            min-height: max(95svh, 740px) !important;
+            min-height: 680px !important;
           }
           /* ── PODBOR: Подбираем новинки — высота для 4 шагов ── */
           .podbor-section {
