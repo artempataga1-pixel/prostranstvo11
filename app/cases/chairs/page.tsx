@@ -521,7 +521,7 @@ export default function CaseChairsPage() {
           min-height: max(48svh, 360px) !important;
         }
         .chairs-ozon-badge {
-          top: 16px !important;
+          top: 6px !important;
           left: auto !important;
           right: 16px !important;
           padding: 8px 12px !important;
