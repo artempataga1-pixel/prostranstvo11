@@ -1792,7 +1792,7 @@ section {
     font-size: clamp(30px, 7.5vw, 44px) !important;
   }
   .seasonal-split-section {
-    padding: 0 0 140px !important;
+    padding: 0 0 80px !important;
   }
 
   /* ── Screenshot captions ──────────────────────────────────── */
