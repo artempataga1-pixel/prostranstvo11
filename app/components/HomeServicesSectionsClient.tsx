@@ -1403,7 +1403,7 @@ function ServicesPodborSection() {
       <div className="podbor-to-audit-gradient" aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "clamp(220px,26vw,320px)", background: "linear-gradient(to bottom,rgba(13,31,31,0) 0%,rgba(13,31,31,0) 55%,rgba(13,31,31,0.12) 68%,rgba(13,31,31,0.38) 80%,rgba(13,31,31,0.72) 92%,rgb(13,31,31) 100%)", pointerEvents: "none", zIndex: 5 }} />
     </section>
     {/* Mobile screenshot block — shown on mobile only (hidden on desktop via CSS) */}
-    <div className="podbor-mobile-screenshot-block" style={{ display: "none", backgroundColor: "#0f050e", padding: "16px 16px 32px", position: "relative" }}>
+    <div className="podbor-mobile-screenshot-block" style={{ display: "none", backgroundColor: "#0f050e", padding: "36px 20px 56px", position: "relative" }}>
       {/* Gradient — top: subtle purple fade */}
       <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 40, background: "linear-gradient(to bottom, rgba(15,5,14,0.85) 0%, rgba(15,5,14,0) 100%)", zIndex: 2, pointerEvents: "none" }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -2082,7 +2082,11 @@ export default function HomeServicesSectionsClient() {
         @media (max-width: 768px) {
           /* ── SALES: Отдел продаж под ключ ─────────────────── */
           .sales-section {
-            min-height: max(80svh, 580px) !important;
+            min-height: max(95svh, 740px) !important;
+          }
+          /* ── PODBOR: Подбираем новинки — высота для 4 шагов ── */
+          .podbor-section {
+            min-height: max(calc(100svh + 220px), 1060px) !important;
           }
           /* Heading row: absolute, full width, z-index > blur */
           .sales-heading-row {
@@ -2163,7 +2167,7 @@ export default function HomeServicesSectionsClient() {
             margin: 0 !important;
           }
           .sales-transition-fade {
-            height: 60px !important;
+            height: 36px !important;
             background: linear-gradient(to bottom, rgba(13,31,31,0) 0%, rgba(13,31,31,0.25) 40%, rgba(13,31,31,0.75) 75%, rgb(13,31,31) 100%) !important;
           }
           /* ── PODBOR: Подбираем новинки ────────────────────── */

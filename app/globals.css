@@ -1292,7 +1292,7 @@ section {
      FIX-MOB-2 — ServicesExternalSection
      ══════════════════════════════════════════════════════ */
   .ext-section {
-    min-height: max(83svh, 620px) !important;
+    min-height: max(90svh, 680px) !important;
   }
   .ext-transition-fade {
     display: none !important;
@@ -1619,7 +1619,7 @@ section {
 
   /* ── Accounting section ───────────────────────────────────── */
   .accounting-section {
-    padding-bottom: 48px !important;
+    padding-bottom: 80px !important;
   }
   .accounting-heading {
     width: calc(100% - 40px) !important;
@@ -1751,7 +1751,7 @@ section {
 
   /* ── Chairs case ──────────────────────────────────────────── */
   .chairs-margin-section {
-    padding: 28px 0 56px !important;
+    padding: 28px 0 80px !important;
   }
   .chairs-margin-badge {
     margin: 20px 20px 0 !important;
@@ -1768,10 +1768,31 @@ section {
     margin: 28px 20px 0 !important;
   }
   .seasonal-right-panel {
-    padding: 28px 20px 0 !important;
+    padding: 28px 20px 36px !important;
+    margin-top: 32px !important;
+    border-radius: 24px 24px 0 0 !important;
+    overflow: hidden !important;
+  }
+  .seasonal-result-label {
+    font-size: clamp(24px, 6.2vw, 34px) !important;
+    margin: 0 0 16px !important;
+  }
+  .seasonal-result-cards [data-glow] {
+    height: auto !important;
+    min-height: 100px !important;
+    padding: 14px !important;
+  }
+  .seasonal-result-cards [data-glow] p:first-child {
+    font-size: 12px !important;
+    white-space: normal !important;
+    line-height: 1.3 !important;
+    margin-bottom: 10px !important;
+  }
+  .seasonal-result-cards [data-glow] p:last-child {
+    font-size: clamp(30px, 7.5vw, 44px) !important;
   }
   .seasonal-split-section {
-    padding: 0 0 320px !important;
+    padding: 0 0 140px !important;
   }
 
   /* ── Screenshot captions ──────────────────────────────────── */
