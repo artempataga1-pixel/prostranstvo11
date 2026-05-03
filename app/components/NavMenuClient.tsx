@@ -31,7 +31,8 @@ function scrollToSection(hash: string) {
   const target = document.querySelector<HTMLElement>(hash);
   if (!target) return;
 
-  const offset = (SECTION_OFFSETS[hash] ?? 0);
+  const isMobile = window.matchMedia("(pointer: coarse)").matches;
+  const offset = isMobile ? 0 : (SECTION_OFFSETS[hash] ?? 0);
 
   if (lenis) {
     lenis.scrollTo(target, {
