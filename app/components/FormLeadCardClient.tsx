@@ -128,15 +128,6 @@ export default function FormLeadCardClient() {
             zIndex: 1,
           }}
         >
-          <defs>
-            <filter id="form-border-glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
           <rect
             x="0.5"
             y="0.5"
@@ -164,8 +155,7 @@ export default function FormLeadCardClient() {
             strokeDashoffset="0"
             style={{
               animation: "form-beam-travel 5s linear infinite",
-              filter: "url(#form-border-glow)",
-              opacity: 0.85,
+              opacity: 0.7,
             }}
           />
         </svg>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import InfinityMark from "../components/InfinityMark";
 import FormLeadCardClient from "../components/FormLeadCardClient";
+import FloatingShapesOptimized from "../components/FloatingShapesOptimized";
 
 const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
 const ACCENT = "#0ABAB5";
@@ -47,6 +48,11 @@ export default function FormPage() {
           zIndex: 0,
         }}
       />
+
+      {/* ── Floating shapes (шары как на герое) ── */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 1, opacity: 0.25, pointerEvents: "none" }}>
+        <FloatingShapesOptimized />
+      </div>
 
       {/* ── Ambient glow blobs (static, no GPU cost) ── */}
       <div style={{ position: "absolute", pointerEvents: "none", inset: 0, zIndex: 1 }}>
