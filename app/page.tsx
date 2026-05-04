@@ -652,12 +652,7 @@ function GrowthModelSection() {
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  alignItems:
-                    index === 0
-                      ? "flex-start"
-                      : index === 1
-                      ? "center"
-                      : "flex-end",
+                  alignItems: "flex-start",
                 }}
               >
                 {/* Circle — Figma: 18×18, border 5px solid #0ABAB5 */}
@@ -689,10 +684,8 @@ function GrowthModelSection() {
                     letterSpacing: "-0.035em",
                     color: "#0D1F1F",
                     whiteSpace: "pre-line",
-                    textAlign:
-                      index === 0 ? "left" : index === 1 ? "center" : "right",
-                    margin:
-                      index === 0 ? "0" : index === 1 ? "0 auto" : "0 0 0 auto",
+                    textAlign: "left",
+                    margin: "0",
                   }}
                 >
                   {item.title}
