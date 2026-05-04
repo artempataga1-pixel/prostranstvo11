@@ -42,10 +42,9 @@ export default function CookieBanner() {
         style={{
           position: "fixed",
           bottom: "clamp(16px, 2.5vh, 28px)",
-          left: "50%",
-          transform: "translateX(-50%)",
+          right: "clamp(16px, 2.5vw, 32px)",
           zIndex: 9999,
-          width: "min(560px, calc(100vw - 32px))",
+          width: "min(320px, calc(100vw - 32px))",
           background: "rgba(5,16,18,0.92)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
