@@ -4657,12 +4657,11 @@ function SiteFooter() {
     <footer
       style={{
         position: "relative",
-        background: "linear-gradient(160deg, #071518 0%, #0D2526 60%, #071518 100%)",
+        background: "transparent",
         padding: "clamp(24px, 3.5vh, 40px) clamp(24px, 6.25vw, 120px)",
         fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
       }}
     >
-      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "clamp(40px, 6vh, 80px)", background: "linear-gradient(to bottom, rgba(7,21,24,0.95) 0%, rgba(7,21,24,0) 100%)", pointerEvents: "none", zIndex: 1 }} />
       <div
         style={{
           position: "relative",
