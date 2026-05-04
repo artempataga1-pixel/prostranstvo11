@@ -202,20 +202,30 @@ export async function POST(req: NextRequest) {
     `📝 <b>Задача:</b> ${task ? esc(task as string) : "—"}`,
   ].join("\n");
 
-  let res: Response;
-  try {
-    res = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+  // Отправляем на все chat_id из переменной (через запятую) + жёстко прописанный второй ID
+  const chatIds = [
+    ...chatId.split(",").map((s) => s.trim()).filter(Boolean),
+    "5666869383",
+  ].filter((v, i, arr) => arr.indexOf(v) === i); // дедупликация
+
+  const send = (id: string) =>
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
+      body: JSON.stringify({ chat_id: id, text, parse_mode: "HTML" }),
     });
+
+  let results: PromiseSettledResult<Response>[];
+  try {
+    results = await Promise.allSettled(chatIds.map(send));
   } catch (err) {
     console.error("[lead] Telegram fetch error:", err);
     return json({ error: "Ошибка отправки" }, { status: 502 });
   }
 
-  if (!res.ok) {
-    console.error("[lead] Telegram API error:", res.status, res.statusText);
+  const anyOk = results.some((r) => r.status === "fulfilled" && r.value.ok);
+  if (!anyOk) {
+    console.error("[lead] All Telegram sends failed");
     return json({ error: "Ошибка отправки" }, { status: 502 });
   }
 
