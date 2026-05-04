@@ -7,9 +7,9 @@ const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
 const ACCENT = "#0ABAB5";
 
 // ── Плейсхолдеры — замените на реальные данные ИП ──────────────────────
-const IP_NAME   = "Решетникова Светлана Владимировна";
-const IP_OGRN   = "324632700213034";
-const IP_INN    = "631200613442";
+const IP_NAME   = "Решетников Владимир Васильевич";
+const IP_OGRN   = "326632700006210";
+const IP_INN    = "631229408870";
 const IP_ADDR   = "443095, Самарская область, г. Самара, ул. Ташкентская, д. 166, кв. 25";
 const IP_EMAIL  = "prostranstvo_ecom@mail.ru";
 const IP_PHONE  = "+7 987 161 42 42";
