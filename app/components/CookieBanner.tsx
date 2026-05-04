@@ -31,6 +31,7 @@ export default function CookieBanner() {
         .cookie-banner {
           animation: cookie-slide-up 0.4s ease both;
           position: fixed;
+          z-index: 9999;
           bottom: clamp(16px, 2.5vh, 28px);
           right: clamp(16px, 2.5vw, 32px);
           width: min(320px, calc(100vw - 32px));
