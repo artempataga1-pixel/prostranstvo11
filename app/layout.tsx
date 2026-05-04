@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ScrollAnimationsOptimized } from "./components/ScrollAnimationsOptimized";
+import CookieBanner from "./components/CookieBanner";
 
 export const metadata: Metadata = {
   title: "PROстранство — Получить разбор",
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body>
         {children}
         <ScrollAnimationsOptimized />
+        <CookieBanner />
       </body>
     </html>
   );
