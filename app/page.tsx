@@ -4657,7 +4657,7 @@ function SiteFooter() {
     <footer
       style={{
         position: "relative",
-        background: "#071518",
+        background: "linear-gradient(160deg, #071518 0%, #0D2526 60%, #071518 100%)",
         padding: "clamp(24px, 3.5vh, 40px) clamp(24px, 6.25vw, 120px)",
         fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
       }}
