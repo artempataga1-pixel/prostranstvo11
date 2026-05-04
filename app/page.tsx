@@ -4715,8 +4715,10 @@ function SiteFooter() {
           </p>
         </div>
 
+        <style>{`.footer-privacy-link:hover{color:#0ABAB5!important;}`}</style>
         <Link
           href="/privacy"
+          className="footer-privacy-link"
           style={{
             fontSize: "clamp(11px, 0.78vw, 13px)",
             color: "rgba(10,186,181,0.6)",
@@ -4725,8 +4727,6 @@ function SiteFooter() {
             whiteSpace: "nowrap",
             transition: "color 0.2s",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#0ABAB5")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,186,181,0.6)")}
         >
           Политика конфиденциальности
         </Link>
