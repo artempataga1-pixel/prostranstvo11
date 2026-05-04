@@ -30,6 +30,18 @@ export default function CookieBanner() {
         }
         .cookie-banner {
           animation: cookie-slide-up 0.4s ease both;
+          position: fixed;
+          bottom: clamp(16px, 2.5vh, 28px);
+          right: clamp(16px, 2.5vw, 32px);
+          width: min(320px, calc(100vw - 32px));
+        }
+        @media (max-width: 600px) {
+          .cookie-banner {
+            right: 16px;
+            left: 16px;
+            width: auto;
+            bottom: 16px;
+          }
         }
         .cookie-accept-btn:hover {
           background: rgba(10,186,181,0.18) !important;
@@ -40,11 +52,6 @@ export default function CookieBanner() {
       <div
         className="cookie-banner"
         style={{
-          position: "fixed",
-          bottom: "clamp(16px, 2.5vh, 28px)",
-          right: "clamp(16px, 2.5vw, 32px)",
-          zIndex: 9999,
-          width: "min(320px, calc(100vw - 32px))",
           background: "rgba(5,16,18,0.92)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
