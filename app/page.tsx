@@ -4652,6 +4652,89 @@ void [
   CaseSeasonalSection,
 ];
 
+function SiteFooter() {
+  return (
+    <footer
+      style={{
+        background: "linear-gradient(to bottom, #071518 0%, #071518 100%)",
+        borderTop: "1px solid rgba(10,186,181,0.08)",
+        padding: "clamp(24px, 3.5vh, 40px) clamp(24px, 6.25vw, 120px)",
+        fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1400px",
+          margin: "0 auto",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "clamp(12px, 2vh, 20px)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "6px",
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              fontSize: "clamp(11px, 0.78vw, 13px)",
+              color: "rgba(255,255,255,0.3)",
+              letterSpacing: "-0.01em",
+              lineHeight: 1.5,
+            }}
+          >
+            © 2026 ИП Решетникова Светлана Владимировна
+          </p>
+          <p
+            style={{
+              margin: 0,
+              fontSize: "clamp(11px, 0.78vw, 13px)",
+              color: "rgba(255,255,255,0.2)",
+              letterSpacing: "-0.01em",
+              lineHeight: 1.5,
+            }}
+          >
+            ИНН 631200613442 · ОГРНИП 324632700213034
+          </p>
+          <p
+            style={{
+              margin: 0,
+              fontSize: "clamp(11px, 0.78vw, 13px)",
+              color: "rgba(255,255,255,0.2)",
+              letterSpacing: "-0.01em",
+              lineHeight: 1.5,
+            }}
+          >
+            Копирование и использование материалов сайта допускается с согласия правообладателя.
+          </p>
+        </div>
+
+        <Link
+          href="/privacy"
+          style={{
+            fontSize: "clamp(11px, 0.78vw, 13px)",
+            color: "rgba(10,186,181,0.6)",
+            textDecoration: "none",
+            letterSpacing: "-0.01em",
+            whiteSpace: "nowrap",
+            transition: "color 0.2s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#0ABAB5")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,186,181,0.6)")}
+        >
+          Политика конфиденциальности
+        </Link>
+      </div>
+    </footer>
+  );
+}
+
 export default function Page() {
   return (
     <main style={{ position: "relative", width: "100%", backgroundColor: "#071518" }}>
@@ -4667,6 +4750,7 @@ export default function Page() {
       <FadeIn><WorkWithUsSection /></FadeIn>
       <div id="faq"><FadeIn><FaqSection /></FadeIn></div>
       <div id="contacts"><FadeIn><DeferredContactsSection /></FadeIn></div>
+      <SiteFooter />
     </main>
   );
 }
