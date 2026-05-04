@@ -1,7 +1,5 @@
 import Link from "next/link";
-import FloatingShapesOptimized from "../components/FloatingShapesOptimized";
 import InfinityMark from "../components/InfinityMark";
-import ShaderBackgroundOptimized from "../components/ShaderBackgroundOptimized";
 import FormLeadCardClient from "../components/FormLeadCardClient";
 
 const font = "Helvetica Neue, Helvetica, Arial, sans-serif";
@@ -50,27 +48,22 @@ export default function FormPage() {
         }}
       />
 
-      {/* ── WebGL shader — same teal nebula as hero ── */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1 }}>
-        <ShaderBackgroundOptimized />
-      </div>
-
-      {/* ── Floating shapes ── */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 1, opacity: 0.25, pointerEvents: "none" }}>
-        <FloatingShapesOptimized />
-      </div>
-
-      {/* ── Ambient glow blobs ── */}
+      {/* ── Ambient glow blobs (static, no GPU cost) ── */}
       <div style={{ position: "absolute", pointerEvents: "none", inset: 0, zIndex: 1 }}>
         <div style={{
-          position: "absolute", width: "60vw", height: "60vw",
-          left: "-15vw", top: "-15vw",
-          background: "radial-gradient(circle, rgba(10,186,181,0.1) 0%, transparent 65%)",
+          position: "absolute", width: "70vw", height: "70vw",
+          left: "-20vw", top: "-20vw",
+          background: "radial-gradient(circle, rgba(10,186,181,0.13) 0%, transparent 65%)",
         }} />
         <div style={{
-          position: "absolute", width: "50vw", height: "50vw",
-          right: "-8vw", bottom: "-8vw",
-          background: "radial-gradient(circle, rgba(10,186,181,0.07) 0%, transparent 65%)",
+          position: "absolute", width: "55vw", height: "55vw",
+          right: "-10vw", bottom: "-10vw",
+          background: "radial-gradient(circle, rgba(10,186,181,0.09) 0%, transparent 65%)",
+        }} />
+        <div style={{
+          position: "absolute", width: "40vw", height: "40vw",
+          left: "30vw", top: "40vh",
+          background: "radial-gradient(circle, rgba(10,186,181,0.05) 0%, transparent 65%)",
         }} />
       </div>
 
