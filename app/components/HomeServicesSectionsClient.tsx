@@ -20,8 +20,6 @@ const sectionStyle = {
 
 const deferredSectionStyle = {
   ...sectionStyle,
-  contentVisibility: "auto" as const,
-  containIntrinsicSize: "auto 100svh",
 };
 
 const SERVICES_VECTOR1_IMG = "";
@@ -2430,15 +2428,15 @@ export default function HomeServicesSectionsClient() {
           }
         }
       `}</style>
-      <FadeIn><ServicesSection /></FadeIn>
-      <FadeIn><ServicesPodborSection /></FadeIn>
-      <FadeIn><ServicesAuditSection /></FadeIn>
-      <FadeIn><ServicesManagementSection /></FadeIn>
-      <FadeIn><ServicesAiSection /></FadeIn>
-      <FadeIn><ServicesAccountingSection /></FadeIn>
-      <FadeIn><ServicesExternalSection /></FadeIn>
-      <FadeIn><ServicesTeamSection /></FadeIn>
-      <FadeIn><ServicesHrTeamSection /></FadeIn>
+      <ServicesSection />
+      <ServicesPodborSection />
+      <ServicesAuditSection />
+      <ServicesManagementSection />
+      <ServicesAiSection />
+      <ServicesAccountingSection />
+      <ServicesExternalSection />
+      <ServicesTeamSection />
+      <ServicesHrTeamSection />
     </>
   );
 }
