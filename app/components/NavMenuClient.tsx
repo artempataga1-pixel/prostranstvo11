@@ -10,42 +10,19 @@ const NAV_ITEMS = [
   { label: "Контакты",       href: "#contacts"  },
 ];
 
-type LenisInstance = {
-  scrollTo: (target: string | number | HTMLElement, options?: {
-    duration?: number;
-    easing?: (t: number) => number;
-    offset?: number;
-  }) => void;
-};
-
-const SECTION_OFFSETS: Record<string, number> = {
-  "#about":    80,
-  "#services": 80,
-  "#cases":    80,
-  "#faq":      80,
-  "#contacts": 80,
-};
+const NAV_OFFSET_DESKTOP = 80;
 
 function scrollToSection(hash: string) {
-  const lenis = (window as Window & { __lenis?: LenisInstance }).__lenis;
   const target = document.querySelector<HTMLElement>(hash);
   if (!target) return;
 
   const isMobile = window.matchMedia("(pointer: coarse)").matches;
-  const offset = isMobile ? 0 : (SECTION_OFFSETS[hash] ?? 0);
+  const offset = isMobile ? 0 : NAV_OFFSET_DESKTOP;
+  const top = window.scrollY + target.getBoundingClientRect().top - offset;
 
-  if (lenis) {
-    lenis.scrollTo(target, {
-      duration: 1.2,
-      easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
-      offset,
-    });
-  } else {
-    // На мобиле: мгновенный переход — scrollIntoView({ behavior: "smooth" })
-    // блокирует touch-события во время анимации, вызывая freeze.
-    const top = window.scrollY + target.getBoundingClientRect().top - offset;
-    window.scrollTo({ top, behavior: "instant" });
-  }
+  // Mobile: instant — smooth scroll blocks touch events during animation (freeze)
+  // Desktop: smooth — native CSS scroll animation, visible scroll effect
+  window.scrollTo({ top, behavior: isMobile ? "instant" : "smooth" });
 }
 
 export default function NavMenuClient() {
