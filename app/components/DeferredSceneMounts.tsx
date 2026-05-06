@@ -17,7 +17,7 @@ function ScenePlaceholder() {
 
 export function DeferredCube3D() {
   return (
-    <DeferredViewportMount placeholder={<ScenePlaceholder />} rootMargin="320px">
+    <DeferredViewportMount placeholder={<ScenePlaceholder />} rootMargin="1500px">
       <Cube3D />
     </DeferredViewportMount>
   );
@@ -25,7 +25,7 @@ export function DeferredCube3D() {
 
 export function DeferredNeuralNet3D() {
   return (
-    <DeferredViewportMount placeholder={<ScenePlaceholder />} rootMargin="320px">
+    <DeferredViewportMount placeholder={<ScenePlaceholder />} rootMargin="1500px">
       <NeuralNet3D />
     </DeferredViewportMount>
   );
@@ -33,7 +33,7 @@ export function DeferredNeuralNet3D() {
 
 export function DeferredCRM3D() {
   return (
-    <DeferredViewportMount placeholder={<ScenePlaceholder />} rootMargin="320px">
+    <DeferredViewportMount placeholder={<ScenePlaceholder />} rootMargin="1500px">
       <CRM3D />
     </DeferredViewportMount>
   );
@@ -41,7 +41,7 @@ export function DeferredCRM3D() {
 
 export function DeferredWarehouse3D() {
   return (
-    <DeferredViewportMount placeholder={<ScenePlaceholder />} rootMargin="320px">
+    <DeferredViewportMount placeholder={<ScenePlaceholder />} rootMargin="1500px">
       <Warehouse3D />
     </DeferredViewportMount>
   );

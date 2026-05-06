@@ -16,7 +16,7 @@ function ContactsPlaceholder() {
 
 export function DeferredOrbitalCasesTimeline() {
   return (
-    <DeferredViewportMount placeholder={<OrbitalPlaceholder />} rootMargin="520px">
+    <DeferredViewportMount placeholder={<OrbitalPlaceholder />} rootMargin="1500px">
       <OrbitalCasesTimeline />
     </DeferredViewportMount>
   );
@@ -24,7 +24,7 @@ export function DeferredOrbitalCasesTimeline() {
 
 export function DeferredContactsSection() {
   return (
-    <DeferredViewportMount placeholder={<ContactsPlaceholder />} rootMargin="900px">
+    <DeferredViewportMount placeholder={<ContactsPlaceholder />} rootMargin="1500px">
       <ContactsSection />
     </DeferredViewportMount>
   );

@@ -20,7 +20,7 @@ function getServicesRootMargin() {
   if (typeof window === "undefined") return "600px";
   // На мобиле (touch) секция услуг сразу за hero (~100vh) — 800px rootMargin
   // означает монтирование при загрузке страницы. Уменьшаем до 150px.
-  return window.matchMedia("(pointer: coarse)").matches ? "150px" : "800px";
+  return window.matchMedia("(pointer: coarse)").matches ? "600px" : "1500px";
 }
 
 export default function DeferredServicesSections() {
