@@ -134,10 +134,10 @@ export function ScrollAnimationsOptimized() {
       if (_Lenis) {
         const Lenis = _Lenis;
         const lenis = new Lenis({
-          duration: 0.9,
+          duration: 0.65,
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           smoothWheel: true,
-          wheelMultiplier: 0.85,
+          wheelMultiplier: 0.9,
           // Touch scroll всегда нативный — Lenis не должен перехватывать touch
           touchMultiplier: 0,
         });
@@ -201,10 +201,7 @@ export function ScrollAnimationsOptimized() {
 
       const ctx = gsap.context(() => {
         const sections = gsap.utils.toArray<HTMLElement>("section");
-        const main = document.querySelector<HTMLElement>("main");
-        // Perspective на main только при hover-устройствах — на мобильном
-        // создаёт ненужный 3D-контекст для всей страницы
-        if (main && canHover) gsap.set(main, { perspective: 1400 });
+        void sections;
 
 
         const hero = sections[0];

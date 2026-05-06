@@ -4745,13 +4745,13 @@ export default function Page() {
 
       {/* Hero — без анимации, сразу виден */}
       <HeroSection />
-      <div id="about"><GrowthModelSection /></div>
-      <WhyChooseUsSection />
+      <div id="about"><FadeIn><GrowthModelSection /></FadeIn></div>
+      <FadeIn><WhyChooseUsSection /></FadeIn>
       <div id="services"><DeferredServicesSections /></div>
-      <div id="cases"><OrbitalSection /></div>
-      <WorkWithUsSection />
-      <div id="faq"><FaqSection /></div>
-      <div id="contacts"><DeferredContactsSection /></div>
+      <div id="cases"><FadeIn><OrbitalSection /></FadeIn></div>
+      <FadeIn><WorkWithUsSection /></FadeIn>
+      <div id="faq"><FadeIn><FaqSection /></FadeIn></div>
+      <div id="contacts"><FadeIn><DeferredContactsSection /></FadeIn></div>
       <SiteFooter />
     </main>
   );
