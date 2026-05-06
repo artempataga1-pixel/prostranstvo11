@@ -503,7 +503,7 @@ function ServicesExternalSection() {
       </div>
 
       {/* Heading — Figma: left:60 top:859 font:100px w:1037 */}
-      <p data-reveal className="ext-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(500px, 72vh, 800px)", width: "clamp(260px, 54.01vw, 1037px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(30px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, zIndex: 3 }}>
+      <p className="ext-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(500px, 72vh, 800px)", width: "clamp(260px, 54.01vw, 1037px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(30px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, zIndex: 3 }}>
         Выход за пределы маркетплейсов
       </p>
       {/* Переход → TeamSection rgb(13,31,31) */}
@@ -577,7 +577,7 @@ function ServicesAiSection() {
       </div>
 
       {/* Heading — left:60 top:859 font:100px w:1453 */}
-      <p data-reveal className="ai-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(580px, 79.54vh, 859px)", width: "clamp(280px, 75.68vw, 1453px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(28px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-wrap" }}>
+      <p className="ai-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(580px, 79.54vh, 859px)", width: "clamp(280px, 75.68vw, 1453px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(28px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-wrap" }}>
         <span style={{ color: "#0bbab5" }}>Автоматизация</span>
         {" \nчерез искусственный интеллект"}
       </p>
