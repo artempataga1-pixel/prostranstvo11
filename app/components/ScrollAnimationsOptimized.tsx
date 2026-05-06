@@ -206,32 +206,6 @@ export function ScrollAnimationsOptimized() {
         // создаёт ненужный 3D-контекст для всей страницы
         if (main && canHover) gsap.set(main, { perspective: 1400 });
 
-        // Blob-параллакс только на desktop — на тач-устройствах scrub-анимации
-        // добавляют JS-работу при каждом scroll-событии без визуального выигрыша
-        if (!prefersTouchScroll) {
-          sections.forEach((section, index) => {
-            if (index === 0) return;
-
-            const blobs = Array.from(section.querySelectorAll<HTMLElement>("[style*='radial-gradient']")).slice(0, 2);
-            blobs.forEach((el, blobIndex) => {
-              gsap.fromTo(
-                el,
-                { y: blobIndex % 2 === 0 ? "8%" : "-8%", x: blobIndex % 3 === 0 ? "-4%" : "4%" },
-                {
-                  y: blobIndex % 2 === 0 ? "-12%" : "12%",
-                  x: blobIndex % 3 === 0 ? "4%" : "-4%",
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: section,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 2.5,
-                  },
-                },
-              );
-            });
-          });
-        }
 
         const hero = sections[0];
         if (hero && canHover) {
