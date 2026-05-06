@@ -10,19 +10,42 @@ const NAV_ITEMS = [
   { label: "Контакты",       href: "#contacts"  },
 ];
 
-const NAV_OFFSET_DESKTOP = 80;
+function easeInOutCubic(t: number) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+function animatedScrollTo(targetY: number, duration = 1200) {
+  const startY = window.scrollY;
+  const distance = targetY - startY;
+  let startTime: number | null = null;
+  let rafId = 0;
+
+  function tick(now: number) {
+    if (startTime === null) startTime = now;
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+    if (progress < 1) rafId = requestAnimationFrame(tick);
+  }
+
+  rafId = requestAnimationFrame(tick);
+  return () => cancelAnimationFrame(rafId);
+}
 
 function scrollToSection(hash: string) {
   const target = document.querySelector<HTMLElement>(hash);
   if (!target) return;
 
   const isMobile = window.matchMedia("(pointer: coarse)").matches;
-  const offset = isMobile ? 0 : NAV_OFFSET_DESKTOP;
-  const top = window.scrollY + target.getBoundingClientRect().top - offset;
+  const targetY = window.scrollY + target.getBoundingClientRect().top;
 
-  // Mobile: instant — smooth scroll blocks touch events during animation (freeze)
-  // Desktop: smooth — native CSS scroll animation, visible scroll effect
-  window.scrollTo({ top, behavior: isMobile ? "instant" : "smooth" });
+  if (isMobile) {
+    // Mobile: instant jump — smooth scroll blocks touch events (freeze)
+    window.scrollTo({ top: targetY, behavior: "instant" });
+  } else {
+    // Desktop: animated 1.2s scroll so all intermediate blocks are visible
+    animatedScrollTo(targetY, 1200);
+  }
 }
 
 export default function NavMenuClient() {
