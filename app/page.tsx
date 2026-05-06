@@ -324,6 +324,7 @@ function WhyChooseUsSection() {
     >
       {/* Heading — Figma: top:60 left:60, 100px, width:993px */}
       <h2
+        data-reveal
         style={{
           position: "absolute",
           top: "clamp(30px, 5.56vh, 60px)",
@@ -484,6 +485,7 @@ function GrowthModelSection() {
 
       {/* Label — Figma: top:60 left:60, 45px */}
       <p
+        data-reveal
         className="growth-label"
         style={{
           position: "absolute",
@@ -503,6 +505,8 @@ function GrowthModelSection() {
 
       {/* Heading — Figma: top:153 left:60, 100px, width:1560 */}
       <h2
+        data-reveal
+        data-reveal-delay="0.1"
         className="growth-title"
         style={{
           position: "absolute",
@@ -523,6 +527,8 @@ function GrowthModelSection() {
 
       {/* Left body — Figma: top:434 left:60, 45px, width:825 */}
       <p
+        data-reveal
+        data-reveal-delay="0.18"
         className="growth-body-l"
         style={{
           position: "absolute",
@@ -543,6 +549,8 @@ function GrowthModelSection() {
 
       {/* Right body — Figma: top:434 left:calc(50%+15px), 45px, width:825 */}
       <p
+        data-reveal
+        data-reveal-delay="0.24"
         className="growth-body-r"
         style={{
           position: "absolute",
@@ -4499,12 +4507,12 @@ function WorkWithUsSection() {
       </div>
 
       {/* Headline */}
-      <h2 style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.65vh, 61px)", width: "min(52vw, 1000px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(28px, 4.688vw, 90px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-line" }}>
+      <h2 data-reveal style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.65vh, 61px)", width: "min(52vw, 1000px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(28px, 4.688vw, 90px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-line" }}>
         {"Готовы увеличить\nвашу выручку?"}
       </h2>
 
       {/* Subline */}
-      <p style={{ position: "absolute", left: "3.125vw", top: "clamp(200px, 30vh, 325px)", width: "min(42vw, 800px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(12px, 1.25vw, 24px)", lineHeight: 1.45, letterSpacing: "-0.025em", color: "rgba(255,255,255,0.42)", margin: 0 }}>
+      <p data-reveal data-reveal-delay="0.12" style={{ position: "absolute", left: "3.125vw", top: "clamp(200px, 30vh, 325px)", width: "min(42vw, 800px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(12px, 1.25vw, 24px)", lineHeight: 1.45, letterSpacing: "-0.025em", color: "rgba(255,255,255,0.42)", margin: 0 }}>
         {"Оставьте заявку — проведём разбор кабинета бесплатно, покажем где\u00A0теряется прибыль и\u00A0что с\u00A0этим делать"}
       </p>
 
@@ -4599,10 +4607,10 @@ function OrbitalSection() {
       }} />
       {/* title */}
       <div style={{ textAlign: "center", marginBottom: "clamp(40px,6vh,70px)", position: "relative", zIndex: 2 }}>
-        <p style={{ fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif", fontSize: "clamp(10px,0.9vw,14px)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#0ABAB5", marginBottom: "12px" }}>
+        <p data-reveal style={{ fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif", fontSize: "clamp(10px,0.9vw,14px)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#0ABAB5", marginBottom: "12px" }}>
           Наши кейсы
         </p>
-        <h2 style={{ fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif", fontWeight: 400, fontSize: "clamp(32px,4vw,80px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: "#ffffff", margin: 0 }}>
+        <h2 data-reveal data-reveal-delay="0.1" style={{ fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif", fontWeight: 400, fontSize: "clamp(32px,4vw,80px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: "#ffffff", margin: 0 }}>
           Выберите кейс
         </h2>
       </div>

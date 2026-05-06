@@ -232,6 +232,7 @@ function ServicesAuditSection() {
 
       {/* Heading — Figma: left:60 top:133 font:100px tracking:-3.5px w:828px */}
       <p
+        data-reveal
         className="audit-heading"
         style={{
           position: "absolute",
@@ -502,7 +503,7 @@ function ServicesExternalSection() {
       </div>
 
       {/* Heading — Figma: left:60 top:859 font:100px w:1037 */}
-      <p className="ext-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(500px, 72vh, 800px)", width: "clamp(260px, 54.01vw, 1037px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(30px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, zIndex: 3 }}>
+      <p data-reveal className="ext-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(500px, 72vh, 800px)", width: "clamp(260px, 54.01vw, 1037px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(30px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, zIndex: 3 }}>
         Выход за пределы маркетплейсов
       </p>
       {/* Переход → TeamSection rgb(13,31,31) */}
@@ -576,7 +577,7 @@ function ServicesAiSection() {
       </div>
 
       {/* Heading — left:60 top:859 font:100px w:1453 */}
-      <p className="ai-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(580px, 79.54vh, 859px)", width: "clamp(280px, 75.68vw, 1453px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(28px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-wrap" }}>
+      <p data-reveal className="ai-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(580px, 79.54vh, 859px)", width: "clamp(280px, 75.68vw, 1453px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(28px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, whiteSpace: "pre-wrap" }}>
         <span style={{ color: "#0bbab5" }}>Автоматизация</span>
         {" \nчерез искусственный интеллект"}
       </p>
@@ -621,7 +622,7 @@ function ServicesAccountingSection() {
     <section className="split-section accounting-section" style={{ ...deferredSectionStyle, minHeight: "max(100svh, 760px)", backgroundColor: "#ffffff" }}>
 
       {/* Heading — Figma: left:60 top:60 font:100px tracking:-3.5px w:675 color:#0d1f1f */}
-      <p className="accounting-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.56vh, 60px)", width: "clamp(220px, 35.16vw, 675px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(32px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#0d1f1f", margin: 0 }}>
+      <p data-reveal className="accounting-heading" style={{ position: "absolute", left: "3.125vw", top: "clamp(30px, 5.56vh, 60px)", width: "clamp(220px, 35.16vw, 675px)", fontFamily: font, fontWeight: 400, fontSize: "clamp(32px, 5.208vw, 100px)", lineHeight: 0.9, letterSpacing: "-0.035em", color: "#0d1f1f", margin: 0 }}>
         Внедряем системы учета
       </p>
 
@@ -754,6 +755,7 @@ function ServicesManagementSection() {
       >
         {/* "Отдел продаж под ключ" — font:150px tracking:-5.25px w:1037 */}
         <p
+          data-reveal
           style={{
             fontFamily: font,
             fontWeight: 400,
@@ -1429,7 +1431,7 @@ function ServicesTeamSection() {
       overflow: "clip",
     }}>
       {/* Heading — left:60 top:60 font:100px w:993px */}
-      <p className="team-heading" style={{
+      <p data-reveal className="team-heading" style={{
         position: "absolute",
         left: "3.125vw",
         top: "clamp(30px, 5.56vh, 60px)",

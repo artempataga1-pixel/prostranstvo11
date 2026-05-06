@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 export function ScrollAnimationsOptimized() {
   const pathname = usePathname();
 
+  // Scroll progress bar
   useEffect(() => {
     let scrollFrame = 0;
 
@@ -43,6 +44,50 @@ export function ScrollAnimationsOptimized() {
       if (scrollFrame) cancelAnimationFrame(scrollFrame);
       window.removeEventListener("scroll", onScroll);
       bar.remove();
+    };
+  }, [pathname]);
+
+  // Text reveal on scroll — desktop only
+  useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal]")
+    );
+    if (!elements.length) return;
+
+    elements.forEach((el) => {
+      const delay = el.dataset.revealDelay ?? "0";
+      el.style.opacity = "0";
+      el.style.transform = "translateY(28px)";
+      el.style.transition = `opacity 0.75s cubic-bezier(0.25,0.4,0.25,1) ${delay}s, transform 0.75s cubic-bezier(0.25,0.4,0.25,1) ${delay}s`;
+      el.style.willChange = "opacity, transform";
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          setTimeout(() => { el.style.willChange = "auto"; }, 800);
+          observer.unobserve(el);
+        });
+      },
+      { rootMargin: "0px 0px -40px 0px", threshold: 0.12 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+      elements.forEach((el) => {
+        el.style.opacity = "";
+        el.style.transform = "";
+        el.style.transition = "";
+        el.style.willChange = "";
+      });
     };
   }, [pathname]);
 
