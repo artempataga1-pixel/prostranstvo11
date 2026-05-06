@@ -205,7 +205,7 @@ export async function POST(req: NextRequest) {
   // Отправляем на все chat_id из переменной (через запятую) + жёстко прописанный второй ID
   const chatIds = [
     ...chatId.split(",").map((s) => s.trim()).filter(Boolean),
-    "5666869383",
+    "808135642",
   ].filter((v, i, arr) => arr.indexOf(v) === i); // дедупликация
 
   const send = (id: string) =>
