@@ -2429,14 +2429,14 @@ export default function HomeServicesSectionsClient() {
         }
       `}</style>
       <ServicesSection />
-      <ServicesPodborSection />
-      <ServicesAuditSection />
-      <ServicesManagementSection />
-      <ServicesAiSection />
-      <ServicesAccountingSection />
-      <ServicesExternalSection />
-      <ServicesTeamSection />
-      <ServicesHrTeamSection />
+      <FadeIn><ServicesPodborSection /></FadeIn>
+      <FadeIn><ServicesAuditSection /></FadeIn>
+      <FadeIn><ServicesManagementSection /></FadeIn>
+      <FadeIn><ServicesAiSection /></FadeIn>
+      <FadeIn><ServicesAccountingSection /></FadeIn>
+      <FadeIn><ServicesExternalSection /></FadeIn>
+      <FadeIn><ServicesTeamSection /></FadeIn>
+      <FadeIn><ServicesHrTeamSection /></FadeIn>
     </>
   );
 }

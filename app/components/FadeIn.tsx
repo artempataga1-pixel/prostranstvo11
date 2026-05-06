@@ -35,8 +35,8 @@ function getFadeInObserver() {
       });
     },
     {
-      rootMargin: "0px 0px -60px 0px",
-      threshold: 0.01,
+      rootMargin: "0px 0px 200px 0px",
+      threshold: 0,
     },
   );
 
