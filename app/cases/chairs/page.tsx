@@ -14,8 +14,6 @@ const sectionStyle = {
 };
 
 const deferredSectionStyle = {
-  contentVisibility: "auto" as const,
-  containIntrinsicSize: "1000px",
 };
 
 const CHAIRS_WB_SCREENSHOT_IMG = "/screenshots/chairs-wb.webp";

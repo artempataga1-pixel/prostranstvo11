@@ -13,8 +13,6 @@ const sectionStyle = {
 };
 
 const deferredSectionStyle = {
-  contentVisibility: "auto" as const,
-  containIntrinsicSize: "1000px",
 };
 
 const OZON_SCREENSHOT_IMG = "/screenshots/jeans-ozon.webp";

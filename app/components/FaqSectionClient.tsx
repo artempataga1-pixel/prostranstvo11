@@ -24,8 +24,6 @@ export default function FaqSectionClient({ items }: FaqSectionClientProps) {
         width: "100%",
         minHeight: "max(100svh, 760px)",
         overflow: "clip",
-        contentVisibility: "auto",
-        containIntrinsicSize: "1000px",
         backgroundColor: "#071518",
       }}
     >
