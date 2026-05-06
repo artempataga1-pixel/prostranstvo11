@@ -7,11 +7,8 @@ export function ScrollAnimationsOptimized() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    let disposed = false;
     let scrollFrame = 0;
 
-    // ── Прогресс-бар ──────────────────────────────────────────────────────────
     const bar = document.createElement("div");
     Object.assign(bar.style, {
       position: "fixed",
@@ -42,55 +39,7 @@ export function ScrollAnimationsOptimized() {
     updateBar();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    // ── Анимация текста (только h2) — IntersectionObserver + CSS transition ──
-    // Не трогаем мобил — нет смысла анимировать при нативном скролле
-    if (!isTouch) {
-      const observed = new Set<Element>();
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target as HTMLElement;
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-            observer.unobserve(el);
-            observed.delete(el);
-          });
-        },
-        { rootMargin: "0px 0px -40px 0px", threshold: 0.05 },
-      );
-
-      const initAnim = () => {
-        if (disposed) return;
-        document.querySelectorAll<HTMLElement>("h2").forEach((el) => {
-          if (observed.has(el)) return;
-          el.style.opacity = "0";
-          el.style.transform = "translateY(22px)";
-          el.style.transition = "opacity 0.75s ease, transform 0.75s ease";
-          el.style.willChange = "opacity, transform";
-          observer.observe(el);
-          observed.add(el);
-        });
-      };
-
-      // Запускаем initAnim несколько раз — lazy-секции монтируются с задержкой
-      const timers = [0, 300, 800, 1500, 2500].map((ms) =>
-        setTimeout(() => { if (!disposed) initAnim(); }, ms)
-      );
-
-      return () => {
-        disposed = true;
-        timers.forEach(clearTimeout);
-        if (scrollFrame) cancelAnimationFrame(scrollFrame);
-        window.removeEventListener("scroll", onScroll);
-        observer.disconnect();
-        bar.remove();
-      };
-    }
-
     return () => {
-      disposed = true;
       if (scrollFrame) cancelAnimationFrame(scrollFrame);
       window.removeEventListener("scroll", onScroll);
       bar.remove();
