@@ -95,8 +95,6 @@ const sectionStyle = {
 
 const deferredSectionStyle = {
   ...sectionStyle,
-  contentVisibility: "auto" as const,
-  containIntrinsicSize: "1000px",
 };
 
 function HeroSection() {
