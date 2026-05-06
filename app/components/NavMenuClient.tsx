@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const NAV_ITEMS = [
   { label: "О нас",          href: "#about"    },
@@ -49,6 +49,26 @@ function scrollToSection(hash: string) {
 }
 
 export default function NavMenuClient() {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    let raf = 0;
+    const check = () => {
+      // Hero is 100svh — hide nav once user scrolls past it
+      setVisible(window.scrollY < window.innerHeight * 0.95);
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(check);
+    };
+    check();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     scrollToSection(href);
@@ -121,6 +141,9 @@ export default function NavMenuClient() {
           maxWidth: "calc(100vw - 24px)",
           overflowX: "auto",
           scrollbarWidth: "none",
+          opacity: visible ? 1 : 0,
+          pointerEvents: visible ? "auto" : "none",
+          transition: "opacity 0.3s ease",
         }}
       >
         {NAV_ITEMS.map(({ label, href }) => (
