@@ -74,21 +74,17 @@ export function ScrollAnimationsOptimized() {
         });
       };
 
-      // Первый запуск — после рендера
-      requestAnimationFrame(() => requestAnimationFrame(initAnim));
-
-      // Повторный запуск когда deferred-секции монтируются
-      const mutationObserver = new MutationObserver(() => {
-        if (!disposed) initAnim();
-      });
-      mutationObserver.observe(document.body, { childList: true, subtree: true });
+      // Запускаем initAnim несколько раз — lazy-секции монтируются с задержкой
+      const timers = [0, 300, 800, 1500, 2500].map((ms) =>
+        setTimeout(() => { if (!disposed) initAnim(); }, ms)
+      );
 
       return () => {
         disposed = true;
+        timers.forEach(clearTimeout);
         if (scrollFrame) cancelAnimationFrame(scrollFrame);
         window.removeEventListener("scroll", onScroll);
         observer.disconnect();
-        mutationObserver.disconnect();
         bar.remove();
       };
     }
