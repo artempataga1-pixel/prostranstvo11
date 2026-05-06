@@ -271,28 +271,42 @@ export function ScrollAnimationsOptimized() {
             });
         }
 
-        // h2-анимации только на desktop — на тач-устройствах они создают
-        // 15-20 ScrollTrigger-инстансов, а последующий refresh() вызывает
-        // синхронный reflow всей страницы, блокируя scroll на 100-400мс
         if (!prefersTouchScroll) {
-          document.querySelectorAll<HTMLElement>("h2").forEach((heading) => {
-            gsap.fromTo(
-              heading,
-              { opacity: 0, y: 20, clipPath: "inset(0 0 100% 0)" },
+          // Анимация h2
+          document.querySelectorAll<HTMLElement>("h2").forEach((el) => {
+            gsap.fromTo(el,
+              { opacity: 0, y: 24, clipPath: "inset(0 0 100% 0)" },
               {
-                opacity: 1,
-                y: 0,
-                clipPath: "inset(0 0 0% 0)",
-                duration: 0.9,
-                ease: "power3.out",
-                onStart() { heading.style.willChange = "clip-path, transform, opacity"; },
-                onComplete() { heading.style.willChange = ""; },
-                scrollTrigger: {
-                  trigger: heading,
-                  start: "top 88%",
-                  toggleActions: "play none none none",
-                  once: true,
-                },
+                opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)",
+                duration: 0.85, ease: "power3.out",
+                onStart() { el.style.willChange = "clip-path, transform, opacity"; },
+                onComplete() { el.style.willChange = ""; },
+                scrollTrigger: { trigger: el, start: "top 92%", toggleActions: "play none none none", once: true },
+              },
+            );
+          });
+
+          // Анимация p (параграфы) — плавное появление снизу
+          document.querySelectorAll<HTMLElement>("section p, section li").forEach((el) => {
+            gsap.fromTo(el,
+              { opacity: 0, y: 16 },
+              {
+                opacity: 1, y: 0,
+                duration: 0.7, ease: "power2.out",
+                scrollTrigger: { trigger: el, start: "top 94%", toggleActions: "play none none none", once: true },
+              },
+            );
+          });
+
+          // Анимация карточек ([data-glow] и похожих блоков)
+          document.querySelectorAll<HTMLElement>("[data-glow], .why-cards-row > *, .contacts-card-grid > *").forEach((el, i) => {
+            gsap.fromTo(el,
+              { opacity: 0, y: 20 },
+              {
+                opacity: 1, y: 0,
+                duration: 0.6, ease: "power2.out",
+                delay: (i % 3) * 0.08,
+                scrollTrigger: { trigger: el, start: "top 94%", toggleActions: "play none none none", once: true },
               },
             );
           });
