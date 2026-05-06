@@ -115,12 +115,6 @@ export function ScrollAnimationsOptimized() {
         _ScrollTrigger = stModule.ScrollTrigger;
       }
 
-      if (!_lenisLoaded) {
-        _lenisLoaded = true;
-        const lenisModule = await import("lenis");
-        _Lenis = lenisModule.default;
-      }
-
       if (disposed) return;
 
       const gsap = _gsap!;
@@ -131,73 +125,26 @@ export function ScrollAnimationsOptimized() {
       const listenerCleanup: Array<() => void> = [];
       const runtimeCleanup: Array<() => void> = [];
 
-      if (_Lenis) {
-        const Lenis = _Lenis;
-        const lenis = new Lenis({
-          duration: 0.65,
-          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true,
-          wheelMultiplier: 0.9,
-          // Touch scroll всегда нативный — Lenis не должен перехватывать touch
-          touchMultiplier: 0,
-        });
-
-        // Expose globally so NavMenuClient can call lenis.scrollTo()
-        (window as Window & { __lenis?: typeof lenis }).__lenis = lenis;
-
-        // Handle hash navigation (e.g., back button from case page → /#cases)
-        const desktopHash = window.location.hash;
-        if (desktopHash) {
-          const desktopTarget = document.querySelector<HTMLElement>(desktopHash);
-          if (desktopTarget) {
-            setTimeout(() => {
-              if (!disposed) lenis.scrollTo(desktopTarget, { immediate: true, offset: 80 });
-            }, 50);
-          }
-        }
-
-        lenis.on("scroll", ScrollTrigger.update);
-
-        const ticker = (time: number) => lenis.raf(time * 1000);
-        gsap.ticker.add(ticker);
-        gsap.ticker.lagSmoothing(0);
-
-        lenis.on("scroll", ({ progress }: { progress: number }) => {
-          setBarProgress(progress);
-        });
-
-        runtimeCleanup.push(() => {
-          gsap.ticker.remove(ticker);
-          lenis.destroy();
-          delete (window as Window & { __lenis?: typeof lenis }).__lenis;
-        });
-      } else {
-        let scrollFrame = 0;
-
-        const syncScrollState = () => {
-          scrollFrame = 0;
-          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-          setBarProgress(maxScroll > 0 ? window.scrollY / maxScroll : 0);
-          ScrollTrigger.update();
-        };
-
-        const onScroll = () => {
-          if (scrollFrame !== 0) return;
-          scrollFrame = window.requestAnimationFrame(syncScrollState);
-        };
-
-        syncScrollState();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", syncScrollState);
-
-        runtimeCleanup.push(() => {
-          if (scrollFrame !== 0) {
-            window.cancelAnimationFrame(scrollFrame);
-          }
-          window.removeEventListener("scroll", onScroll);
-          window.removeEventListener("resize", syncScrollState);
-        });
-      }
+      // Нативный скролл — без Lenis, без инерции
+      let scrollFrame = 0;
+      const syncScrollState = () => {
+        scrollFrame = 0;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        setBarProgress(maxScroll > 0 ? window.scrollY / maxScroll : 0);
+        ScrollTrigger.update();
+      };
+      const onScroll = () => {
+        if (scrollFrame !== 0) return;
+        scrollFrame = window.requestAnimationFrame(syncScrollState);
+      };
+      syncScrollState();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", syncScrollState);
+      runtimeCleanup.push(() => {
+        if (scrollFrame !== 0) window.cancelAnimationFrame(scrollFrame);
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", syncScrollState);
+      });
 
       const ctx = gsap.context(() => {
         const sections = gsap.utils.toArray<HTMLElement>("section");
