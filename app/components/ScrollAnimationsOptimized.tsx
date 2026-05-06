@@ -3,398 +3,101 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-// Module-level cache — модули загружаются один раз и переиспользуются при смене pathname
-let _gsap: (typeof import("gsap"))["gsap"] | null = null;
-let _ScrollTrigger: (typeof import("gsap/ScrollTrigger"))["ScrollTrigger"] | null = null;
-let _Lenis: (typeof import("lenis"))["default"] | null = null;
-let _lenisLoaded = false; // флаг: lenis уже пытались загрузить (может быть null для touch-устройств)
-
 export function ScrollAnimationsOptimized() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    // (pointer: coarse) надёжнее чем (hover: none) and (pointer: coarse):
-    // некоторые Android / hybrid устройства могут репортить hover но всё равно
-    // являются тач-устройствами. Coarse pointer = палец = нативный скролл.
-    const prefersTouchScroll = window.matchMedia("(pointer: coarse)").matches;
-    const browserWindow = window as Window & {
-      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
-      cancelIdleCallback?: (handle: number) => void;
-    };
-
-    let cleanup: (() => void) | undefined;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
     let disposed = false;
-    let idleHandle: number | undefined;
-    let timeoutHandle: number | undefined;
-    let interactionCleanup: (() => void) | undefined;
-    let started = false;
+    let scrollFrame = 0;
 
-    // Немедленная прокрутка к хэшу — до любой отложенной инициализации.
-    // Один rAF даёт React время завершить рендер секций.
-    const immediateHash = window.location.hash;
-    let hashRaf = 0;
-    if (immediateHash) {
-      hashRaf = requestAnimationFrame(() => {
-        hashRaf = 0;
-        const target = document.querySelector<HTMLElement>(immediateHash);
-        if (target && !disposed) {
-          target.scrollIntoView({ block: "start", behavior: "instant" });
-        }
-      });
-    }
+    // ── Прогресс-бар ──────────────────────────────────────────────────────────
+    const bar = document.createElement("div");
+    Object.assign(bar.style, {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      height: "2px",
+      width: "0%",
+      background: "linear-gradient(90deg,#0ABAB5,#00fff5)",
+      zIndex: "9999",
+      pointerEvents: "none",
+      boxShadow: "0 0 8px rgba(10,186,181,0.6)",
+      willChange: "width",
+      transition: "width 0.05s linear",
+    });
+    document.body.appendChild(bar);
 
-    const startAnimations = async () => {
-      if (started || disposed) return;
-      started = true;
+    const updateBar = () => {
+      scrollFrame = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = max > 0 ? `${(window.scrollY / max) * 100}%` : "0%";
+    };
 
-      const bar = document.createElement("div");
-      Object.assign(bar.style, {
-        position: "fixed",
-        top: "0",
-        left: "0",
-        height: "2px",
-        width: "0%",
-        background: "linear-gradient(90deg,#0ABAB5,#00fff5)",
-        zIndex: "9999",
-        pointerEvents: "none",
-        boxShadow: "0 0 8px rgba(10,186,181,0.6)",
-        willChange: "width",
-        transition: "width 0.05s linear",
-      });
-      document.body.appendChild(bar);
+    const onScroll = () => {
+      if (scrollFrame) return;
+      scrollFrame = requestAnimationFrame(updateBar);
+    };
 
-      const setBarProgress = (progress: number) => {
-        bar.style.width = `${Math.max(0, Math.min(1, progress)) * 100}%`;
-      };
+    updateBar();
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-      // На мобиле (touch) — GSAP не нужен: нет smooth-scroll, нет parallax, нет h2-анимаций.
-      // Используем нативный scroll для прогресс-бара и выходим.
-      if (prefersTouchScroll) {
-        let scrollFrame = 0;
-        const syncScrollState = () => {
-          scrollFrame = 0;
-          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-          setBarProgress(maxScroll > 0 ? window.scrollY / maxScroll : 0);
-        };
-        const onScroll = () => {
-          if (scrollFrame !== 0) return;
-          scrollFrame = window.requestAnimationFrame(syncScrollState);
-        };
-        syncScrollState();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", syncScrollState);
+    // ── Анимация текста (только h2) — IntersectionObserver + CSS transition ──
+    // Не трогаем мобил — нет смысла анимировать при нативном скролле
+    if (!isTouch) {
+      const observed = new Set<Element>();
 
-        // Handle hash navigation on mobile (e.g., back button from case page → /#cases)
-        const mobileHash = window.location.hash;
-        if (mobileHash) {
-          const mobileTarget = document.querySelector<HTMLElement>(mobileHash);
-          if (mobileTarget) {
-            setTimeout(() => {
-              if (!disposed) mobileTarget.scrollIntoView({ block: "start" });
-            }, 200);
-          }
-        }
-
-        cleanup = () => {
-          if (scrollFrame !== 0) window.cancelAnimationFrame(scrollFrame);
-          window.removeEventListener("scroll", onScroll);
-          window.removeEventListener("resize", syncScrollState);
-          bar.remove();
-        };
-        return;
-      }
-
-      // Используем кэшированные модули, если уже загружены
-      if (!_gsap || !_ScrollTrigger) {
-        const [gsapModule, stModule] = await Promise.all([
-          import("gsap"),
-          import("gsap/ScrollTrigger"),
-        ]);
-        _gsap = gsapModule.gsap;
-        _ScrollTrigger = stModule.ScrollTrigger;
-      }
-
-      if (disposed) return;
-
-      const gsap = _gsap!;
-      const ScrollTrigger = _ScrollTrigger!;
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      const listenerCleanup: Array<() => void> = [];
-      const runtimeCleanup: Array<() => void> = [];
-
-      // Нативный скролл — без Lenis, без инерции
-      let scrollFrame = 0;
-      const syncScrollState = () => {
-        scrollFrame = 0;
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        setBarProgress(maxScroll > 0 ? window.scrollY / maxScroll : 0);
-        ScrollTrigger.update();
-      };
-      const onScroll = () => {
-        if (scrollFrame !== 0) return;
-        scrollFrame = window.requestAnimationFrame(syncScrollState);
-      };
-      syncScrollState();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", syncScrollState);
-      runtimeCleanup.push(() => {
-        if (scrollFrame !== 0) window.cancelAnimationFrame(scrollFrame);
-        window.removeEventListener("scroll", onScroll);
-        window.removeEventListener("resize", syncScrollState);
-      });
-
-      const ctx = gsap.context(() => {
-        const sections = gsap.utils.toArray<HTMLElement>("section");
-        void sections;
-
-
-        const hero = sections[0];
-        if (hero && canHover) {
-          const title = hero.querySelector<HTMLElement>("[data-hero-title]");
-          if (title) {
-            const titleXTo = gsap.quickTo(title, "x", { duration: 0.4, ease: "power2.out" });
-            const titleYTo = gsap.quickTo(title, "y", { duration: 0.4, ease: "power2.out" });
-            let heroRect: DOMRect | null = null;
-            let heroFrame = 0;
-            let heroX = 0;
-            let heroY = 0;
-
-            const flushHeroMove = () => {
-              heroFrame = 0;
-              titleXTo(heroX);
-              titleYTo(heroY);
-            };
-
-            const onMove = (event: PointerEvent) => {
-              if (!heroRect) {
-                heroRect = hero.getBoundingClientRect();
-              }
-
-              heroX = ((event.clientX - heroRect.left) / heroRect.width - 0.5) * 34;
-              heroY = ((event.clientY - heroRect.top) / heroRect.height - 0.5) * 18;
-
-              if (heroFrame !== 0) return;
-              heroFrame = window.requestAnimationFrame(flushHeroMove);
-            };
-
-            const onEnter = () => {
-              heroRect = hero.getBoundingClientRect();
-              hero.addEventListener("pointermove", onMove, { passive: true });
-            };
-
-            const onLeave = () => {
-              hero.removeEventListener("pointermove", onMove);
-              heroRect = null;
-              if (heroFrame !== 0) {
-                window.cancelAnimationFrame(heroFrame);
-                heroFrame = 0;
-              }
-              titleXTo(0);
-              titleYTo(0);
-            };
-
-            hero.addEventListener("pointerenter", onEnter);
-            hero.addEventListener("pointerleave", onLeave);
-            listenerCleanup.push(() => {
-              hero.removeEventListener("pointermove", onMove);
-              hero.removeEventListener("pointerenter", onEnter);
-              hero.removeEventListener("pointerleave", onLeave);
-              if (heroFrame !== 0) {
-                window.cancelAnimationFrame(heroFrame);
-              }
-            });
-          }
-        }
-
-        if (canHover) {
-          document
-            .querySelectorAll<HTMLElement>("[data-glow]")
-            .forEach((card) => {
-              gsap.set(card, { transformPerspective: 700 });
-              const rotateYTo = gsap.quickTo(card, "rotateY", { duration: 0.2, ease: "power2.out" });
-              const rotateXTo = gsap.quickTo(card, "rotateX", { duration: 0.2, ease: "power2.out" });
-              const scaleTo = gsap.quickTo(card, "scale", { duration: 0.2, ease: "power2.out" });
-              let cardRect: DOMRect | null = null;
-              let tiltFrame = 0;
-              let tiltX = 0;
-              let tiltY = 0;
-
-              const flushTilt = () => {
-                tiltFrame = 0;
-                rotateYTo(tiltX);
-                rotateXTo(tiltY);
-              };
-
-              const onMove = (event: PointerEvent) => {
-                if (!cardRect) {
-                  cardRect = card.getBoundingClientRect();
-                }
-
-                tiltX = ((event.clientX - cardRect.left) / cardRect.width - 0.5) * 10;
-                tiltY = ((event.clientY - cardRect.top) / cardRect.height - 0.5) * -7;
-
-                if (tiltFrame !== 0) return;
-                tiltFrame = window.requestAnimationFrame(flushTilt);
-              };
-
-              const onEnter = () => {
-                cardRect = card.getBoundingClientRect();
-                scaleTo(1.015);
-                card.addEventListener("pointermove", onMove, { passive: true });
-              };
-
-              const onLeave = () => {
-                card.removeEventListener("pointermove", onMove);
-                cardRect = null;
-                if (tiltFrame !== 0) {
-                  window.cancelAnimationFrame(tiltFrame);
-                  tiltFrame = 0;
-                }
-                rotateYTo(0);
-                rotateXTo(0);
-                scaleTo(1);
-              };
-
-              card.addEventListener("pointerenter", onEnter);
-              card.addEventListener("pointerleave", onLeave);
-              listenerCleanup.push(() => {
-                card.removeEventListener("pointermove", onMove);
-                card.removeEventListener("pointerenter", onEnter);
-                card.removeEventListener("pointerleave", onLeave);
-                if (tiltFrame !== 0) {
-                  window.cancelAnimationFrame(tiltFrame);
-                }
-              });
-            });
-        }
-
-        if (!prefersTouchScroll) {
-          // Анимация h2
-          document.querySelectorAll<HTMLElement>("h2").forEach((el) => {
-            gsap.fromTo(el,
-              { opacity: 0, y: 24, clipPath: "inset(0 0 100% 0)" },
-              {
-                opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)",
-                duration: 0.85, ease: "power3.out",
-                onStart() { el.style.willChange = "clip-path, transform, opacity"; },
-                onComplete() { el.style.willChange = ""; },
-                scrollTrigger: { trigger: el, start: "top 92%", toggleActions: "play none none none", once: true },
-              },
-            );
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+            observer.unobserve(el);
+            observed.delete(el);
           });
+        },
+        { rootMargin: "0px 0px -40px 0px", threshold: 0.05 },
+      );
 
-          // Анимация p (параграфы) — плавное появление снизу
-          document.querySelectorAll<HTMLElement>("section p, section li").forEach((el) => {
-            gsap.fromTo(el,
-              { opacity: 0, y: 16 },
-              {
-                opacity: 1, y: 0,
-                duration: 0.7, ease: "power2.out",
-                scrollTrigger: { trigger: el, start: "top 94%", toggleActions: "play none none none", once: true },
-              },
-            );
-          });
-
-          // Анимация карточек ([data-glow] и похожих блоков)
-          document.querySelectorAll<HTMLElement>("[data-glow], .why-cards-row > *, .contacts-card-grid > *").forEach((el, i) => {
-            gsap.fromTo(el,
-              { opacity: 0, y: 20 },
-              {
-                opacity: 1, y: 0,
-                duration: 0.6, ease: "power2.out",
-                delay: (i % 3) * 0.08,
-                scrollTrigger: { trigger: el, start: "top 94%", toggleActions: "play none none none", once: true },
-              },
-            );
-          });
-        }
-
-        // Откладываем refresh() на два rAF-а — не блокируем текущий event
-        window.requestAnimationFrame(() => {
-          window.requestAnimationFrame(() => {
-            ScrollTrigger.refresh();
-          });
+      const initAnim = () => {
+        if (disposed) return;
+        document.querySelectorAll<HTMLElement>("h2").forEach((el) => {
+          if (observed.has(el)) return;
+          el.style.opacity = "0";
+          el.style.transform = "translateY(22px)";
+          el.style.transition = "opacity 0.75s ease, transform 0.75s ease";
+          el.style.willChange = "opacity, transform";
+          observer.observe(el);
+          observed.add(el);
         });
+      };
+
+      // Первый запуск — после рендера
+      requestAnimationFrame(() => requestAnimationFrame(initAnim));
+
+      // Повторный запуск когда deferred-секции монтируются
+      const mutationObserver = new MutationObserver(() => {
+        if (!disposed) initAnim();
       });
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
 
-      cleanup = () => {
-        ctx.revert();
-        listenerCleanup.forEach((disposeListener) => disposeListener());
-        runtimeCleanup.forEach((disposeRuntime) => disposeRuntime());
-        bar.remove();
-      };
-    };
-
-    const startFromInteraction = () => {
-      interactionCleanup?.();
-      interactionCleanup = undefined;
-      void startAnimations().catch(console.error);
-    };
-
-    const subscribeForInteraction = () => {
-      const onFirstInteraction = () => {
-        startFromInteraction();
-      };
-
-      window.addEventListener("scroll", onFirstInteraction, { passive: true, once: true });
-      window.addEventListener("pointerdown", onFirstInteraction, { passive: true, once: true });
-      window.addEventListener("keydown", onFirstInteraction, { once: true });
-
-      return () => {
-        window.removeEventListener("scroll", onFirstInteraction);
-        window.removeEventListener("pointerdown", onFirstInteraction);
-        window.removeEventListener("keydown", onFirstInteraction);
-      };
-    };
-
-    const scheduleStart = () => {
-      interactionCleanup = subscribeForInteraction();
-
-      if (browserWindow.requestIdleCallback) {
-        idleHandle = browserWindow.requestIdleCallback(() => {
-          startFromInteraction();
-        }, { timeout: prefersTouchScroll ? 800 : 900 });
-        return;
-      }
-
-      timeoutHandle = window.setTimeout(() => {
-        startFromInteraction();
-      }, prefersTouchScroll ? 400 : 400);
-    };
-
-    // На мобиле (touch) путь в startAnimations лёгкий — не нужен GSAP/Lenis.
-    // НЕ используем requestIdleCallback: rIC срабатывает когда браузер idle
-    // (т.е. когда юзер останавливает скролл), JS-спайк блокирует следующий
-    // touch → ощущение заморозки. Запускаем сразу в следующем rAF.
-    if (prefersTouchScroll) {
-      const mobileRaf = requestAnimationFrame(() => {
-        void startAnimations().catch(console.error);
-      });
       return () => {
         disposed = true;
-        if (hashRaf !== 0) cancelAnimationFrame(hashRaf);
-        cancelAnimationFrame(mobileRaf);
-        cleanup?.();
+        if (scrollFrame) cancelAnimationFrame(scrollFrame);
+        window.removeEventListener("scroll", onScroll);
+        observer.disconnect();
+        mutationObserver.disconnect();
+        bar.remove();
       };
     }
-
-    // Desktop: откладываем тяжёлую GSAP/Lenis инициализацию до idle/первого взаимодействия
-    scheduleStart();
 
     return () => {
       disposed = true;
-      if (hashRaf !== 0) cancelAnimationFrame(hashRaf);
-      interactionCleanup?.();
-      if (idleHandle !== undefined && browserWindow.cancelIdleCallback) {
-        browserWindow.cancelIdleCallback(idleHandle);
-      }
-      if (timeoutHandle !== undefined) {
-        window.clearTimeout(timeoutHandle);
-      }
-      cleanup?.();
+      if (scrollFrame) cancelAnimationFrame(scrollFrame);
+      window.removeEventListener("scroll", onScroll);
+      bar.remove();
     };
   }, [pathname]);
 
